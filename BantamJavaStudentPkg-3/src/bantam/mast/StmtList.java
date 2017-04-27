@@ -24,42 +24,25 @@
    PARTICULAR PURPOSE. 
 */
 
-package bantam.ast;
+package bantam.mast;
 
-import bantam.visitor.Visitor;
+import bantam.visitor.MusicVisitor;
+
 
 /**
- * The <tt>BlockStmt</tt> class represents a block statement, which
- * contains a list of statements.  It contains a statement list
- * (<tt>idList</tt>).
+ * The <tt>StmtList</tt> class represents a list of method statements.
  *
- * @see ASTNode
+ * @see ListNode
  * @see Stmt
  */
-public class BlockStmt extends Stmt {
+public class StmtList extends ListNode {
     /**
-     * A list of statements
-     */
-    protected StmtList stmtList;
-
-    /**
-     * BlockStmt constructor
+     * Stmt list constructor
      *
-     * @param lineNum  source line number corresponding to this AST node
-     * @param stmtList a list of statements
+     * @param lineNum source line number corresponding to this AST node
      */
-    public BlockStmt(int lineNum, StmtList stmtList) {
+    public StmtList(int lineNum) {
         super(lineNum);
-        this.stmtList = stmtList;
-    }
-
-    /**
-     * Get the statement list
-     *
-     * @return statement list
-     */
-    public StmtList getStmtList() {
-        return stmtList;
     }
 
     /**
@@ -67,9 +50,9 @@ public class BlockStmt extends Stmt {
      *
      * @param v bantam.visitor object
      * @return result of visiting this node
-     * @see bantam.visitor.Visitor
+     * @see MusicVisitor
      */
-    public Object accept(Visitor v) {
+    public Object accept(MusicVisitor v) {
         return v.visit(this);
     }
 }

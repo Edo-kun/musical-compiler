@@ -291,7 +291,7 @@ import java_cup.runtime.Symbol;
 
 <YYINITIAL>[0-9$][A-Za-z0-9]*   {
     int initialChar = yytext().charAt(0);
-    if(Character.isDigit(initialChar)) {
+    if(Character.isDigit(initialChar) || yytext().equals("$counter")) {
         return new Symbol(TokenIds.LEX_ERROR, new Token("ILLEGAL_ID", yytext(), yyline));
     }
     return new Symbol(TokenIds.ID,

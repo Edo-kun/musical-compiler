@@ -33,7 +33,7 @@ import bantam.visitor.Visitor;
  * a class declaration.  It contains the name of the method (<tt>name</tt>),
  * a list of formal parameters (<tt>formalList</tt>), the return type of the
  * method (<tt>returnType</tt>), and a list of statements from the method body
- * (<tt>stmtList</tt>).
+ * (<tt>idList</tt>).
  *
  * @see ASTNode
  */
