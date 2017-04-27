@@ -26,13 +26,12 @@
 
 package bantam.mast;
 
-import bantam.mast.MeasureList;
 import bantam.visitor.MusicVisitor;
 
 /**
  * The <tt>PhraseStmt</tt> class represents a phrase statement, which
  * contains a list of measures.  It contains instrument/octave/volume
- * info
+ * through the phrase expr
  * (<tt>MeasureList</tt>).
  *
  * @see ASTNode
@@ -40,42 +39,24 @@ import bantam.visitor.MusicVisitor;
  */
 public class PhraseStmt extends Stmt {
     /**
-     * A list of measures
+     * A phrase expr
      */
-    protected MeasureList measureList;
-
-    /** attributes of the phrase */
-    protected String instrument;
-    protected int octaveModifier;
-    protected int volume;
+    protected PhraseExpr phraseExpr;
 
     /**
      * PhraseStmt constructor
      *
      * @param lineNum  source line number corresponding to this AST node
-     * @param measureList a list of statements
+     * @param phraseExpr
      */
-    public PhraseStmt(int lineNum, MeasureList measureList) {
+    public PhraseStmt(int lineNum,
+                      PhraseExpr phraseExpr) {
         super(lineNum);
-        this.measureList = measureList;
-        instrument = "Piano";
-        octaveModifier = 0;
-        volume = 11;
+        this.phraseExpr = phraseExpr;
     }
 
-    /** set phrase attributes */
-    public void setInstrument(String instr) {this.instrument = instr;}
-    public void setOctaveModifier(int modifier) {this.octaveModifier = modifier;}
-    public void setVolume(int vol) {this.volume = vol;}
-
-
-    /**
-     * Get the measure list
-     *
-     * @return measure list
-     */
-    public MeasureList getIdList() {
-        return measureList;
+    public PhraseExpr getPhraseExpr() {
+        return phraseExpr;
     }
 
     /**

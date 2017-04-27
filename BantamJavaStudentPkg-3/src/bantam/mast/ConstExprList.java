@@ -28,38 +28,21 @@ package bantam.mast;
 
 import bantam.visitor.MusicVisitor;
 
+
 /**
- * The <tt>BlockStmt</tt> class represents a block statement, which
- * contains a list of stmts.  It contains a stmt list
- * (<tt>idList</tt>).
+ * The <tt>ConstExprList</tt> class represents a list of ConstExprs.
  *
- * @see ASTNode
- * @see Stmt
+ * @see ListNode
+ * @see ConstExpr
  */
-public class BlockStmt extends Stmt {
+public class ConstExprList extends ListNode {
     /**
-     * A list of statements
-     */
-    protected StmtList stmtList;
-
-    /**
-     * BlockStmt constructor
+     * ConstExpr list constructor
      *
-     * @param lineNum  source line number corresponding to this AST node
-     * @param stmtList a list of statements
+     * @param lineNum source line number corresponding to this AST node
      */
-    public BlockStmt(int lineNum, StmtList stmtList) {
+    public ConstExprList(int lineNum) {
         super(lineNum);
-        this.stmtList = stmtList;
-    }
-
-    /**
-     * Get the statement list
-     *
-     * @return statement list
-     */
-    public StmtList getStmtList() {
-        return stmtList;
     }
 
     /**

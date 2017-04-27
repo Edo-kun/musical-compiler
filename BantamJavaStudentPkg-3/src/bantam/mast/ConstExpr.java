@@ -28,38 +28,40 @@ package bantam.mast;
 
 import bantam.visitor.MusicVisitor;
 
+
 /**
- * The <tt>BlockStmt</tt> class represents a block statement, which
- * contains a list of stmts.  It contains a stmt list
- * (<tt>idList</tt>).
+ * The abstract <tt>ConstExpr</tt> class represents constant expressions
+ * (int constants, String constants).  It contains a
+ * a constant value.  Subclasses of this class can be handled similarly
+ * within the compiler, so most functionality can be implemented in the
+ * bantam.visitor method for this class.
  *
  * @see ASTNode
- * @see Stmt
  */
-public class BlockStmt extends Stmt {
+public abstract class ConstExpr extends Expr {
     /**
-     * A list of statements
+     * Constant value
      */
-    protected StmtList stmtList;
+    protected String constant;
 
     /**
-     * BlockStmt constructor
+     * ConstExpr constructor
      *
      * @param lineNum  source line number corresponding to this AST node
-     * @param stmtList a list of statements
+     * @param constant constant value
      */
-    public BlockStmt(int lineNum, StmtList stmtList) {
+    public ConstExpr(int lineNum, String constant) {
         super(lineNum);
-        this.stmtList = stmtList;
+        this.constant = constant;
     }
 
     /**
-     * Get the statement list
+     * Get the constant value
      *
-     * @return statement list
+     * @return constant value
      */
-    public StmtList getStmtList() {
-        return stmtList;
+    public String getConstant() {
+        return constant;
     }
 
     /**
@@ -69,7 +71,5 @@ public class BlockStmt extends Stmt {
      * @return result of visiting this node
      * @see MusicVisitor
      */
-    public Object accept(MusicVisitor v) {
-        return v.visit(this);
-    }
+    abstract public Object accept(MusicVisitor v);
 }

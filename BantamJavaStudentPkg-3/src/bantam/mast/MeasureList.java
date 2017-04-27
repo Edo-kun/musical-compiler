@@ -28,37 +28,21 @@ package bantam.mast;
 
 import bantam.visitor.MusicVisitor;
 
+
 /**
- * The <tt>CallStmt</tt> class represents a call statement, which
- * contains a variable to execute
+ * The <tt>MeasureList</tt> class represents a list of phrase measures.
  *
- * @see ASTNode
- * @see Stmt
+ * @see ListNode
+ * @see Measure
  */
-public class CallStmt extends Stmt {
+public class MeasureList extends ListNode {
     /**
-     * A variable
-     */
-    protected ConstExpr name;
-
-    /**
-     * CallStmt constructor
+     * Measure list constructor
      *
-     * @param lineNum  source line number corresponding to this AST node
-     * @param name
+     * @param lineNum source line number corresponding to this AST node
      */
-    public CallStmt(int lineNum, ConstExpr name) {
+    public MeasureList(int lineNum) {
         super(lineNum);
-        this.name = name;
-    }
-
-    /**
-     * Get the name
-     *
-     * @return name
-     */
-    public ConstExpr getName() {
-        return name;
     }
 
     /**

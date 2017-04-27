@@ -29,36 +29,41 @@ package bantam.mast;
 import bantam.visitor.MusicVisitor;
 
 /**
- * The <tt>CallStmt</tt> class represents a call statement, which
- * contains a variable to execute
+ * The <tt>Note</tt> class represents a Note, which
+ * contains a sound
  *
  * @see ASTNode
- * @see Stmt
+ * @see Sound
  */
-public class CallStmt extends Stmt {
-    /**
-     * A variable
-     */
-    protected ConstExpr name;
+public class Note extends Sound {
+
+    /** Note attributes */
+    protected String name;
+    protected String modifier;
 
     /**
-     * CallStmt constructor
+     * Note constructor
      *
      * @param lineNum  source line number corresponding to this AST node
-     * @param name
+     * @param name A-G
+     * @param modifier + or -
      */
-    public CallStmt(int lineNum, ConstExpr name) {
-        super(lineNum);
+    public Note(int lineNum, String name, String modifier) {
+        super(lineNum, new SoundList(lineNum));
         this.name = name;
+        this.modifier = modifier;
     }
 
     /**
-     * Get the name
-     *
-     * @return name
+     * get name
      */
-    public ConstExpr getName() {
+    public String getName() {
         return name;
+    }
+
+    /** get modifier */
+    public String getModifier() {
+        return modifier;
     }
 
     /**

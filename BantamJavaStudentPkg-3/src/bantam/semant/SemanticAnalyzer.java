@@ -111,7 +111,7 @@ public class SemanticAnalyzer {
         //Check whether or not a Main Class with Main Method exists
         checkMainMain();
 
-        //Check UnaryExpr Statements to assure they contain VarExpr
+        //Check UnaryExpr Statements to assure they contain ConstVarExpr
         checkUnaryExpressions();
 
         //Check Break Statements to assure they are called within loops

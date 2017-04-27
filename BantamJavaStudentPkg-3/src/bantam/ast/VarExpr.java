@@ -30,7 +30,7 @@ import bantam.visitor.Visitor;
 
 
 /**
- * The <tt>VarExpr</tt> class represents variable expressions.
+ * The <tt>ConstVarExpr</tt> class represents variable expressions.
  * It contains the name of the variable.  Note: these may actually
  * be 'this', 'super', or 'null'.  Also, these may or may not
  * include a reference object name (if the variable is a field).
@@ -53,7 +53,7 @@ public class VarExpr extends Expr {
     protected String name;
 
     /**
-     * VarExpr constructor
+     * ConstVarExpr constructor
      *
      * @param lineNum source line number corresponding to this AST node
      * @param ref     the optional reference object expression

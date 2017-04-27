@@ -28,38 +28,41 @@ package bantam.mast;
 
 import bantam.visitor.MusicVisitor;
 
+
 /**
- * The <tt>BlockStmt</tt> class represents a block statement, which
- * contains a list of stmts.  It contains a stmt list
- * (<tt>idList</tt>).
+ * The <tt>ConstIntExpr</tt> class represents an integer constant expression.
+ * It extends constant expressions so it contains a constant value (represented
+ * as a String).  It also stores the constant as an int (<tt>intConstant</tt>).
+ * Since this class is similar to other subclasses most of the functionality can
+ * be implemented in the bantam.visitor method for the parent class.
  *
  * @see ASTNode
- * @see Stmt
+ * @see ConstExpr
  */
-public class BlockStmt extends Stmt {
+public class ConstIntExpr extends ConstExpr {
     /**
-     * A list of statements
+     * The constant value represented as an int
      */
-    protected StmtList stmtList;
+    private int intConstant;
 
     /**
-     * BlockStmt constructor
+     * ConstIntExpr constructor
      *
      * @param lineNum  source line number corresponding to this AST node
-     * @param stmtList a list of statements
+     * @param constant constant value (as a String)
      */
-    public BlockStmt(int lineNum, StmtList stmtList) {
-        super(lineNum);
-        this.stmtList = stmtList;
+    public ConstIntExpr(int lineNum, String constant) {
+        super(lineNum, constant);
+        intConstant = Integer.parseInt(constant);
     }
 
     /**
-     * Get the statement list
+     * Get the constant value represented as an int
      *
-     * @return statement list
+     * @return the constant value
      */
-    public StmtList getStmtList() {
-        return stmtList;
+    public int getIntConstant() {
+        return intConstant;
     }
 
     /**

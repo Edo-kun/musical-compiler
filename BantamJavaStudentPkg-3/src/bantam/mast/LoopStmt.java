@@ -31,7 +31,7 @@ import bantam.visitor.MusicVisitor;
 /**
  * The <tt>LoopStmt</tt> class represents a loop statement, which
  * contains a list of stmts.  It contains the number of iterations
- * (<tt>idList</tt>).
+ * (<tt>stmtList</tt>).
  *
  * @see ASTNode
  * @see Stmt
@@ -42,15 +42,19 @@ public class LoopStmt extends Stmt {
      */
     protected StmtList stmtList;
 
+    /** iterations */
+    protected ConstExpr expr;
+
     /**
      * LoopStmt constructor
      *
      * @param lineNum  source line number corresponding to this AST node
      * @param stmtList a list of statements
      */
-    public LoopStmt(int lineNum, StmtList stmtList) {
+    public LoopStmt(int lineNum, StmtList stmtList, ConstExpr constExpr) {
         super(lineNum);
         this.stmtList = stmtList;
+        this.expr = constExpr;
     }
 
     /**
@@ -58,10 +62,11 @@ public class LoopStmt extends Stmt {
      *
      * @return statement list
      */
-    public StmtList getIdList() {
+    public StmtList getStmtList() {
         return stmtList;
     }
 
+    public ConstExpr getExpr() { return this.expr;}
     /**
      * Visitor method
      *

@@ -838,7 +838,7 @@ public class CodeGeneratorVisitor extends Visitor{
                 );
             }
         } else {
-            //Get the location of the VarExpr
+            //Get the location of the ConstVarExpr
             loc = (Location) this.classSymbolTables.get(
                     this.currClass.getName()).lookup(node.getName()
             );

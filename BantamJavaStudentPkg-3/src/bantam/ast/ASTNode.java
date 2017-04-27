@@ -225,7 +225,7 @@ import bantam.visitor.Visitor;
  * <p/>
  * </ul>
  * <p/>
- * <li> <tt>VarExpr</tt><br />A <tt>VarExpr</tt> represents a variable reference
+ * <li> <tt>ConstVarExpr</tt><br />A <tt>ConstVarExpr</tt> represents a variable reference
  * expression.  It extends <tt>Expr</tt> and contains an optional reference
  * object name (<tt>String</tt>, which might be <tt>null</tt>) and a variable
  * name (<tt>String</tt>).

@@ -48,7 +48,7 @@ public class UnaryDecrExpr extends UnaryExpr {
      * UnaryDecrExpr constructor
      *
      * @param lineNum   source line number corresponding to this AST node
-     * @param expr      expression for decrementing (expression must be either VarExpr or ArrayExpr)
+     * @param expr      expression for decrementing (expression must be either ConstVarExpr or ArrayExpr)
      * @param isPostfix boolean indicating whether operator is postfix (true) or prefix (false)
      */
     public UnaryDecrExpr(int lineNum, Expr expr, boolean isPostfix) {
