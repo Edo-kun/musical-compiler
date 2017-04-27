@@ -30,7 +30,6 @@ public class TokenIds {
   public static final int LEX_ERROR = 2;
   public static final int LBRACE = 32;
   public static final int RBRACE = 33;
-  public static final int BOOLEAN_CONST = 41;
   public static final int RSQBRACE = 35;
   public static final int STRING_CONST = 42;
   public static final int COLON = 25;

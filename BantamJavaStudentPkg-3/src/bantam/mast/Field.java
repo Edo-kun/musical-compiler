@@ -43,9 +43,9 @@ public class Field extends Member {
     protected String name;
 
     /**
-     * The initialization stmt
+     * The initialization expr (should be phrase expr)
      */
-    protected Stmt init;
+    protected Expr init;
 
     /**
      * Field constructor
@@ -54,7 +54,7 @@ public class Field extends Member {
      * @param name    the name of the field (instance variable)
      * @param init    the initialization stmt
      */
-    public Field(int lineNum, String name, Stmt init) {
+    public Field(int lineNum, String name, Expr init) {
         super(lineNum);
         this.name = name;
         this.init = init;
@@ -74,7 +74,7 @@ public class Field extends Member {
      *
      * @return initialization stmt
      */
-    public Stmt getInit() {
+    public Expr getInit() {
         return init;
     }
 

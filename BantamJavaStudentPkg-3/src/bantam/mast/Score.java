@@ -29,29 +29,23 @@ package bantam.mast;
 import bantam.visitor.MusicVisitor;
 
 /**
- * The <tt>Class_</tt> class represents a class declaration,
+ * The <tt>Score</tt> score represents a score declaration,
  * which consists of a filename (<tt>filename</tt>), a class name
- * (<tt>name</tt>), the name of its parent class (<tt>parent</tt>),
+ * (<tt>name</tt),
  * and a list of members (<tt>members</tt>) which can be either field
- * declarations or method declarations.
- *
+ * or stmt
  * @see bantam.mast.ASTNode
  */
 public class Score extends ASTNode {
     /**
-     * The filename of the file containing this class
+     * The filename of the file containing this score
      */
     protected String filename;
 
     /**
-     * The name of this class
+     * The name of this score
      */
     protected String name;
-
-    /**
-     * The name of the parent of this class
-     */
-    protected String parent;
 
     /**
      * List of the class members
@@ -64,19 +58,17 @@ public class Score extends ASTNode {
      * @param lineNum    source line number corresponding to this AST node
      * @param filename   the filename of the file containing this class
      * @param name       the name of this class
-     * @param parent     the name of the parent of this class
      * @param memberList a list of the class members
      */
-    public Score(int lineNum, String filename, String name, String parent, MemberList memberList) {
+    public Score(int lineNum, String filename, String name, MemberList memberList) {
         super(lineNum);
         this.filename = filename;
         this.name = name;
-        this.parent = parent;
         this.memberList = memberList;
     }
 
     /**
-     * Get the filename of the file containing this class
+     * Get the filename of the file containing this score
      *
      * @return file name
      */
@@ -85,7 +77,7 @@ public class Score extends ASTNode {
     }
 
     /**
-     * Get the name of this class
+     * Get the name of this score
      *
      * @return class name
      */
@@ -94,16 +86,7 @@ public class Score extends ASTNode {
     }
 
     /**
-     * Get the name of the parent of this class
-     *
-     * @return name of parent class
-     */
-    public String getParent() {
-        return parent;
-    }
-
-    /**
-     * Get list of members that this class contains
+     * Get list of members that this score contains
      *
      * @return list of fields
      */
