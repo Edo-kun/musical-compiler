@@ -26,8 +26,6 @@
 
 package bantam.mast;
 
-import bantam.mast.ListNode;
-import bantam.mast.Member;
 import bantam.visitor.MusicVisitor;
 
 

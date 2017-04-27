@@ -32,7 +32,6 @@
 
 package bantam.mast;
 
-import bantam.mast.ASTNode;
 import bantam.visitor.MusicVisitor;
 
 import java.util.Iterator;

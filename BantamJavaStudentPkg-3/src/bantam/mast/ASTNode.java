@@ -288,7 +288,7 @@ public abstract class ASTNode {
      *
      * @param v bantam.visitor object
      * @return result of visiting this node
-     * @see Visitor
+     * @see MusicVisitor
      */
     abstract public Object accept(MusicVisitor v);
 }

@@ -26,8 +26,6 @@
 
 package bantam.mast;
 
-import bantam.mast.ASTNode;
-import bantam.mast.*;
 import bantam.visitor.MusicVisitor;
 
 
