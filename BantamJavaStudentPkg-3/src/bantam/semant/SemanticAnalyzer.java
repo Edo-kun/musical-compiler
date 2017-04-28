@@ -47,22 +47,14 @@ import java.util.*;
 
 /** The <tt>SemanticAnalyzer</tt> class performs semantic analysis.
   * In particular this class is able to perform (via the <tt>analyze()</tt>
-  * method) the following tests and analyses: (1) legal inheritence
-  * hierarchy (all classes have existing parent, no cycles), (2) 
-  * legal class member declaration, (3) there is a correct bantam.Main class
-  * and main() method, and (4) each class member is correctly typed.
-  * 
-  * This class is incomplete and will need to be implemented by the student. 
+  * method) the following tests and analyses: (1)
+  * legal member declaration, (2) there is a correct score,
+  * and (3) each expression is correctly typed and used.
+  *
   * */
 public class SemanticAnalyzer {
     /** Root of the AST */
     private Program program;
-    
-    /** Root of the class hierarchy tree */
-    private ClassTreeNode root;
-    
-    /** Maps class names to ClassTreeNode objects describing the class */
-    private Hashtable<String,ClassTreeNode> classMap = new Hashtable<String,ClassTreeNode>();
     
     /** Object for error handling */
     private ErrorHandler errorHandler = new ErrorHandler();
@@ -82,21 +74,13 @@ public class SemanticAnalyzer {
 	this.debug = debug;
     }
     
-    /** Analyze the AST checking for semantic errors and annotating the tree
-      * Also builds an auxiliary class hierarchy tree 
-      * @return root of the class hierarchy tree (needed for code generation)
+    /** Analyze the AST checking for semantic errors and annotating the nodes
+      * @return root of the tree (needed for code generation)
       *
-      * Must add code to do the following:
-      *   1 - build built-in class nodes in class hierarchy tree (already done)
-      *   2 - build and check the class hierarchy tree
-      *   3 - build the environment for each class (adding class members only) and check
-      *       that members are declared properly
-      *   4 - check that the bantam.Main class and main method are declared properly
-      *   5 - type check each class member
-      * See the lab manual for more details on each of these steps.
       * */
-    public ClassTreeNode analyze() {
-	    // 1 - add built in classes to class tree
+    public Program analyze() {
+	    // 1 - check for score
+
 
 
         // comment out
@@ -104,7 +88,7 @@ public class SemanticAnalyzer {
 
         // uncomment out
         this.errorHandler.checkErrors();
-        return this.root;
+        return this.program;
     }
 
     /**

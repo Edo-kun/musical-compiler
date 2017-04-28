@@ -40,21 +40,13 @@ package bantam;/* Bantam Java Compiler and Language Toolset.
 */
 
 import bantam.mast.Program;
-import bantam.codegenjvm.JVMCodeGenerator;
 import bantam.codegenmips.MipsCodeGenerator;
-import bantam.codegenx86.X86CodeGenerator;
-import bantam.interp.Interpreter;
-import bantam.prettyprinter.PrettyGenerator;
-import bantam.visitor.MainMainVisitor;
-import bantam.codegenmips.NumLocalVarsVisitor;
 import java_cup.runtime.Symbol;
 import bantam.lexer.Lexer;
-import bantam.opt.Optimizer;
 import bantam.parser.Parser;
 import bantam.semant.SemanticAnalyzer;
 import bantam.treedrawer.Drawer;
-import bantam.util.ClassTreeNode;
-import bantam.visitor.PrintVisitor;
+
 
 /**
  * bantam.Main class that runs the Bantam compiler
@@ -385,9 +377,9 @@ public class Main {
             // semantic analysis
             SemanticAnalyzer semanticAnalyzer =
                     new SemanticAnalyzer((Program) result.value, debugSemant);
-            ClassTreeNode classTree = null;
+            Program programTree = null;
             try {
-                classTree = semanticAnalyzer.analyze();
+                programTree = semanticAnalyzer.analyze();
             } catch (Exception e) {
                 // there were semantic errors, so report them and exit
                 System.out.println(e.getMessage());
@@ -395,45 +387,10 @@ public class Main {
                 System.exit(1);
             }
 
-            // if interpreter mode then interpret program and exit
-            if (intMode) {
-                Interpreter interpreter = new Interpreter(classTree, debugInt);
-                interpreter.interpret();
-                System.exit(0);
-            }
-
-            // optimization (if specified via -bantam.opt flag)
-            if (opt > 0) {
-                Optimizer optimizer = new Optimizer(classTree, opt, debugOpt);
-                optimizer.optimize();
-                if (stopAfterOpt) {
-                    optimizer.print();
-                    System.exit(0);
-                }
-            }
-
-            // pretty printing
-            if (prettyPrint) {
-                PrettyGenerator prettyPrinter = new PrettyGenerator(classTree, outFile);
-                prettyPrinter.prettyGenerate();
-                System.exit(0);
-            }
-
             // code generation
             if (targetType == TARG_MIPS) {
-                MipsCodeGenerator codeGenerator = new MipsCodeGenerator(classTree, outFile,
+                MipsCodeGenerator codeGenerator = new MipsCodeGenerator(programTree, outFile,
                         gcEnabled, (opt > 0),
-                        debugCodeGen);
-                codeGenerator.generate();
-            }
-            else if (targetType == TARG_X86) {
-                X86CodeGenerator codeGenerator = new X86CodeGenerator(classTree, outFile,
-                        gcEnabled, (opt > 0),
-                        debugCodeGen);
-                codeGenerator.generate();
-            }
-            else if (targetType == TARG_JVM) {
-                JVMCodeGenerator codeGenerator = new JVMCodeGenerator(classTree,
                         debugCodeGen);
                 codeGenerator.generate();
             }

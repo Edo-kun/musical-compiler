@@ -36,7 +36,9 @@
 
 package bantam.codegenmips;
 
-import bantam.util.ClassTreeNode;
+import bantam.mast.MeasureList;
+import bantam.mast.PhraseExpr;
+import bantam.mast.Program;
 
 import java.io.PrintStream;
 
@@ -53,24 +55,15 @@ import java.io.IOException;
  * This class is incomplete and will need to be implemented by the student.
  */
 public class MipsCodeGenerator {
-
-    /** Root of the class hierarchy tree */
-    private ClassTreeNode root;
-
+    private Program root;
     /** Print stream for output assembly file */
     private PrintStream out;
 
     /** Assembly support object (using Mips assembly support) */
     private MipsSupport assemblySupport;
 
-    /** Map containing the labels associated with each class */
-    private Map<String, String> classNames;
-
-    /** Map containing the method associated with each class */
-    private Map<String, Set<String>> classMethods;
-
-    /** Map which connects String constants to their label */
-    private Map<String, String> stringLabels;
+    /** Map containing the variable to its phrase */
+    private Map<String, PhraseExpr> scoreVariables;
 
     /**
      * Boolean indicating whether garbage collection is enabled
@@ -96,7 +89,7 @@ public class MipsCodeGenerator {
      * @param opt     boolean indicating whether optimization is enabled
      * @param debug   boolean indicating whether debugging is enabled
      */
-    public MipsCodeGenerator(ClassTreeNode root, String outFile,
+    public MipsCodeGenerator(Program root, String outFile,
                              boolean gc, boolean opt, boolean debug) {
         this.root = root;
         this.gc = gc;
@@ -129,7 +122,6 @@ public class MipsCodeGenerator {
      * See the lab manual for the details of each of these steps.
      */
     public void generate() {
-        this.classNames = new HashMap<>();
         // comment out
         //throw new RuntimeException("MIPS code generator unimplemented");
 
@@ -142,25 +134,10 @@ public class MipsCodeGenerator {
         //2 - Generate data for the garbage collector
         generateGCData();
 
-        //3 - Generate String Constants for all used Strings
-        StringConstWriter(root);
-
-        //3.5 - Generate Strings for Class Names
-        ArrayList<String> classNames = generateClassStrings();
-
-        //4 - Generate the class name table
-        generateClassNameTable(classNames);
-
-        //5 - Generate the object templates
-        generateObjectTemplates();
-
-        //6 - generate dispatch tables
-        generateClassDispatchTables();
-
         //7 - Start the Text section
         out.println();
         assemblySupport.genTextStart();
-        generateText();
+
     }
 
     //Below are the Helper Functions for the generate() method
@@ -187,18 +164,6 @@ public class MipsCodeGenerator {
     }
 
     /**
-     * Generates the String Constants for the program associated with the
-     * input root
-     * @param root
-     */
-    public void StringConstWriter(ClassTreeNode root){
-        StringConstantsVisitor strVisitor = new StringConstantsVisitor(root, assemblySupport);
-
-        this.stringLabels = strVisitor.getStringConstants();
-        assemblySupport.genStringConst(this.stringLabels);
-    }
-
-    /**
      * This function generates data for the Garbage collector to use in the
      * MIPS assembly file.
      * Currently this method only sets the gc_flag to 0
@@ -208,115 +173,7 @@ public class MipsCodeGenerator {
         assemblySupport.genWord("0");
     }
 
-    /**
-     * This method returns a list of class name labels used in the MIPS file
-     * based on the number of classes in the program
-     * @return classNames an arraylist of classname labels
-     */
-    private ArrayList<String> generateClassStrings() {
-        ArrayList<String> classNames = new ArrayList<>();
 
-        // The following code will be run on Object first (root) thus
-        // Guaranteeing that Object has a labelId of 0
-        generateClassStrings(root, classNames);
-        return classNames;
-    }
 
-    /**
-     * this is the recursive helper method for generateClassStrings which
-     * loops through each parent class' children and generates their MIPS String
-     * value as well as updates the list of names for use in the parent function.
-     * @param parent the classTreeNode who's String is to be generated
-     * @param names the list of all current MIPS class labels referencing these classes
-     */
-    private void generateClassStrings(
-            ClassTreeNode parent,
-            ArrayList<String> names) {
 
-        // Generate the Label ID based on the number of classes
-        // Get the name of the class
-        int labelId = names.size();
-        String parentName = parent.getName();
-
-        //This is where we create the label for the class
-        this.classNames.put(parentName, String.valueOf(labelId));
-        String label = "class_name_" + labelId;
-        assemblySupport.genStringConstTemplate(parentName, label);
-
-        // Add the new label to the list
-        names.add(label);
-
-        HashSet<ClassTreeNode> children = new HashSet<>();
-
-        //We then need to repeat this process for each child class
-        //But we must make sure that string is first
-        //Because Object is the first to be generated, String is
-        //Guaranteed to be given index 1
-        parent.getChildrenList().forEachRemaining( child -> {
-            if(child.getName() == "String") {
-                generateClassStrings(child, names);
-            } else {
-                children.add(child);
-            }
-        });
-
-        // Generate the class strings for the children
-        for(ClassTreeNode child : children ) {
-            generateClassStrings(child, names);
-        }
-    }
-
-    /**
-     * This function generates the class_name_table based on
-     * all of the classes in the program as well as the five
-     * base class templates.
-     */
-    private void generateClassNameTable(ArrayList<String> classNames) {
-        assemblySupport.genLabel("class_name_table");
-
-        //Generate the words linking classes to their strings
-        for (String className : classNames) {
-            assemblySupport.genWord(className);
-        }
-
-        //Generate the references to templates for each class
-        for (String className : this.classNames.keySet()) {
-            assemblySupport.genGlobal( className + "_template");
-        }
-    }
-
-    /**
-     * This method generates the object templates in MIPS based on the
-     * built in and user defined classes provided in the program.
-     */
-    private void generateObjectTemplates() {
-        //Generate the templates for each class
-        TemplateGenerator generator = new TemplateGenerator();
-        generator.generateClassTemplates(this.root, this.assemblySupport, this.classNames);
-    }
-
-    /**
-     * Generates the dispatch tables for classes
-     */
-    private void generateClassDispatchTables() {
-        ClassDispatchVisitor CDV = new ClassDispatchVisitor(root, this.assemblySupport);
-        CDV.generateDispatchTables();
-        this.classMethods = CDV.getClassMethods();
-
-        //Make the globals to allow us to reference these dispatch tables
-        for(String class_ : this.classNames.keySet()) {
-            this.assemblySupport.genGlobal(class_ + "_dispatch_table");
-        }
-    }
-
-    private void generateText() {
-        CodeGeneratorVisitor textGenerator = new CodeGeneratorVisitor(
-                this.root,
-                this.assemblySupport,
-                this.out,
-                this.classNames,
-                this.stringLabels
-        );
-        textGenerator.generateText();
-    }
 }
