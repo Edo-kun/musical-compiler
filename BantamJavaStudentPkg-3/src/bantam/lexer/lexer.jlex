@@ -236,9 +236,6 @@ import java_cup.runtime.Symbol;
 <YYINITIAL>\|        { return new Symbol(TokenIds.BREAK,
 						    new Token("BREAK", yyline)); }
 
-<YYINITIAL>:            { return new Symbol(TokenIds.COLON,
-						    new Token("COLON", yyline)); }
-
 <YYINITIAL>;            { return new Symbol(TokenIds.SEMI,
 						    new Token("SEMI", yyline)); }
 

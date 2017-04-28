@@ -41,7 +41,7 @@ public class PhraseStmt extends Stmt {
     /**
      * A phrase expr
      */
-    protected PhraseExpr phraseExpr;
+    protected Expr phraseExpr;
 
     /**
      * PhraseStmt constructor
@@ -50,12 +50,12 @@ public class PhraseStmt extends Stmt {
      * @param phraseExpr
      */
     public PhraseStmt(int lineNum,
-                      PhraseExpr phraseExpr) {
+                      Expr phraseExpr) {
         super(lineNum);
         this.phraseExpr = phraseExpr;
     }
 
-    public PhraseExpr getPhraseExpr() {
+    public Expr getPhraseExpr() {
         return phraseExpr;
     }
 

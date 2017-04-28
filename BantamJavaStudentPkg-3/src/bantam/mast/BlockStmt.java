@@ -40,26 +40,26 @@ public class BlockStmt extends Stmt {
     /**
      * A list of statements
      */
-    protected StmtList stmtList;
+    protected ExprList exprList;
 
     /**
      * BlockStmt constructor
      *
      * @param lineNum  source line number corresponding to this AST node
-     * @param stmtList a list of statements
+     * @param exprList a list of statements
      */
-    public BlockStmt(int lineNum, StmtList stmtList) {
+    public BlockStmt(int lineNum, ExprList exprList) {
         super(lineNum);
-        this.stmtList = stmtList;
+        this.exprList = exprList;
     }
 
     /**
-     * Get the statement list
+     * Get the expr list
      *
-     * @return statement list
+     * @return expr list
      */
-    public StmtList getStmtList() {
-        return stmtList;
+    public ExprList getExprList() {
+        return exprList;
     }
 
     /**

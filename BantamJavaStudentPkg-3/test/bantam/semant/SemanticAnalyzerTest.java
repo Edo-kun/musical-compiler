@@ -13,7 +13,7 @@
 
 package bantam.semant;
 
-import bantam.ast.Program;
+import bantam.mast.Program;
 import bantam.lexer.Lexer;
 import bantam.util.SemanticTools;
 import org.junit.Test;

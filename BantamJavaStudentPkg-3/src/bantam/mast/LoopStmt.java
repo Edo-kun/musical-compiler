@@ -43,7 +43,7 @@ public class LoopStmt extends Stmt {
     protected StmtList stmtList;
 
     /** iterations */
-    protected ConstExpr expr;
+    protected Expr expr;
 
     /**
      * LoopStmt constructor
@@ -51,7 +51,7 @@ public class LoopStmt extends Stmt {
      * @param lineNum  source line number corresponding to this AST node
      * @param stmtList a list of statements
      */
-    public LoopStmt(int lineNum, StmtList stmtList, ConstExpr constExpr) {
+    public LoopStmt(int lineNum, StmtList stmtList, Expr constExpr) {
         super(lineNum);
         this.stmtList = stmtList;
         this.expr = constExpr;
@@ -66,7 +66,7 @@ public class LoopStmt extends Stmt {
         return stmtList;
     }
 
-    public ConstExpr getExpr() { return this.expr;}
+    public Expr getExpr() { return this.expr;}
     /**
      * Visitor method
      *

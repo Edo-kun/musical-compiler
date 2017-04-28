@@ -17,7 +17,7 @@
 
 package bantam.treedrawer;
 
-import bantam.ast.Program;
+import bantam.mast.Program;
 
 import java.awt.*;
 

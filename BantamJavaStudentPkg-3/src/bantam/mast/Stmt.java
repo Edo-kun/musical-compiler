@@ -40,7 +40,7 @@ import bantam.visitor.MusicVisitor;
  * @see CallStmt
  * @see BlockStmt
  */
-public abstract class Stmt extends ASTNode {
+public abstract class Stmt extends Member {
     /**
      * Stmt constructor
      *

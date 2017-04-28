@@ -195,7 +195,7 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(BlockStmt node) {
-        node.getStmtList().accept(this);
+        node.getExprList().accept(this);
         return null;
     }
 

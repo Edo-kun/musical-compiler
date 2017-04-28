@@ -39,7 +39,7 @@ package bantam;/* Bantam Java Compiler and Language Toolset.
    the drawer package.
 */
 
-import bantam.ast.Program;
+import bantam.mast.Program;
 import bantam.codegenjvm.JVMCodeGenerator;
 import bantam.codegenmips.MipsCodeGenerator;
 import bantam.codegenx86.X86CodeGenerator;
@@ -373,24 +373,12 @@ public class Main {
                 parser.getErrorHandler().printErrors();
                 System.exit(1);
             }
-            if (stopAfterParsing) {
-                // if stopAfterParsing==true, then print AST and exit
-                PrintVisitor visitor = new PrintVisitor(/*start at indent 0*/0,
-							/*increment by 4 each indent level*/4);
-                visitor.visit((Program) result.value);
-                System.exit(0);
-            }
+
             if (drawTree) {
                 // if drawTree==true, then draw AST and exit
                 Drawer drawer = new Drawer();
                 drawer.draw("AST",(Program) result.value);
                 System.in.read(); //to pause the program
-                System.exit(0);
-            }
-
-            if (findMain) {
-                MainMainVisitor visitor = new MainMainVisitor();
-                System.out.println(visitor.hasMain((Program) result.value));
                 System.exit(0);
             }
 
@@ -405,13 +393,6 @@ public class Main {
                 System.out.println(e.getMessage());
                 semanticAnalyzer.getErrorHandler().printErrors();;
                 System.exit(1);
-            }
-            if (stopAfterSemant) {
-                // if stopAfterSemant==true, then print AST (with types) and exit
-                PrintVisitor printVisitor = new PrintVisitor(/*start at indent 0*/0,
-							/*increment by 4 each indent level*/4);
-                printVisitor.visit((Program) result.value);
-                System.exit(0);
             }
 
             // if interpreter mode then interpret program and exit

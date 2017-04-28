@@ -64,16 +64,16 @@ public class LayoutVisitor extends MusicVisitor
         return layoutNary("StmtList",node);
     }
 
-    public Object visit(LoopStmt node) { return layoutNary("Loop " +node.getExpr().getConstant(), node.getStmtList() );}
+    public Object visit(LoopStmt node) { return layoutNary("Loop " +((ConstExpr)node.getExpr()).getConstant(), node.getStmtList() );}
     public Object visit(PhraseStmt node) { return layoutUnary("Phrase stmt", node.getPhraseExpr());}
 
 
     public Object visit(BlockStmt node) {
-        return layoutNary("Block", node.getStmtList());
+        return layoutNary("Block", node.getExprList());
     }
 
     public Object visit(CallStmt node) {
-        return layoutNullary("Call " + node.getName().getConstant());
+        return layoutNullary("Call " + ((ConstExpr)node.getName()).getConstant());
     }
 
     // Expressions
@@ -95,7 +95,7 @@ public class LayoutVisitor extends MusicVisitor
 
     public Object visit(PhraseExpr node)
     {
-        ListNode list = new ConstExprList(0);
+        ListNode list = new ExprList(0);
         if(node.getInstrument() != null)
             list.addElement(node.getInstrument());
         if(node.getOctaveModifier() != null)

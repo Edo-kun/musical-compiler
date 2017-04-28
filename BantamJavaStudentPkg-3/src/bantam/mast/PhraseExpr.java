@@ -40,9 +40,9 @@ public class PhraseExpr extends Expr {
     protected MeasureList measureList;
 
     /** attributes of the phrase */
-    protected ConstExpr instrument;
-    protected ConstExpr octaveModifier;
-    protected ConstExpr volume;
+    protected Expr instrument;
+    protected Expr octaveModifier;
+    protected Expr volume;
 
     /**
      * PhraseStmt constructor
@@ -50,7 +50,7 @@ public class PhraseExpr extends Expr {
      * @param lineNum  source line number corresponding to this AST node
      * @param measureList a list of statements
      */
-    public PhraseExpr(int lineNum, ConstExpr instrument, ConstExpr octaveModifier, ConstExpr volume, MeasureList measureList) {
+    public PhraseExpr(int lineNum, Expr instrument, Expr octaveModifier, Expr volume, MeasureList measureList) {
         super(lineNum);
         this.instrument = instrument;
         this.octaveModifier = octaveModifier;
@@ -64,15 +64,15 @@ public class PhraseExpr extends Expr {
     public void setVolume(ConstExpr vol) {this.volume = vol;}
 
     /** get phrase attribute expressions */
-    public ConstExpr getInstrument() {
+    public Expr getInstrument() {
         return instrument;
     }
 
-    public ConstExpr getOctaveModifier() {
+    public Expr getOctaveModifier() {
         return octaveModifier;
     }
 
-    public ConstExpr getVolume() {
+    public Expr getVolume() {
         return volume;
     }
 

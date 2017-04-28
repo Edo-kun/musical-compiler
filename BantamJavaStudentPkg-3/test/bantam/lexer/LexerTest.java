@@ -34,6 +34,9 @@ public class LexerTest
     @Test
     public void keywordTokens() throws Exception {
         checkToken(" score ", "SCORE");
+        checkToken(" \"Chroma\" ", "STRING_CONST");
+        checkToken(" :", "COLON");
+        checkToken(" score ", "SCORE");
         checkToken(" instr ", "INSTRUMENT");
         checkToken(" vol ", "VOLUME");
         checkToken(" oct ", "OCTAVE");

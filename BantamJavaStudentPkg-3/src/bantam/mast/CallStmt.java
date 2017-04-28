@@ -39,7 +39,7 @@ public class CallStmt extends Stmt {
     /**
      * A variable
      */
-    protected ConstExpr name;
+    protected Expr name;
 
     /**
      * CallStmt constructor
@@ -47,17 +47,17 @@ public class CallStmt extends Stmt {
      * @param lineNum  source line number corresponding to this AST node
      * @param name
      */
-    public CallStmt(int lineNum, ConstExpr name) {
+    public CallStmt(int lineNum, Expr name) {
         super(lineNum);
         this.name = name;
     }
 
     /**
-     * Get the name
+     * Get the name expr
      *
      * @return name
      */
-    public ConstExpr getName() {
+    public Expr getName() {
         return name;
     }
 

@@ -42,7 +42,7 @@ package bantam.parser;
 
 /* import the AST and utility class files */
 import bantam.lexer.*;
-import bantam.ast.*;
+import bantam.mast.*;
 import bantam.util.ErrorHandler;
 /* import Symbol class, which represents the type of token passed
    from the bantam.lexer to the bantam.parser.  Note: in the bantam.lexer package there is
@@ -179,10 +179,11 @@ nonterminal SoundList sound_list;
 nonterminal Sound sound;
 nonterminal ChordList chord_list;
 nonterminal Chord chord;
+nonterminal Note note;
 nonterminal NoteList note_list;
-nonterminal Expr const_expr, phrase_expr;
-nonterminal ConstExpr const_int, const_string, const_var;
 nonterminal ExprList expr_list;
+nonterminal Expr expr, const_expr, phrase_expr;
+nonterminal ConstExpr const_int, const_string, const_var;
 
 /* precedence/associativity rules */
 
@@ -230,9 +231,9 @@ member
 field
     ::=
         /* a field with stmt */
-        ID:name ASSIGN Expr:exp SEMI
+        const_var:name ASSIGN expr:exp SEMI
         {: RESULT = new Field(name.getLineNum(),
-                                  name.getAttribute(), exp ); :}
+                                  name.getConstant(), exp ); :}
      ;
 
 /* statements */
@@ -255,20 +256,64 @@ stmt
 call_stmt
     ::=
         /* a totally normal call statement */
-        ID:e SEMI
-        {: RESULT = new CallStmt(e.getLineNum(), e.getAttribute()); :}
+        expr:e SEMI
+        {: RESULT = new CallStmt(e.getLineNum(), e); :}
     ;
 loop_stmt
     ::=
         /* normal loop statement */
-        LOOP const_expr:c LBRACE stmt_list RBRACE
-        {: RESULT = new LoopStmt(c.getLineNum(), stmt_list, c); :}
+        LOOP expr:c LBRACE stmt_list:sl RBRACE
+        {: RESULT = new LoopStmt(c.getLineNum(), sl, c); :}
      ;
 
 phrase_stmt
     ::=
-        phrase_expr:pe SEMI
-        {: RESULT = new PhraseStmt(pe.getLineNum(), pe):}
+        expr:pe SEMI
+        {: RESULT = new PhraseStmt(pe.getLineNum(), pe); :}
+    ;
+
+block_stmt
+      ::=
+         /* normal block statement */
+         LSQBRACE expr_list:sl RSQBRACE SEMI
+         {: RESULT = new BlockStmt(sl.getLineNum(), sl); :}
+      ;
+
+stmt_list
+    ::=
+        /* single statement */
+        stmt:s
+	    {: RESULT = (StmtList)(new StmtList(s.getLineNum()).addElement(s)); :}
+	    |
+	    /* multiple statements */
+	    stmt_list:st stmt:s
+	    {: RESULT = (StmtList)st.addElement(s); :}
+	    |
+        /* empty list */
+	    {: RESULT = new StmtList(getCurrLineNum()); :}
+	;
+
+expr
+    ::=
+    phrase_expr:e
+        {: RESULT = e; :}
+    |
+    const_expr:e
+        {: RESULT = e; :}
+    ;
+
+expr_list
+    ::=
+        /* single statement */
+        expr:e
+        {: RESULT = (ExprList)(new ExprList(e.getLineNum()).addElement(e)); :}
+        |
+        /* multiple statements */
+        expr_list:el COMMA expr:e
+        {: RESULT = (ExprList)el.addElement(e); :}
+        |
+        /* empty list */
+        {: RESULT = new ExprList(getCurrLineNum()); :}
     ;
 
 phrase_expr
@@ -341,242 +386,65 @@ phrase_expr
         {: RESULT = new PhraseExpr(ml.getLineNum(), i,o,v, ml); :}
     ;
 
-block_stmt
-      ::=
-         /* normal block statement fix for only id list? */
-         LSQBRACE stmt_list:sl RSQBRACE SEMI
-         {: RESULT = new BlockStmt(sl.getLineNum(), sl); :}
-      ;
-
-stmt_list
+measure_list
     ::=
-        /* single statement */
-        stmt:s
-	    {: RESULT = (StmtList)(new StmtList(s.getLineNum()).addElement(s)); :}
+        /* single measure */
+        measure:m
+	    {: RESULT = (MeasureList)(new MeasureList(m.getLineNum()).addElement(m)); :}
 	    |
-	    /* multiple statements */
-	    stmt_list:st stmt:s
-	    {: RESULT = (StmtList)st.addElement(s); :}
+	    /* multiple measures */
+	    measure_list:ml measure:m
+	    {: RESULT = (MeasureList)ml.addElement(m); :}
 	    |
         /* empty list */
-	    {: RESULT = new StmtList(getCurrLineNum()); :}
+	    {: RESULT = new MeasureList(getCurrLineNum()); :}
 	;
 
-expr
+measure
     ::=
-    assign_expr:e
-    {: RESULT = e; :}
-    |
-    array_assign_expr:e
-        {: RESULT = e; :}
-    |
-    dispatch_expr:e
-    {: RESULT = e; :}
-    |
-    new_expr:e
-    {: RESULT = e; :}
-    |
-    new_array_expr:e
-    {: RESULT = e;  :}
-    |
-    instance_of_expr:e
-        {: RESULT = e; :}
-        |
-    cast_expr:e
-        {: RESULT = e; :}
-        |
-    binary_expr:e
-        {: RESULT = e; :}
-        |
-    unary_expr:e
-        {: RESULT = e; :}
-        |
-    const_expr:e
-        {: RESULT = e; :}
-        |
-    var_expr:e
-        {: RESULT = e; :}
-        |
-    array_expr:e
-        {: RESULT = e; :}
-        |
-    LPAREN expr:e RPAREN
-        {: RESULT = e; :}
+        BREAK sound_list:sl BREAK
+        {: RESULT = new Measure(sl.getLineNum(), sl); :}
     ;
 
-
-array_assign_expr
-      ::=
-          /* array assignment with reference */
-          ID:ref DOT ID:var LSQBRACE expr:e1 RSQBRACE ASSIGN:assign expr:e2
-          {: RESULT = new ArrayAssignExpr(
-                                assign.getLineNum(),
-                                ref.getAttribute(),
-                                var.getAttribute(),
-                                e1,
-                                e2 );
-          :}
-          |
-          /* array assignment without reference */
-          ID:var LSQBRACE expr:e1 RSQBRACE ASSIGN:assign expr:e2
-          {: RESULT = new ArrayAssignExpr(
-                            assign.getLineNum(),
-                            null,
-                            var.getAttribute(),
-                            e1,
-                            e2 );
-          :}
-       ;
-
-assign_expr
-       ::=
-            /* assignment with reference */
-            ID:ref DOT ID:var ASSIGN:assign expr:e
-            {: RESULT = new AssignExpr(
-                                assign.getLineNum(),
-                                ref.getAttribute(),
-                                var.getAttribute(),
-                                e );
-            :}
-            |
-            /* assignment without reference */
-            ID:var ASSIGN:assign expr:e
-            {: RESULT = new AssignExpr(
-                                assign.getLineNum(),
-                                null,
-                                var.getAttribute(),
-                                e );
-            :}
-      ;
-
-var_expr
+sound_list
     ::=
-        ID:id1 DOT ID:id2
-        {: RESULT = new VarExpr(
-                            id1.getLineNum(),
-                            new VarExpr(getCurrLineNum(),
-                            null,
-                            id1.getAttribute()),
-                            id2.getAttribute());
-        :}
-        |
-        ID:id
-        {: RESULT = new VarExpr(
-                            id.getLineNum(),
-                            null,
-                            id.getAttribute());
-        :}
-    ;
-
-array_expr
-    ::=
-       ID:id1 DOT ID:id2 LSQBRACE expr:e RSQBRACE
-       {: RESULT = new ArrayExpr(
-                        id1.getLineNum(),
-                        new VarExpr(id1.getLineNum(),
-                        null,
-                        id1.getAttribute()),
-                        id2.getAttribute(),
-                        e);
-       :}
-       |
-       ID:id LSQBRACE expr:e RSQBRACE
-              {: RESULT = new ArrayExpr(id.getLineNum(), null, id.getAttribute(), e); :}
-    ;
-
-instance_of_expr
-    ::=
-        expr:e INSTANCEOF:inst ID:type
-        {: RESULT = new InstanceofExpr(inst.getLineNum(), e, type.getAttribute() ); :}
-        |
-        expr:e INSTANCEOF:inst ID:type LSQBRACE RSQBRACE
-        {: RESULT = new InstanceofExpr(inst.getLineNum(), e, type.getAttribute() ); :}
-    ;
-
-dispatch_expr
-    ::=
-        /* normal dispatch */
-        ID:name LPAREN expr_list:el RPAREN
-        {: RESULT = new DispatchExpr(name.getLineNum(), null, name.getAttribute(),el ); :}
-        |
-        expr:e DOT:dot ID:name LPAREN expr_list:el RPAREN
-        {: RESULT = new DispatchExpr(dot.getLineNum(), e, name.getAttribute(), el ); :}
-        |
-        ID:id DOT:dot ID:name LPAREN expr_list:el RPAREN
-        {: RESULT = new DispatchExpr(
-                            dot.getLineNum(),
-                            new VarExpr(
-                                id.getLineNum(),
-                                null,
-                                id.getAttribute()
-                            ),
-                            name.getAttribute(),
-                            el
-           );
-        :}
-    ;
-
-expr_list
-    ::=
-        /* single statement */
-        expr:e
-        {: RESULT = (ExprList)(new ExprList(e.getLineNum()).addElement(e)); :}
-        |
-        /* multiple statements */
-        expr_list:el COMMA expr:e
-        {: RESULT = (ExprList)el.addElement(e); :}
-        |
+        /* single sound */
+        sound:s
+	    {: RESULT = (SoundList)(new SoundList(s.getLineNum()).addElement(s)); :}
+	    |
+	    /* multiple sounds */
+	    sound_list:sl sound:s
+	    {: RESULT = (SoundList)sl.addElement(s); :}
+	    |
         /* empty list */
-        {: RESULT = new ExprList(getCurrLineNum()); :}
+	    {: RESULT = new SoundList(getCurrLineNum()); :}
+	;
+
+sound
+    ::=
+        chord:c
+        {: RESULT = c; :}
+        |
+        note:n
+        {: RESULT = n; :}
     ;
 
-new_expr
+chord
     ::=
-        NEW:new_ ID:type LPAREN RPAREN
-        {: RESULT = new NewExpr(new_.getLineNum(), type.getAttribute() ); :}
+        LPAREN sound_list:sl RPAREN
+        {: RESULT = new Chord(sl.getLineNum(), sl); :}
     ;
 
-new_array_expr
+note
     ::=
-         NEW:new_ ID:type LSQBRACE expr:e RSQBRACE
-         {: RESULT = new NewArrayExpr(new_.getLineNum(), type.getAttribute(), e ); :}
-         ;
-
-cast_expr
-    ::=
-       LPAREN ID:type RPAREN LPAREN expr:e RPAREN
-       {: RESULT = new CastExpr(type.getLineNum(), type.getAttribute(), e ); :}
-       |
-       LPAREN ID:type LSQBRACE RSQBRACE RPAREN LPAREN expr:e RPAREN
-       {: RESULT = new CastExpr(type.getLineNum(), type.getAttribute(), e ); :}
-
-     ;
-
-binary_expr
-    ::=
-        binary_arith_expr:e
-                 {: RESULT = e; :}
-                 |
-        binary_comp_expr:e
-                 {: RESULT = e; :}
-                 |
-        binary_logic_expr:e
-                {: RESULT = e; :}
-    ;
-
-unary_expr
-    ::=
-        neg_expr:e
-        {: RESULT = e; :}
+        NOTE:n
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null); :}
         |
-        not_expr:e
-        {: RESULT = e; :}
+        NOTE:n PLUS:p
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), p.getAttribute()); :}
         |
-        incr_expr:e
-        {: RESULT = e; :}
-        |
-        decr_expr:e
-        {: RESULT = e; :}
+        NOTE:n MINUS:m
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), m.getAttribute()); :}
     ;
 
 const_expr
@@ -584,23 +452,32 @@ const_expr
         const_int:i
         {: RESULT = i; :}
         |
-        const_bool:i
+        const_var:i
                 {: RESULT = i; :}
         |
         const_string:i
                 {: RESULT = i; :}
      ;
 
+const_var
+    ::=
+        ID:id
+        {: RESULT = new ConstVarExpr(
+                            id.getLineNum(),
+                            id.getAttribute());
+        :}
+    ;
+
 const_int
       ::=
           INT_CONST:value
           {: RESULT = new ConstIntExpr(value.getLineNum(), value.getAttribute()); :}
-      ;
-
-const_bool
-      ::=
-          BOOLEAN_CONST:value
-          {: RESULT = new ConstBooleanExpr(value.getLineNum(), value.getAttribute()); :}
+          |
+          MINUS:m INT_CONST:value
+          {: RESULT = new ConstIntExpr(value.getLineNum(), m.getAttribute() + value.getAttribute()); :}
+          |
+          PLUS:p INT_CONST:value
+          {: RESULT = new ConstIntExpr(value.getLineNum(), p.getAttribute() + value.getAttribute()); :}
       ;
 
 const_string
@@ -608,155 +485,3 @@ const_string
           STRING_CONST:value
           {: RESULT = new ConstStringExpr(value.getLineNum(), value.getAttribute()); :}
       ;
-
-binary_arith_expr
-    ::=
-    binary_arith_div:i
-        {: RESULT = i; :}
-    |
-    binary_arith_minus:i
-        {: RESULT = i; :}
-    |
-    binary_arith_plus:i
-        {: RESULT = i; :}
-    |
-    binary_arith_mod:i
-        {: RESULT = i; :}
-    |
-    binary_arith_times:i
-        {: RESULT = i; :}
-    ;
-
-binary_arith_div
-        ::=
-            expr:e DIVIDE:div expr:e2
-             {: RESULT = new BinaryArithDivideExpr(div.getLineNum(), e,e2); :}
-        ;
-binary_arith_minus
-        ::=
-            expr:e MINUS:min expr:e2
-            {: RESULT = new BinaryArithMinusExpr(min.getLineNum(), e,e2); :}
-        ;
-
-binary_arith_plus
-        ::=
-            expr:e PLUS:plus expr:e2
-            {: RESULT = new BinaryArithPlusExpr(plus.getLineNum(), e,e2); :}
-        ;
-
-binary_arith_mod
-        ::=
-            expr:e MODULUS:mod expr:e2
-            {: RESULT = new BinaryArithModulusExpr(mod.getLineNum(), e,e2); :}
-        ;
-
-binary_arith_times
-        ::=
-            expr:e TIMES:times expr:e2
-            {: RESULT = new BinaryArithTimesExpr(times.getLineNum(), e,e2); :}
-        ;
-
-binary_comp_expr
-    ::=
-        comp_eq:c
-        {: RESULT = c; :}
-        |
-        comp_geq:c
-                {: RESULT = c; :}
-        |
-        comp_gt:c
-                 {: RESULT = c; :}
-        |
-        comp_leq:c
-                {: RESULT = c; :}
-        |
-        comp_lt:c
-                {: RESULT = c; :}
-        |
-        comp_ne:c
-                {: RESULT = c; :}
-         ;
-
-comp_eq
-        ::=
-            expr:e EQ:eq expr:e2
-            {: RESULT = new BinaryCompEqExpr(eq.getLineNum(), e,e2); :}
-        ;
-comp_geq
-        ::=
-            expr:e GEQ:geq expr:e2
-            {: RESULT = new BinaryCompGeqExpr(geq.getLineNum(), e,e2); :}
-        ;
-comp_gt
-        ::=
-            expr:e GT:gt expr:e2
-            {: RESULT = new BinaryCompGtExpr(gt.getLineNum(), e,e2); :}
-        ;
-comp_leq
-        ::=
-            expr:e LEQ:leq expr:e2
-            {: RESULT = new BinaryCompLeqExpr(leq.getLineNum(), e,e2); :}
-        ;
-comp_lt
-        ::=
-            expr:e LT:lt expr:e2
-            {: RESULT = new BinaryCompLtExpr(lt.getLineNum(), e,e2); :}
-        ;
-comp_ne
-        ::=
-            expr:e NE:ne expr:e2
-            {: RESULT = new BinaryCompNeExpr(ne.getLineNum(), e,e2); :}
-        ;
-
-binary_logic_expr
-    ::=
-        logic_and:l
-        {: RESULT = l; :}
-        |
-        logic_or:l
-        {: RESULT = l; :}
-        ;
-
-logic_and
-         ::=
-            expr:e AND:and_ expr:e2
-            {: RESULT = new BinaryLogicAndExpr(and_.getLineNum(), e,e2); :}
-        ;
-
-logic_or
-        ::=
-            expr:e OR:or_ expr:e2
-            {: RESULT = new BinaryLogicOrExpr(or_.getLineNum(), e,e2); :}
-        ;
-
-
-neg_expr
-        ::=
-            MINUS:min expr:e
-            {: RESULT = new UnaryNegExpr(min.getLineNum(), e); :}
-        ;
-
-not_expr
-        ::=
-            NOT:not_ expr:e
-            {: RESULT = new UnaryNotExpr(not_.getLineNum(), e); :}
-
-        ;
-
-incr_expr
-        ::=
-            INCR:incr expr:e
-            {: RESULT = new UnaryIncrExpr(incr.getLineNum(), e, true); :}
-            |
-            expr:e INCR
-            {: RESULT = new UnaryIncrExpr(e.getLineNum(), e, true); :}
-        ;
-decr_expr
-        ::=
-            DECR:decr expr:e
-            {: RESULT = new UnaryDecrExpr(decr.getLineNum(), e, true); :}
-            |
-            expr:e DECR:decr
-            {: RESULT = new UnaryDecrExpr(decr.getLineNum(), e, true); :}
-         ;
-

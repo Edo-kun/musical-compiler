@@ -35,13 +35,13 @@ import bantam.visitor.MusicVisitor;
  * @see ListNode
  * @see ConstExpr
  */
-public class ConstExprList extends ListNode {
+public class ExprList extends ListNode {
     /**
      * ConstExpr list constructor
      *
      * @param lineNum source line number corresponding to this AST node
      */
-    public ConstExprList(int lineNum) {
+    public ExprList(int lineNum) {
         super(lineNum);
     }
 
