@@ -37,7 +37,7 @@ public class LayoutVisitor extends MusicVisitor
     }
 
 
-    // Programs, Classes, Methods, Fields
+    // Programs, scores, Fields
 
     public Object visit(Program node)
     {
@@ -73,22 +73,24 @@ public class LayoutVisitor extends MusicVisitor
     }
 
     public Object visit(CallStmt node) {
-        return layoutNullary("Call " + ((ConstExpr)node.getName()).getConstant());
+        return layoutUnary("Call ",  node.getExpr());
     }
 
-    // Expressions
+    //musical nitty gritty
 
     public Object visit(MeasureList node) {
         return layoutNary("MeasureList", node);
     }
-
+    public Object visit(Measure node) {
+        return layoutNary("Measure", node.getSoundList());
+    }
     public Object visit(SoundList node) {
         return layoutNary("SoundList", node);
     }
 
     public Object visit(Chord node) {return layoutNary("Chord",node.getSoundList());}
 
-    public Object visit(Note node) {return layoutNullary("Note" + ((node.getModifier()!=null) ? node.getName()+node.getModifier():node.getName()));}
+    public Object visit(Note node) {return layoutNullary("Note " + ((node.getModifier()!=null) ? node.getName()+node.getModifier():node.getName()));}
     public Object visit(ConstIntExpr node) {
         return layoutNullary("Int:" + node.getConstant());
     }
@@ -103,7 +105,7 @@ public class LayoutVisitor extends MusicVisitor
         if(node.getVolume() != null)
             list.addElement(node.getVolume());
         list.addElement(node.getMeasureList());
-        return layoutNary("Phrase",list);
+        return layoutNary("Phrase Expr",list);
     }
     public Object visit(ConstStringExpr node) {
         return layoutNullary("Str:" + node.getConstant());

@@ -68,193 +68,66 @@ public class ParserTest
      */
     @Test
     public void FieldTest() throws Exception {
-        legalCodetest("$x = instr \"Piano\" |abcd|;");
+        legalCodetest("$x = instr \"Piano\" <abcd>;");
+        illegalCodetest("$x = instr 3 <abd;");
+        illegalCodetest("x = instr 3 <abd>;");
     }
 
     /**
-     * A legal if-statement
+     * A legal loop-statement
      */
     @Test
-    public void ifTest() throws Exception {
-        String ifStmt = "int x = 4; if (x>10) return;";
-        String ifElseStmt = "int x = 4; if (x <15) x++ ; else return;";
-        String ifElseNestedStmt = "int x = 4; if (x <15) x++ ; " +
-                "                  else if (d < 5) f = 7; else  return;";
-        legalCodetest("void ifMethod(){ "+ ifStmt + " }");
-        legalCodetest("void ifMethod(){ "+ ifElseStmt + " }");
-        legalCodetest("void ifMethod(){ "+ ifElseNestedStmt + " }");
+    public void LoopTest() throws Exception {
+        legalCodetest("loop 3 {<abcd>;} ");
+        illegalCodetest("loop loop 3 {<abcd>;} ");
+        illegalCodetest("loop 3 {<abcd>} ");
     }
 
     /**
-     * A boolean expressions test
+     * A call statement
      */
     @Test
-    public void boolExprTest() throws Exception {
-        legalCodetest("void sillyMethod(){if (true || false) return;}");
-        legalCodetest("void sillyMethod(){if (true && false) return;}");
+    public void CallTest() throws Exception {
+        legalCodetest("$x;");
+        illegalCodetest("$x");
+        illegalCodetest("$counter"); // builtin counter
     }
 
     /**
-     * A test to ensure that the lex error messages provide the
-     * user with relevant debugging information
+     * A block statement
      */
     @Test
-    public void lexErrorMessageTest() throws Exception {
-        illegalCodetest("\nint 9a = 3; ");
+    public void BlockTest() throws Exception {
+        legalCodetest("[<abcd>,<cdef>];"); //play two phrases together
+        legalCodetest("[<abcd><cdef>];"); // phrase spanning two measures
+        illegalCodetest("[<abcd>,<cdef>]");
+        illegalCodetest("[<abcd<cdef>];");
     }
 
-
-
-
     /**
-     * A legal for-loop
+     * A legal phrase stmt and phrase expr
      */
     @Test
-    public void forTest() throws Exception {
-        legalCodetest("void ifMethod(){ for(;;) x=2; }");
-        legalCodetest("void ifMethod(){ for(;;x=2) x=2; }");
-
-        legalCodetest("void ifMethod(){ for(;x=2;) x=2; }");
-
-        legalCodetest("void ifMethod(){ for(;x=2;x=3) x=2; }");
-        legalCodetest("void ifMethod(){ for(x=2;;) x=2; }");
-
-        legalCodetest("void ifMethod(){ for(x=2;;x=2) x=2; }");
-
-        legalCodetest("void ifMethod(){ for(x=2;x=2;) x=2; }");
-        legalCodetest("void ifMethod(){ for(x=2;x< 3;x++) x=2; }");
+    public void PhraseTest() throws Exception {
+        legalCodetest("<abcd>;");
+        legalCodetest("<a+b-c-d->;"); //chromatics
+        legalCodetest("instr \"Piano\" oct -1 vol 11 <abcd>;");
+        legalCodetest("oct -1 vol 11 <abcd>;");
+        legalCodetest("vol 11 oct +1 <abcd>;");
+        legalCodetest("vol 11 instr \"Harpsichord\" <____><abcd>;");
+        illegalCodetest("instr oct -1 vol 11 <abcd<;");
     }
 
     /**
-     * Legal while statement
-     */
-    @Test
-    public void whileTest() throws Exception {
-        legalCodetest("void whileMethod(){ while(x=2 ) x++;  }");
-    }
-
-    /**
-     * Legal break statement
-     */
-    @Test
-    public void breakTest() throws Exception {
-        legalCodetest("void breakMethod(){ break; }");
-    }
-
-    /**
-     * Legal block statement
-     */
-    @Test
-    public void blockTest() throws Exception {
-        legalCodetest("void blockMethod(){ while(a < 3){ a=3;b=4;c=9;} }");
-    }
-
-    /**
-     * Legal new expression
-     */
-    @Test
-    public void newTest() throws Exception {
-        legalCodetest("void newMethod(){ a = new Stuff(); }");
-        legalCodetest("void newMethod(){ a = new String[5+6]; }");
-    }
-
-
-    /**
-     * Legal cast expression
-     */
-    @Test
-    public void castTest() throws Exception {
-        legalCodetest("void newMethod(){ a = (int)( 6+9); }");
-        legalCodetest("void newMethod(){ a = (int[])(\"String\"); }");
-    }
-
-
-    /**
-     * binary arith expression, with all possible types of expressions
-     */
-    @Test
-    public void binaryArithTest() throws Exception {
-
-        // try minus binary arith test with stringConstExpr and newExpr
-        legalCodetest("void newMethod(){ a = \"String\"++ - new array[10]; }");
-
-        // try modulus bin arith with an instanceof expr
-        legalCodetest("void newMethod(){ q = thing1 instanceof A % " +
-                "                            thing2 instanceof B; }");
-
-        // try addition bin arith with dynamic dispatches
-        legalCodetest("void newMethod(){ this.Stuff[x++] + x=5.number(); }");
-
-        // try divide bin arith with
-        legalCodetest("void newMethod(){ q = (((thing[]) (junk)) / " +
-                "      ((cooolerJunk) (intJunk) )); }");
-    }
-
-
-
-    /**
-     * binary comparison expression, with binary logic
-     */
-    @Test
-    public void binaryCompTest() throws Exception {
-        // testing all binary comparisons with the binary logic OR
-        legalCodetest("void newCompMethod(){ int a =0; if ( (--a == b) || (b !=c) ) " +
-                      "{ b = ( (c < d) || (d <= e) ); f = ((g > h) || (h >= i));} }");
-        // testing all binary comparisions with binary logic OR / AND
-        legalCodetest("void newCompMethod(){ int a =0; if ( (a == b) || (b !=c) ) " +
-                      "{ b = ( (c < d) && (d <= e) ); f = ((g > h) || (h >= i));} }");
-
-
-    }
-
-
-    @Test
-    public void unaryTest() throws Exception {
-        // testing negative unary
-        legalCodetest("void unaryMethod(){ a=-b; b=!a; }");
-        // unary incr
-        legalCodetest("void unaryMethod(){ a=++b; b=a++; c = --d; d = c--; }");
-
-
-    }
-
-    /**
-     * A test to see if dispatching works
+     * A legal chord test
      * @throws Exception
      */
     @Test
-    public void dispatchTest() throws Exception {
-        legalCodetest("void newMethod(){ int x = 4; a = blah.number(); }");
-    }
+    public void ChordTest() throws Exception {
+        legalCodetest("<(abcd)bcd>;");
+        legalCodetest("<(abcd)(a+b+c+d+)(____)d>;");
+        illegalCodetest("<(abcd(a+b+c+d+)(____)d>;");
 
-    /**
-     * A test to see if missing semicolons are caught
-     */
-    @Test
-    public void missingSEMITest() throws Exception {
-        legalCodetest("void sillyMethod() { int a = 4+5; }");
-        legalCodetest("void sillyMethod() { return; }");
-        legalCodetest("void sillyMethod() { break; }");
-        legalCodetest("int i; void sillyMethod() { for(i=0 ; i<3 ; i++) { return; }}");
-        illegalCodetest("void sillyMethod() { int a = 4 }");
-        illegalCodetest("void sillyMethod() { return }");
-        illegalCodetest("void sillyMethod() { break }");
-        illegalCodetest("void sillyMethod() { for(int i=0 i<3 i++) { return; }");
-    }
-
-    /**
-     * A test to see if unmatched parens are caught
-     */
-    @Test
-    public void unmatchedParensTest() throws Exception {
-        legalCodetest("void sillyMethod(){}");
-        illegalCodetest("void sillyMethod({}");
-        illegalCodetest("void sillyMethod){}");
-    }
-
-    @Test
-    public void stringTest() throws Exception {
-        legalCodetest("/**/ S h = \"b\";\n void b() { a = \"r\"; }");
     }
 
     /**

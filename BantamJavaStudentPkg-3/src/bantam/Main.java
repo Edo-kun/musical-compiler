@@ -311,7 +311,7 @@ public class Main {
 
             // any other arguments must be input files
             // check if argument ends in .btm
-            else if (args[i].length() >= 5 && args[i].substring(args[i].length() - 4).equals(".btm")) {
+            else if (args[i].length() >= 5 && args[i].substring(args[i].length() - 4).equals(".bft")) {
                 // if so then set next entry in inFiles
                 inFiles[cnt++] = args[i];
             }
@@ -320,7 +320,7 @@ public class Main {
                 // if we get to here then we have an illegal argument
                 // (we treat this as a bad input file name)
                 System.err.println("Usage error: bad input file name: " + args[i]);
-                System.err.println("             file names must end with '.btm'");
+                System.err.println("             file names must end with '.bft'");
                 showHelp();
             }
         }

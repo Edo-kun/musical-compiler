@@ -233,8 +233,11 @@ import java_cup.runtime.Symbol;
 <YYINITIAL>vol      { return new Symbol(TokenIds.VOLUME,
 						    new Token("VOLUME", yyline)); }
 
-<YYINITIAL>\|        { return new Symbol(TokenIds.BREAK,
-						    new Token("BREAK", yyline)); }
+<YYINITIAL>\<        { return new Symbol(TokenIds.LBREAK,
+						    new Token("LBREAK", yyline)); }
+
+<YYINITIAL>\>        { return new Symbol(TokenIds.RBREAK,
+						    new Token("RBREAK", yyline)); }
 
 <YYINITIAL>;            { return new Symbol(TokenIds.SEMI,
 						    new Token("SEMI", yyline)); }
@@ -283,7 +286,7 @@ import java_cup.runtime.Symbol;
 	                    new Token("INT_CONST", yytext(), yyline));
 }
 
-<YYINITIAL>[A-Ga-g_]   { return new Symbol(TokenIds.NOTE,
+<YYINITIAL>[A-Ga-g_:]   { return new Symbol(TokenIds.NOTE,
                             new Token("NOTE", yytext(), yyline));}
 
 <YYINITIAL>[0-9$][A-Za-z0-9]*   {
@@ -326,6 +329,9 @@ import java_cup.runtime.Symbol;
 
 <YYINITIAL>\"([^\"\n]*|\n)*\"   { return new Symbol(TokenIds.LEX_ERROR,
                                   new Token("MULTILINE_STRING", yyline)); }
+
+<YYINITIAL>[H-Zh-z]   { return new Symbol(TokenIds.LEX_ERROR,
+                                new Token("ILLEGAL_NOTE", yyline));}
 
 .                       { throw new RuntimeException("Unmatched lexeme " +
                           yytext() + " at line " + yyline); }

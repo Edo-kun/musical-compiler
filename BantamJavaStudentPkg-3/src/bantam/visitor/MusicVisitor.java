@@ -29,7 +29,6 @@ package bantam.visitor;
 import bantam.mast.*;
 
 import java.util.Iterator;
-import java.util.Objects;
 
 /**
  * Abstract bantam.MusicVisitor class for traversing the AST
@@ -184,7 +183,7 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(CallStmt node) {
-        node.getName().accept(this);
+        node.getExpr().accept(this);
         return null;
     }
 

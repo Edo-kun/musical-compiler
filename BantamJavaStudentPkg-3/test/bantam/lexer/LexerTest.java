@@ -10,7 +10,6 @@
 
 package bantam.lexer;
 
-import java_cup.lexer;
 import java_cup.runtime.Symbol;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -35,7 +34,6 @@ public class LexerTest
     public void keywordTokens() throws Exception {
         checkToken(" score ", "SCORE");
         checkToken(" \"Chroma\" ", "STRING_CONST");
-        checkToken(" :", "COLON");
         checkToken(" score ", "SCORE");
         checkToken(" instr ", "INSTRUMENT");
         checkToken(" vol ", "VOLUME");
@@ -63,7 +61,8 @@ public class LexerTest
         checkToken("}", "RBRACE");
         checkToken(" ( ", "LPAREN");
         checkToken(" ) ", "RPAREN");
-        checkToken(" | ", "BREAK");
+        checkToken(" < ", "LBREAK");
+        checkToken(">", "RBREAK");
     }
 
 
@@ -100,10 +99,12 @@ public class LexerTest
     public void idToken() throws Exception {
         checkToken(" $abc ", "ID");
         checkToken(" 9abc ", "ILLEGAL_ID");
-        checkToken(" _abc ", "NOTE"); // _ is the note rest
+        checkToken(" :abc ", "NOTE"); // _ is the note rest
         checkToken(" abc ", "NOTE");
         checkToken(" bc ", "NOTE");
         checkToken(" c ", "NOTE");
+        checkToken(" _", "NOTE");
+        checkToken(" h", "ILLEGAL_NOTE");
     }
 
     /**

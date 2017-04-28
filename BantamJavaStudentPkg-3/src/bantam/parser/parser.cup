@@ -161,7 +161,7 @@ terminal Token LEX_ERROR;
 terminal Token SCORE, LOOP, INSTRUMENT, VOLUME, OCTAVE;
 terminal Token PLUS, MINUS;
 terminal Token ASSIGN;
-terminal Token LPAREN, RPAREN, LBRACE, RBRACE, LSQBRACE, RSQBRACE, BREAK;
+terminal Token LPAREN, RPAREN, LBRACE, RBRACE, LSQBRACE, RSQBRACE, LBREAK, RBREAK;
 terminal Token SEMI, COMMA;
 terminal Token ID, INT_CONST, STRING_CONST, NOTE;
 
@@ -265,12 +265,6 @@ loop_stmt
         LOOP expr:c LBRACE stmt_list:sl RBRACE
         {: RESULT = new LoopStmt(c.getLineNum(), sl, c); :}
      ;
-
-phrase_stmt
-    ::=
-        expr:pe SEMI
-        {: RESULT = new PhraseStmt(pe.getLineNum(), pe); :}
-    ;
 
 block_stmt
       ::=
@@ -402,7 +396,7 @@ measure_list
 
 measure
     ::=
-        BREAK sound_list:sl BREAK
+        LBREAK sound_list:sl RBREAK
         {: RESULT = new Measure(sl.getLineNum(), sl); :}
     ;
 
@@ -440,11 +434,11 @@ note
         NOTE:n
         {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null); :}
         |
-        NOTE:n PLUS:p
-        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), p.getAttribute()); :}
+        NOTE:n PLUS
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "+"); :}
         |
-        NOTE:n MINUS:m
-        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), m.getAttribute()); :}
+        NOTE:n MINUS
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "-"); :}
     ;
 
 const_expr
@@ -474,10 +468,10 @@ const_int
           {: RESULT = new ConstIntExpr(value.getLineNum(), value.getAttribute()); :}
           |
           MINUS:m INT_CONST:value
-          {: RESULT = new ConstIntExpr(value.getLineNum(), m.getAttribute() + value.getAttribute()); :}
+          {: RESULT = new ConstIntExpr(value.getLineNum(), "-" + value.getAttribute()); :}
           |
           PLUS:p INT_CONST:value
-          {: RESULT = new ConstIntExpr(value.getLineNum(), p.getAttribute() + value.getAttribute()); :}
+          {: RESULT = new ConstIntExpr(value.getLineNum(), "+" + value.getAttribute()); :}
       ;
 
 const_string

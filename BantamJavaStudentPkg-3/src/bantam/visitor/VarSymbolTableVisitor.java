@@ -55,7 +55,7 @@ public class VarSymbolTableVisitor extends Visitor {
         this.varSymbolTable = (
                 this.classMap.get(this.currClass.getName()).getVarSymbolTable()
         );
-//        System.out.println("class "+classNode.getName()+""+this.varSymbolTable.getCurrScopeLevel());
+//        System.out.println("class "+classNode.getExpr()+""+this.varSymbolTable.getCurrScopeLevel());
         this.fieldLevel = this.varSymbolTable.getCurrScopeLevel();
         super.visit(classNode);
         return null;
@@ -117,8 +117,8 @@ public class VarSymbolTableVisitor extends Visitor {
         }
 
         if (this.varSymbolTable.getScopeLevel(declStmt.getName()) > this.fieldLevel){
-//            System.out.println(declStmt.getName());
-//            System.out.println("level"+this.varSymbolTable.getScopeLevel(declStmt.getName()));
+//            System.out.println(declStmt.getExpr());
+//            System.out.println("level"+this.varSymbolTable.getScopeLevel(declStmt.getExpr()));
 //            System.out.println("level now"+this.varSymbolTable.getCurrScopeLevel());
             errHandler.register(
                     errHandler.SEMANT_ERROR,

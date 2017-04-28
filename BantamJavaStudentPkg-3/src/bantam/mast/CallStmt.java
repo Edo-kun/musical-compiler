@@ -37,19 +37,19 @@ import bantam.visitor.MusicVisitor;
  */
 public class CallStmt extends Stmt {
     /**
-     * A variable
+     * A variable or phrase
      */
-    protected Expr name;
+    protected Expr expr;
 
     /**
      * CallStmt constructor
      *
      * @param lineNum  source line number corresponding to this AST node
-     * @param name
+     * @param expr
      */
-    public CallStmt(int lineNum, Expr name) {
+    public CallStmt(int lineNum, Expr expr) {
         super(lineNum);
-        this.name = name;
+        this.expr = expr;
     }
 
     /**
@@ -57,8 +57,8 @@ public class CallStmt extends Stmt {
      *
      * @return name
      */
-    public Expr getName() {
-        return name;
+    public Expr getExpr() {
+        return expr;
     }
 
     /**
