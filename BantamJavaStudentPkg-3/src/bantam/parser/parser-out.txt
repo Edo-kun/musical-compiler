@@ -2,52 +2,172 @@ Opening files...
 Parsing specification from standard input...
 Checking specification...
 Warning: Terminal "LEX_ERROR" was declared but never used
-Warning: Non terminal "note_list" was declared but never used
-Warning: Non terminal "chord_list" was declared but never used
 Building parse tables...
   Computing non-terminal nullability...
   Computing first sets...
   Building state machine...
   Filling in tables...
-*** Shift/Reduce conflict found in state #78
+*** Reduce/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     stmt_list ::= (*) 
+  under symbols: {LBREAK, SEMI}
+  Resolved in favor of the second production.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE 
+  under symbol LOOP
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list 
+  under symbol INSTRUMENT
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list 
+  under symbol VOLUME
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list 
+  under symbol OCTAVE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI 
+  under symbol LSQBRACE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #100
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  under symbol SEMI
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     const_var ::= (*) ID 
+  under symbol ID
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     const_int ::= (*) INT_CONST 
+  under symbol INT_CONST
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between measure_list ::= (*) 
+  and     const_string ::= (*) STRING_CONST 
+  under symbol STRING_CONST
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE 
+  under symbol LOOP
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list 
+  under symbol INSTRUMENT
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list 
+  under symbol VOLUME
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr measure_list 
+  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list 
+  under symbol OCTAVE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI 
+  under symbol LSQBRACE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  under symbol SEMI
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     const_var ::= (*) ID 
+  under symbol ID
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     const_int ::= (*) INT_CONST 
+  under symbol INT_CONST
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #91
+  between stmt_list ::= (*) 
+  and     const_string ::= (*) STRING_CONST 
+  under symbol STRING_CONST
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #52
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #46
+*** Shift/Reduce conflict found in state #57
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #26
-  between sound_list ::= (*) 
-  and     chord ::= (*) LPAREN sound_list RPAREN 
-  under symbol LPAREN
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #26
-  between sound_list ::= (*) 
-  and     note ::= (*) NOTE PLUS 
-  and     note ::= (*) NOTE 
-  and     note ::= (*) NOTE MINUS 
-  under symbol NOTE
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #7
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #95
+*** Shift/Reduce conflict found in state #83
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
@@ -91,7 +211,118 @@ Building parse tables...
   under symbol COMMA
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #66
+*** Shift/Reduce conflict found in state #105
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #100
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #71
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Reduce/Reduce conflict found in state #43
+  between const_int ::= INT_CONST (*) 
+  and     const_int ::= PLUS INT_CONST (*) 
+  under symbols: {LPAREN, RPAREN, RBREAK, NOTE}
+  Resolved in favor of the first production.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= INT_CONST (*) 
+  under symbol LPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= INT_CONST (*) 
+  under symbol RPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= INT_CONST (*) 
+  under symbol RBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= INT_CONST (*) 
+  under symbol NOTE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= PLUS INT_CONST (*) 
+  under symbol LPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= PLUS INT_CONST (*) 
+  under symbol RPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= PLUS INT_CONST (*) 
+  under symbol RBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #43
+  between const_int ::= PLUS INT_CONST (*) 
+  under symbol NOTE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #96
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #108
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #76
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #85
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #35
+  between sound_list ::= (*) 
+  and     chord ::= (*) LPAREN sound_list RPAREN 
+  under symbol LPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #35
+  between sound_list ::= (*) 
+  and     note ::= (*) NOTE PLUS 
+  and     note ::= (*) NOTE PLUS const_expr 
+  and     note ::= (*) NOTE 
+  and     note ::= (*) NOTE const_expr 
+  and     note ::= (*) NOTE MINUS 
+  and     note ::= (*) NOTE MINUS const_expr 
+  under symbol NOTE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #88
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #80
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
@@ -245,7 +476,94 @@ Building parse tables...
   under symbol STRING_CONST
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #91
+*** Shift/Reduce conflict found in state #15
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #68
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #61
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #26
+  between sound_list ::= (*) 
+  and     chord ::= (*) LPAREN sound_list RPAREN 
+  under symbol LPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #26
+  between sound_list ::= (*) 
+  and     note ::= (*) NOTE PLUS 
+  and     note ::= (*) NOTE PLUS const_expr 
+  and     note ::= (*) NOTE 
+  and     note ::= (*) NOTE const_expr 
+  and     note ::= (*) NOTE MINUS 
+  and     note ::= (*) NOTE MINUS const_expr 
+  under symbol NOTE
+  Resolved in favor of shifting.
+
+*** Reduce/Reduce conflict found in state #45
+  between const_int ::= INT_CONST (*) 
+  and     const_int ::= MINUS INT_CONST (*) 
+  under symbols: {LPAREN, RPAREN, RBREAK, NOTE}
+  Resolved in favor of the first production.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= INT_CONST (*) 
+  under symbol LPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= INT_CONST (*) 
+  under symbol RPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= INT_CONST (*) 
+  under symbol RBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= INT_CONST (*) 
+  under symbol NOTE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= MINUS INT_CONST (*) 
+  under symbol LPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= MINUS INT_CONST (*) 
+  under symbol RPAREN
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= MINUS INT_CONST (*) 
+  under symbol RBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #45
+  between const_int ::= MINUS INT_CONST (*) 
+  under symbol NOTE
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #65
+  between measure_list ::= (*) 
+  and     measure ::= (*) LBREAK sound_list RBREAK 
+  under symbol LBREAK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #8
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
@@ -257,235 +575,13 @@ Building parse tables...
   under symbol LBREAK
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #15
+*** Shift/Reduce conflict found in state #74
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #71
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #80
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Reduce/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     stmt_list ::= (*) 
-  under symbols: {LBREAK, SEMI}
-  Resolved in favor of the second production.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE 
-  under symbol LOOP
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list 
-  under symbol INSTRUMENT
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list 
-  under symbol VOLUME
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list 
-  under symbol OCTAVE
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI 
-  under symbol LSQBRACE
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  under symbol SEMI
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     const_var ::= (*) ID 
-  under symbol ID
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     const_int ::= (*) INT_CONST 
-  under symbol INT_CONST
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between measure_list ::= (*) 
-  and     const_string ::= (*) STRING_CONST 
-  under symbol STRING_CONST
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE 
-  under symbol LOOP
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list 
-  under symbol INSTRUMENT
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list 
-  under symbol VOLUME
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr measure_list 
-  and     phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list 
-  under symbol OCTAVE
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI 
-  under symbol LSQBRACE
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  under symbol SEMI
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     const_var ::= (*) ID 
-  under symbol ID
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     const_int ::= (*) INT_CONST 
-  under symbol INT_CONST
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #86
-  between stmt_list ::= (*) 
-  and     const_string ::= (*) STRING_CONST 
-  under symbol STRING_CONST
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #83
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #75
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #35
-  between sound_list ::= (*) 
-  and     chord ::= (*) LPAREN sound_list RPAREN 
-  under symbol LPAREN
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #35
-  between sound_list ::= (*) 
-  and     note ::= (*) NOTE PLUS 
-  and     note ::= (*) NOTE 
-  and     note ::= (*) NOTE MINUS 
-  under symbol NOTE
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #63
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #56
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #87
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #52
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #60
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #98
-  between measure_list ::= (*) 
-  and     measure ::= (*) LBREAK sound_list RBREAK 
-  under symbol LBREAK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #69
+*** Shift/Reduce conflict found in state #92
   between measure_list ::= (*) 
   and     measure ::= (*) LBREAK sound_list RBREAK 
   under symbol LBREAK
@@ -505,9 +601,9 @@ Writing parser...
 [0]$START [1]program [2]score [3]member_list [4]member 
 [5]field [6]stmt_list [7]stmt [8]loop_stmt [9]phrase_stmt 
 [10]call_stmt [11]block_stmt [12]measure_list [13]measure [14]sound_list 
-[15]sound [16]chord_list [17]chord [18]note [19]note_list 
-[20]expr_list [21]expr [22]const_expr [23]phrase_expr [24]const_int 
-[25]const_string [26]const_var 
+[15]sound [16]chord [17]note [18]expr_list [19]expr 
+[20]const_expr [21]phrase_expr [22]const_int [23]const_string [24]const_var 
+
 
 ===== Productions =====
 [0] program ::= score 
@@ -560,17 +656,20 @@ Writing parser...
 [47] sound ::= chord 
 [48] sound ::= note 
 [49] chord ::= LPAREN sound_list RPAREN 
-[50] note ::= NOTE 
-[51] note ::= NOTE PLUS 
-[52] note ::= NOTE MINUS 
-[53] const_expr ::= const_int 
-[54] const_expr ::= const_var 
-[55] const_expr ::= const_string 
-[56] const_var ::= ID 
-[57] const_int ::= INT_CONST 
-[58] const_int ::= MINUS INT_CONST 
-[59] const_int ::= PLUS INT_CONST 
-[60] const_string ::= STRING_CONST 
+[50] note ::= NOTE const_expr 
+[51] note ::= NOTE PLUS const_expr 
+[52] note ::= NOTE MINUS const_expr 
+[53] note ::= NOTE 
+[54] note ::= NOTE PLUS 
+[55] note ::= NOTE MINUS 
+[56] const_expr ::= const_int 
+[57] const_expr ::= const_var 
+[58] const_expr ::= const_string 
+[59] const_var ::= ID 
+[60] const_int ::= INT_CONST 
+[61] const_int ::= MINUS INT_CONST 
+[62] const_int ::= PLUS INT_CONST 
+[63] const_string ::= STRING_CONST 
 
 ===== Viable Prefix Recognizer =====
 START lalr_state [0]: {
@@ -586,7 +685,7 @@ transition on program to state [1]
 lalr_state [1]: {
   [$START ::= program (*) EOF , {EOF }]
 }
-transition on EOF to state [109]
+transition on EOF to state [114]
 
 -------------------
 lalr_state [2]: {
@@ -607,54 +706,54 @@ transition on LBRACE to state [5]
 
 -------------------
 lalr_state [5]: {
-  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
+  [const_var ::= (*) ID , {ASSIGN SEMI }]
   [measure_list ::= (*) measure_list measure , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [member_list ::= (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_string , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [expr ::= (*) phrase_expr , {SEMI }]
   [stmt ::= (*) phrase_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_string ::= (*) STRING_CONST , {SEMI }]
+  [const_int ::= (*) INT_CONST , {SEMI }]
   [measure_list ::= (*) , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) measure_list , {SEMI }]
   [block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [member ::= (*) field , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_var ::= (*) ID , {ASSIGN SEMI }]
+  [const_expr ::= (*) const_int , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [score ::= SCORE STRING_CONST LBRACE (*) member_list RBRACE , {EOF }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [expr ::= (*) const_expr , {SEMI }]
   [stmt ::= (*) call_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {SEMI }]
   [member ::= (*) stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_int ::= (*) INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_var , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr measure_list , {SEMI }]
   [stmt ::= (*) block_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [member_list ::= (*) member , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_int , {SEMI }]
+  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [field ::= (*) const_var ASSIGN expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_string , {SEMI }]
   [measure_list ::= (*) measure , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [call_stmt ::= (*) expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [member_list ::= (*) member_list member , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_var , {SEMI }]
+  [const_string ::= (*) STRING_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [stmt ::= (*) loop_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 transition on phrase_expr to state [32]
-transition on const_string to state [31]
-transition on stmt to state [30]
+transition on stmt to state [31]
+transition on const_string to state [30]
 transition on const_expr to state [29]
 transition on call_stmt to state [28]
 transition on const_int to state [27]
@@ -676,67 +775,72 @@ transition on PLUS to state [12]
 transition on expr to state [11]
 transition on field to state [10]
 transition on member to state [9]
-transition on STRING_CONST to state [8]
-transition on member_list to state [7]
-transition on measure_list to state [6]
+transition on member_list to state [8]
+transition on measure_list to state [7]
+transition on STRING_CONST to state [6]
 
 -------------------
 lalr_state [6]: {
+  [const_string ::= STRING_CONST (*) , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
+}
+
+-------------------
+lalr_state [7]: {
   [phrase_expr ::= measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [7]: {
-  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
+lalr_state [8]: {
+  [const_var ::= (*) ID , {ASSIGN SEMI }]
   [measure_list ::= (*) measure_list measure , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_string , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [expr ::= (*) phrase_expr , {SEMI }]
   [stmt ::= (*) phrase_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_string ::= (*) STRING_CONST , {SEMI }]
+  [const_int ::= (*) INT_CONST , {SEMI }]
   [measure_list ::= (*) , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) measure_list , {SEMI }]
   [block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [member ::= (*) field , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_var ::= (*) ID , {ASSIGN SEMI }]
+  [const_expr ::= (*) const_int , {SEMI }]
   [score ::= SCORE STRING_CONST LBRACE member_list (*) RBRACE , {EOF }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [expr ::= (*) const_expr , {SEMI }]
   [stmt ::= (*) call_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {SEMI }]
   [member ::= (*) stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_int ::= (*) INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_var , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr measure_list , {SEMI }]
   [stmt ::= (*) block_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_int , {SEMI }]
+  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [field ::= (*) const_var ASSIGN expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_string , {SEMI }]
   [measure_list ::= (*) measure , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [member_list ::= member_list (*) member , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [call_stmt ::= (*) expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_var , {SEMI }]
+  [const_string ::= (*) STRING_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [stmt ::= (*) loop_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 transition on phrase_expr to state [32]
-transition on const_string to state [31]
-transition on stmt to state [30]
+transition on stmt to state [31]
+transition on const_string to state [30]
 transition on const_expr to state [29]
 transition on call_stmt to state [28]
 transition on const_int to state [27]
@@ -754,18 +858,13 @@ transition on INSTRUMENT to state [16]
 transition on LOOP to state [15]
 transition on measure to state [14]
 transition on OCTAVE to state [13]
-transition on RBRACE to state [108]
+transition on RBRACE to state [113]
 transition on PLUS to state [12]
 transition on expr to state [11]
 transition on field to state [10]
-transition on member to state [107]
-transition on STRING_CONST to state [8]
-transition on measure_list to state [6]
-
--------------------
-lalr_state [8]: {
-  [const_string ::= STRING_CONST (*) , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
-}
+transition on member to state [112]
+transition on measure_list to state [7]
+transition on STRING_CONST to state [6]
 
 -------------------
 lalr_state [9]: {
@@ -781,37 +880,37 @@ lalr_state [10]: {
 lalr_state [11]: {
   [call_stmt ::= expr (*) SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
-transition on SEMI to state [106]
+transition on SEMI to state [111]
 
 -------------------
 lalr_state [12]: {
-  [const_int ::= PLUS (*) INT_CONST , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [const_int ::= PLUS (*) INT_CONST , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
-transition on INT_CONST to state [105]
+transition on INT_CONST to state [110]
 
 -------------------
 lalr_state [13]: {
   [const_string ::= (*) STRING_CONST , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= OCTAVE (*) const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= OCTAVE (*) const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [phrase_expr ::= OCTAVE (*) const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_var , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) PLUS INT_CONST , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= OCTAVE (*) const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_var ::= (*) ID , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= OCTAVE (*) const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [phrase_expr ::= OCTAVE (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_int , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) MINUS INT_CONST , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= OCTAVE (*) const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_string , {INSTRUMENT VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= OCTAVE (*) const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [91]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [96]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
@@ -822,50 +921,50 @@ lalr_state [14]: {
 
 -------------------
 lalr_state [15]: {
-  [const_int ::= (*) INT_CONST , {LBRACE }]
+  [const_expr ::= (*) const_var , {LBRACE }]
+  [const_int ::= (*) PLUS INT_CONST , {LBRACE }]
   [expr ::= (*) const_expr , {LBRACE }]
   [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) OCTAVE const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) VOLUME const_expr measure_list , {LBRACE }]
   [measure_list ::= (*) measure , {LBRACE LBREAK }]
-  [const_expr ::= (*) const_string , {LBRACE }]
-  [const_string ::= (*) STRING_CONST , {LBRACE }]
+  [const_int ::= (*) INT_CONST , {LBRACE }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {LBRACE }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE LBREAK }]
-  [const_expr ::= (*) const_int , {LBRACE }]
-  [const_int ::= (*) MINUS INT_CONST , {LBRACE }]
+  [const_expr ::= (*) const_string , {LBRACE }]
+  [const_string ::= (*) STRING_CONST , {LBRACE }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {LBRACE }]
   [measure_list ::= (*) measure_list measure , {LBRACE LBREAK }]
-  [const_var ::= (*) ID , {LBRACE }]
+  [const_expr ::= (*) const_int , {LBRACE }]
   [loop_stmt ::= LOOP (*) expr LBRACE stmt_list RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [const_int ::= (*) MINUS INT_CONST , {LBRACE }]
   [expr ::= (*) phrase_expr , {LBRACE }]
   [phrase_expr ::= (*) measure_list , {LBRACE }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {LBRACE }]
-  [const_expr ::= (*) const_var , {LBRACE }]
-  [const_int ::= (*) PLUS INT_CONST , {LBRACE }]
+  [const_var ::= (*) ID , {LBRACE }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {LBRACE }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {LBRACE }]
   [measure_list ::= (*) , {LBRACE LBREAK }]
 }
-transition on const_string to state [31]
-transition on const_var to state [48]
-transition on expr to state [85]
+transition on const_var to state [42]
+transition on const_string to state [30]
+transition on expr to state [90]
 transition on OCTAVE to state [13]
-transition on measure_list to state [6]
+transition on measure_list to state [7]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on VOLUME to state [17]
 transition on const_int to state [27]
 transition on const_expr to state [29]
 transition on LBREAK to state [26]
-transition on STRING_CONST to state [8]
+transition on STRING_CONST to state [6]
 transition on phrase_expr to state [32]
 transition on INSTRUMENT to state [16]
 transition on INT_CONST to state [19]
@@ -876,8 +975,8 @@ transition on MINUS to state [23]
 lalr_state [16]: {
   [const_string ::= (*) STRING_CONST , {VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= INSTRUMENT (*) const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_var , {VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= INSTRUMENT (*) const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) PLUS INT_CONST , {VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_var ::= (*) ID , {VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -888,50 +987,50 @@ lalr_state [16]: {
   [phrase_expr ::= INSTRUMENT (*) const_expr VOLUME const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT (*) const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [71]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [76]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
 lalr_state [17]: {
-  [phrase_expr ::= VOLUME (*) const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_string ::= (*) STRING_CONST , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= VOLUME (*) const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME (*) const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
-  [phrase_expr ::= VOLUME (*) const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) PLUS INT_CONST , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= VOLUME (*) const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_var ::= (*) ID , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_int , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME (*) const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
-  [phrase_expr ::= VOLUME (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) MINUS INT_CONST , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= VOLUME (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_string , {INSTRUMENT OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [56]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [61]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
 lalr_state [18]: {
-  [const_var ::= ID (*) , {INSTRUMENT VOLUME OCTAVE ASSIGN LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [const_var ::= ID (*) , {INSTRUMENT VOLUME OCTAVE ASSIGN LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
 
 -------------------
 lalr_state [19]: {
-  [const_int ::= INT_CONST (*) , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [const_int ::= INT_CONST (*) , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
 
 -------------------
@@ -941,35 +1040,35 @@ lalr_state [20]: {
 
 -------------------
 lalr_state [21]: {
-  [const_int ::= (*) INT_CONST , {RSQBRACE COMMA }]
+  [const_expr ::= (*) const_var , {RSQBRACE COMMA }]
   [block_stmt ::= LSQBRACE (*) expr_list RSQBRACE SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [const_int ::= (*) PLUS INT_CONST , {RSQBRACE COMMA }]
   [expr ::= (*) const_expr , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) VOLUME const_expr measure_list , {RSQBRACE COMMA }]
   [measure_list ::= (*) measure , {RSQBRACE LBREAK COMMA }]
-  [const_expr ::= (*) const_string , {RSQBRACE COMMA }]
-  [const_string ::= (*) STRING_CONST , {RSQBRACE COMMA }]
+  [const_int ::= (*) INT_CONST , {RSQBRACE COMMA }]
   [expr_list ::= (*) , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {RSQBRACE LBREAK COMMA }]
-  [const_expr ::= (*) const_int , {RSQBRACE COMMA }]
-  [const_int ::= (*) MINUS INT_CONST , {RSQBRACE COMMA }]
+  [const_expr ::= (*) const_string , {RSQBRACE COMMA }]
+  [const_string ::= (*) STRING_CONST , {RSQBRACE COMMA }]
   [expr_list ::= (*) expr , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
   [measure_list ::= (*) measure_list measure , {RSQBRACE LBREAK COMMA }]
-  [const_var ::= (*) ID , {RSQBRACE COMMA }]
+  [const_expr ::= (*) const_int , {RSQBRACE COMMA }]
+  [const_int ::= (*) MINUS INT_CONST , {RSQBRACE COMMA }]
   [expr ::= (*) phrase_expr , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
-  [const_expr ::= (*) const_var , {RSQBRACE COMMA }]
-  [const_int ::= (*) PLUS INT_CONST , {RSQBRACE COMMA }]
+  [const_var ::= (*) ID , {RSQBRACE COMMA }]
   [expr_list ::= (*) expr_list COMMA expr , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
@@ -977,36 +1076,36 @@ lalr_state [21]: {
   [measure_list ::= (*) , {RSQBRACE LBREAK COMMA }]
 }
 transition on phrase_expr to state [32]
-transition on const_string to state [31]
+transition on const_string to state [30]
 transition on const_expr to state [29]
 transition on const_int to state [27]
 transition on LBREAK to state [26]
-transition on expr_list to state [51]
+transition on expr_list to state [56]
 transition on MINUS to state [23]
-transition on const_var to state [48]
+transition on const_var to state [42]
 transition on INT_CONST to state [19]
 transition on ID to state [18]
 transition on VOLUME to state [17]
 transition on INSTRUMENT to state [16]
 transition on measure to state [14]
 transition on OCTAVE to state [13]
-transition on expr to state [50]
 transition on PLUS to state [12]
-transition on STRING_CONST to state [8]
-transition on measure_list to state [6]
+transition on expr to state [55]
+transition on STRING_CONST to state [6]
+transition on measure_list to state [7]
 
 -------------------
 lalr_state [22]: {
   [const_expr ::= const_var (*) , {SEMI }]
   [field ::= const_var (*) ASSIGN expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
-transition on ASSIGN to state [46]
+transition on ASSIGN to state [52]
 
 -------------------
 lalr_state [23]: {
-  [const_int ::= MINUS (*) INT_CONST , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [const_int ::= MINUS (*) INT_CONST , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
-transition on INT_CONST to state [45]
+transition on INT_CONST to state [51]
 
 -------------------
 lalr_state [24]: {
@@ -1021,12 +1120,15 @@ lalr_state [25]: {
 -------------------
 lalr_state [26]: {
   [note ::= (*) NOTE PLUS , {LPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE PLUS const_expr , {LPAREN RBREAK NOTE }]
   [sound ::= (*) note , {LPAREN RBREAK NOTE }]
   [sound_list ::= (*) sound_list sound , {LPAREN RBREAK NOTE }]
   [note ::= (*) NOTE , {LPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE const_expr , {LPAREN RBREAK NOTE }]
   [sound ::= (*) chord , {LPAREN RBREAK NOTE }]
   [sound_list ::= (*) sound , {LPAREN RBREAK NOTE }]
   [note ::= (*) NOTE MINUS , {LPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE MINUS const_expr , {LPAREN RBREAK NOTE }]
   [chord ::= (*) LPAREN sound_list RPAREN , {LPAREN RBREAK NOTE }]
   [measure ::= LBREAK (*) sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [sound_list ::= (*) , {LPAREN RBREAK NOTE }]
@@ -1040,7 +1142,7 @@ transition on sound_list to state [33]
 
 -------------------
 lalr_state [27]: {
-  [const_expr ::= const_int (*) , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [const_expr ::= const_int (*) , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
 
 -------------------
@@ -1055,12 +1157,12 @@ lalr_state [29]: {
 
 -------------------
 lalr_state [30]: {
-  [member ::= stmt (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [const_expr ::= const_string (*) , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
 
 -------------------
 lalr_state [31]: {
-  [const_expr ::= const_string (*) , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [member ::= stmt (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 
 -------------------
@@ -1070,21 +1172,24 @@ lalr_state [32]: {
 
 -------------------
 lalr_state [33]: {
+  [note ::= (*) NOTE PLUS , {LPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE PLUS const_expr , {LPAREN RBREAK NOTE }]
+  [sound_list ::= sound_list (*) sound , {LPAREN RBREAK NOTE }]
+  [sound ::= (*) note , {LPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE , {LPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE const_expr , {LPAREN RBREAK NOTE }]
+  [sound ::= (*) chord , {LPAREN RBREAK NOTE }]
   [note ::= (*) NOTE MINUS , {LPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE MINUS const_expr , {LPAREN RBREAK NOTE }]
   [chord ::= (*) LPAREN sound_list RPAREN , {LPAREN RBREAK NOTE }]
   [measure ::= LBREAK sound_list (*) RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [note ::= (*) NOTE PLUS , {LPAREN RBREAK NOTE }]
-  [sound ::= (*) note , {LPAREN RBREAK NOTE }]
-  [sound_list ::= sound_list (*) sound , {LPAREN RBREAK NOTE }]
-  [note ::= (*) NOTE , {LPAREN RBREAK NOTE }]
-  [sound ::= (*) chord , {LPAREN RBREAK NOTE }]
 }
 transition on NOTE to state [38]
 transition on chord to state [37]
+transition on sound to state [49]
 transition on LPAREN to state [35]
-transition on sound to state [43]
 transition on note to state [34]
-transition on RBREAK to state [44]
+transition on RBREAK to state [50]
 
 -------------------
 lalr_state [34]: {
@@ -1094,13 +1199,16 @@ lalr_state [34]: {
 -------------------
 lalr_state [35]: {
   [note ::= (*) NOTE PLUS , {LPAREN RPAREN NOTE }]
+  [note ::= (*) NOTE PLUS const_expr , {LPAREN RPAREN NOTE }]
   [sound ::= (*) note , {LPAREN RPAREN NOTE }]
   [sound_list ::= (*) sound_list sound , {LPAREN RPAREN NOTE }]
   [note ::= (*) NOTE , {LPAREN RPAREN NOTE }]
+  [note ::= (*) NOTE const_expr , {LPAREN RPAREN NOTE }]
   [sound ::= (*) chord , {LPAREN RPAREN NOTE }]
   [sound_list ::= (*) sound , {LPAREN RPAREN NOTE }]
-  [chord ::= LPAREN (*) sound_list RPAREN , {LPAREN RPAREN RBREAK NOTE }]
   [note ::= (*) NOTE MINUS , {LPAREN RPAREN NOTE }]
+  [note ::= (*) NOTE MINUS const_expr , {LPAREN RPAREN NOTE }]
+  [chord ::= LPAREN (*) sound_list RPAREN , {LPAREN RPAREN RBREAK NOTE }]
   [chord ::= (*) LPAREN sound_list RPAREN , {LPAREN RPAREN NOTE }]
   [sound_list ::= (*) , {LPAREN RPAREN NOTE }]
 }
@@ -1109,7 +1217,7 @@ transition on chord to state [37]
 transition on sound to state [36]
 transition on LPAREN to state [35]
 transition on note to state [34]
-transition on sound_list to state [41]
+transition on sound_list to state [47]
 
 -------------------
 lalr_state [36]: {
@@ -1123,188 +1231,198 @@ lalr_state [37]: {
 
 -------------------
 lalr_state [38]: {
+  [const_string ::= (*) STRING_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
   [note ::= NOTE (*) PLUS , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_var , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE (*) PLUS const_expr , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) PLUS INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_var ::= (*) ID , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_int , {LPAREN RPAREN RBREAK NOTE }]
   [note ::= NOTE (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE (*) const_expr , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) MINUS INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
   [note ::= NOTE (*) MINUS , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_string , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE (*) MINUS const_expr , {LPAREN RPAREN RBREAK NOTE }]
 }
-transition on MINUS to state [40]
-transition on PLUS to state [39]
+transition on const_var to state [42]
+transition on const_string to state [30]
+transition on ID to state [18]
+transition on PLUS to state [41]
+transition on const_int to state [27]
+transition on const_expr to state [40]
+transition on STRING_CONST to state [6]
+transition on INT_CONST to state [19]
+transition on MINUS to state [39]
 
 -------------------
 lalr_state [39]: {
-  [note ::= NOTE PLUS (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [const_string ::= (*) STRING_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_var , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) PLUS INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_var ::= (*) ID , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_int , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= MINUS (*) INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) MINUS INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE MINUS (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE MINUS (*) const_expr , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_string , {LPAREN RPAREN RBREAK NOTE }]
 }
+transition on const_var to state [42]
+transition on const_string to state [30]
+transition on ID to state [18]
+transition on PLUS to state [12]
+transition on const_int to state [27]
+transition on const_expr to state [46]
+transition on STRING_CONST to state [6]
+transition on INT_CONST to state [45]
+transition on MINUS to state [23]
 
 -------------------
 lalr_state [40]: {
-  [note ::= NOTE MINUS (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE const_expr (*) , {LPAREN RPAREN RBREAK NOTE }]
 }
 
 -------------------
 lalr_state [41]: {
-  [note ::= (*) NOTE MINUS , {LPAREN RPAREN NOTE }]
-  [chord ::= (*) LPAREN sound_list RPAREN , {LPAREN RPAREN NOTE }]
-  [note ::= (*) NOTE PLUS , {LPAREN RPAREN NOTE }]
-  [sound ::= (*) note , {LPAREN RPAREN NOTE }]
-  [sound_list ::= sound_list (*) sound , {LPAREN RPAREN NOTE }]
-  [note ::= (*) NOTE , {LPAREN RPAREN NOTE }]
-  [sound ::= (*) chord , {LPAREN RPAREN NOTE }]
-  [chord ::= LPAREN sound_list (*) RPAREN , {LPAREN RPAREN RBREAK NOTE }]
+  [const_string ::= (*) STRING_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE PLUS (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= NOTE PLUS (*) const_expr , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_var , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= PLUS (*) INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) PLUS INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_var ::= (*) ID , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_int , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= (*) MINUS INT_CONST , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= (*) const_string , {LPAREN RPAREN RBREAK NOTE }]
 }
-transition on NOTE to state [38]
-transition on chord to state [37]
-transition on LPAREN to state [35]
-transition on sound to state [43]
-transition on note to state [34]
-transition on RPAREN to state [42]
+transition on const_var to state [42]
+transition on const_string to state [30]
+transition on ID to state [18]
+transition on PLUS to state [12]
+transition on const_int to state [27]
+transition on const_expr to state [44]
+transition on STRING_CONST to state [6]
+transition on INT_CONST to state [43]
+transition on MINUS to state [23]
 
 -------------------
 lalr_state [42]: {
-  [chord ::= LPAREN sound_list RPAREN (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [const_expr ::= const_var (*) , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
 
 -------------------
 lalr_state [43]: {
-  [sound_list ::= sound_list sound (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= INT_CONST (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= PLUS INT_CONST (*) , {LPAREN RPAREN RBREAK NOTE }]
 }
 
 -------------------
 lalr_state [44]: {
-  [measure ::= LBREAK sound_list RBREAK (*) , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [note ::= NOTE PLUS const_expr (*) , {LPAREN RPAREN RBREAK NOTE }]
 }
 
 -------------------
 lalr_state [45]: {
-  [const_int ::= MINUS INT_CONST (*) , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [const_int ::= INT_CONST (*) , {LPAREN RPAREN RBREAK NOTE }]
+  [const_int ::= MINUS INT_CONST (*) , {LPAREN RPAREN RBREAK NOTE }]
 }
 
 -------------------
 lalr_state [46]: {
-  [const_int ::= (*) INT_CONST , {SEMI }]
+  [note ::= NOTE MINUS const_expr (*) , {LPAREN RPAREN RBREAK NOTE }]
+}
+
+-------------------
+lalr_state [47]: {
+  [note ::= (*) NOTE PLUS , {LPAREN RPAREN NOTE }]
+  [note ::= (*) NOTE PLUS const_expr , {LPAREN RPAREN NOTE }]
+  [sound_list ::= sound_list (*) sound , {LPAREN RPAREN NOTE }]
+  [sound ::= (*) note , {LPAREN RPAREN NOTE }]
+  [note ::= (*) NOTE , {LPAREN RPAREN NOTE }]
+  [note ::= (*) NOTE const_expr , {LPAREN RPAREN NOTE }]
+  [sound ::= (*) chord , {LPAREN RPAREN NOTE }]
+  [note ::= (*) NOTE MINUS , {LPAREN RPAREN NOTE }]
+  [chord ::= LPAREN sound_list (*) RPAREN , {LPAREN RPAREN RBREAK NOTE }]
+  [note ::= (*) NOTE MINUS const_expr , {LPAREN RPAREN NOTE }]
+  [chord ::= (*) LPAREN sound_list RPAREN , {LPAREN RPAREN NOTE }]
+}
+transition on NOTE to state [38]
+transition on chord to state [37]
+transition on sound to state [49]
+transition on LPAREN to state [35]
+transition on note to state [34]
+transition on RPAREN to state [48]
+
+-------------------
+lalr_state [48]: {
+  [chord ::= LPAREN sound_list RPAREN (*) , {LPAREN RPAREN RBREAK NOTE }]
+}
+
+-------------------
+lalr_state [49]: {
+  [sound_list ::= sound_list sound (*) , {LPAREN RPAREN RBREAK NOTE }]
+}
+
+-------------------
+lalr_state [50]: {
+  [measure ::= LBREAK sound_list RBREAK (*) , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
+}
+
+-------------------
+lalr_state [51]: {
+  [const_int ::= MINUS INT_CONST (*) , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
+}
+
+-------------------
+lalr_state [52]: {
+  [const_expr ::= (*) const_var , {SEMI }]
+  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
   [expr ::= (*) const_expr , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr measure_list , {SEMI }]
   [measure_list ::= (*) measure , {LBREAK SEMI }]
   [field ::= const_var ASSIGN (*) expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_string , {SEMI }]
-  [const_string ::= (*) STRING_CONST , {SEMI }]
+  [const_int ::= (*) INT_CONST , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBREAK SEMI }]
-  [const_expr ::= (*) const_int , {SEMI }]
-  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_string , {SEMI }]
+  [const_string ::= (*) STRING_CONST , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [measure_list ::= (*) measure_list measure , {LBREAK SEMI }]
-  [const_var ::= (*) ID , {SEMI }]
+  [const_expr ::= (*) const_int , {SEMI }]
+  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
   [expr ::= (*) phrase_expr , {SEMI }]
   [phrase_expr ::= (*) measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
-  [const_expr ::= (*) const_var , {SEMI }]
-  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
+  [const_var ::= (*) ID , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [measure_list ::= (*) , {LBREAK SEMI }]
 }
-transition on const_string to state [31]
-transition on const_var to state [48]
-transition on expr to state [47]
+transition on const_var to state [42]
+transition on const_string to state [30]
+transition on expr to state [53]
 transition on OCTAVE to state [13]
-transition on measure_list to state [6]
+transition on measure_list to state [7]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on VOLUME to state [17]
 transition on const_int to state [27]
 transition on const_expr to state [29]
 transition on LBREAK to state [26]
-transition on STRING_CONST to state [8]
-transition on phrase_expr to state [32]
-transition on INSTRUMENT to state [16]
-transition on INT_CONST to state [19]
-transition on measure to state [14]
-transition on MINUS to state [23]
-
--------------------
-lalr_state [47]: {
-  [field ::= const_var ASSIGN expr (*) SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-}
-transition on SEMI to state [49]
-
--------------------
-lalr_state [48]: {
-  [const_expr ::= const_var (*) , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
-}
-
--------------------
-lalr_state [49]: {
-  [field ::= const_var ASSIGN expr SEMI (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-}
-
--------------------
-lalr_state [50]: {
-  [expr_list ::= expr (*) , {RSQBRACE COMMA }]
-}
-
--------------------
-lalr_state [51]: {
-  [block_stmt ::= LSQBRACE expr_list (*) RSQBRACE SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [expr_list ::= expr_list (*) COMMA expr , {RSQBRACE COMMA }]
-}
-transition on RSQBRACE to state [53]
-transition on COMMA to state [52]
-
--------------------
-lalr_state [52]: {
-  [const_int ::= (*) INT_CONST , {RSQBRACE COMMA }]
-  [expr ::= (*) const_expr , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) VOLUME const_expr measure_list , {RSQBRACE COMMA }]
-  [measure_list ::= (*) measure , {RSQBRACE LBREAK COMMA }]
-  [const_expr ::= (*) const_string , {RSQBRACE COMMA }]
-  [const_string ::= (*) STRING_CONST , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
-  [measure ::= (*) LBREAK sound_list RBREAK , {RSQBRACE LBREAK COMMA }]
-  [const_expr ::= (*) const_int , {RSQBRACE COMMA }]
-  [const_int ::= (*) MINUS INT_CONST , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
-  [measure_list ::= (*) measure_list measure , {RSQBRACE LBREAK COMMA }]
-  [const_var ::= (*) ID , {RSQBRACE COMMA }]
-  [expr ::= (*) phrase_expr , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
-  [const_expr ::= (*) const_var , {RSQBRACE COMMA }]
-  [const_int ::= (*) PLUS INT_CONST , {RSQBRACE COMMA }]
-  [expr_list ::= expr_list COMMA (*) expr , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
-  [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
-  [measure_list ::= (*) , {RSQBRACE LBREAK COMMA }]
-}
-transition on const_string to state [31]
-transition on const_var to state [48]
-transition on expr to state [55]
-transition on OCTAVE to state [13]
-transition on measure_list to state [6]
-transition on ID to state [18]
-transition on PLUS to state [12]
-transition on VOLUME to state [17]
-transition on const_int to state [27]
-transition on const_expr to state [29]
-transition on LBREAK to state [26]
-transition on STRING_CONST to state [8]
+transition on STRING_CONST to state [6]
 transition on phrase_expr to state [32]
 transition on INSTRUMENT to state [16]
 transition on INT_CONST to state [19]
@@ -1313,22 +1431,98 @@ transition on MINUS to state [23]
 
 -------------------
 lalr_state [53]: {
-  [block_stmt ::= LSQBRACE expr_list RSQBRACE (*) SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [field ::= const_var ASSIGN expr (*) SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 transition on SEMI to state [54]
 
 -------------------
 lalr_state [54]: {
-  [block_stmt ::= LSQBRACE expr_list RSQBRACE SEMI (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [field ::= const_var ASSIGN expr SEMI (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 
 -------------------
 lalr_state [55]: {
-  [expr_list ::= expr_list COMMA expr (*) , {RSQBRACE COMMA }]
+  [expr_list ::= expr (*) , {RSQBRACE COMMA }]
 }
 
 -------------------
 lalr_state [56]: {
+  [block_stmt ::= LSQBRACE expr_list (*) RSQBRACE SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [expr_list ::= expr_list (*) COMMA expr , {RSQBRACE COMMA }]
+}
+transition on RSQBRACE to state [58]
+transition on COMMA to state [57]
+
+-------------------
+lalr_state [57]: {
+  [const_expr ::= (*) const_var , {RSQBRACE COMMA }]
+  [const_int ::= (*) PLUS INT_CONST , {RSQBRACE COMMA }]
+  [expr ::= (*) const_expr , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) VOLUME const_expr measure_list , {RSQBRACE COMMA }]
+  [measure_list ::= (*) measure , {RSQBRACE LBREAK COMMA }]
+  [const_int ::= (*) INT_CONST , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
+  [measure ::= (*) LBREAK sound_list RBREAK , {RSQBRACE LBREAK COMMA }]
+  [const_expr ::= (*) const_string , {RSQBRACE COMMA }]
+  [const_string ::= (*) STRING_CONST , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
+  [measure_list ::= (*) measure_list measure , {RSQBRACE LBREAK COMMA }]
+  [const_expr ::= (*) const_int , {RSQBRACE COMMA }]
+  [const_int ::= (*) MINUS INT_CONST , {RSQBRACE COMMA }]
+  [expr ::= (*) phrase_expr , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {RSQBRACE COMMA }]
+  [const_var ::= (*) ID , {RSQBRACE COMMA }]
+  [expr_list ::= expr_list COMMA (*) expr , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {RSQBRACE COMMA }]
+  [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {RSQBRACE COMMA }]
+  [measure_list ::= (*) , {RSQBRACE LBREAK COMMA }]
+}
+transition on const_var to state [42]
+transition on const_string to state [30]
+transition on expr to state [60]
+transition on OCTAVE to state [13]
+transition on measure_list to state [7]
+transition on ID to state [18]
+transition on PLUS to state [12]
+transition on VOLUME to state [17]
+transition on const_int to state [27]
+transition on const_expr to state [29]
+transition on LBREAK to state [26]
+transition on STRING_CONST to state [6]
+transition on phrase_expr to state [32]
+transition on INSTRUMENT to state [16]
+transition on INT_CONST to state [19]
+transition on measure to state [14]
+transition on MINUS to state [23]
+
+-------------------
+lalr_state [58]: {
+  [block_stmt ::= LSQBRACE expr_list RSQBRACE (*) SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+}
+transition on SEMI to state [59]
+
+-------------------
+lalr_state [59]: {
+  [block_stmt ::= LSQBRACE expr_list RSQBRACE SEMI (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+}
+
+-------------------
+lalr_state [60]: {
+  [expr_list ::= expr_list COMMA expr (*) , {RSQBRACE COMMA }]
+}
+
+-------------------
+lalr_state [61]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1340,22 +1534,22 @@ lalr_state [56]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on INSTRUMENT to state [59]
+transition on INSTRUMENT to state [64]
 transition on measure to state [14]
-transition on OCTAVE to state [58]
-transition on measure_list to state [57]
+transition on OCTAVE to state [63]
+transition on measure_list to state [62]
 
 -------------------
-lalr_state [57]: {
+lalr_state [62]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [58]: {
+lalr_state [63]: {
   [const_string ::= (*) STRING_CONST , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1367,18 +1561,18 @@ lalr_state [58]: {
   [const_int ::= (*) MINUS INT_CONST , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_string , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [66]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [71]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [59]: {
+lalr_state [64]: {
   [const_string ::= (*) STRING_CONST , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1390,18 +1584,18 @@ lalr_state [59]: {
   [const_expr ::= (*) const_string , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr INSTRUMENT (*) const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [60]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [65]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [60]: {
+lalr_state [65]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr INSTRUMENT const_expr (*) OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1411,20 +1605,20 @@ lalr_state [60]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on OCTAVE to state [62]
-transition on measure_list to state [61]
+transition on OCTAVE to state [67]
+transition on measure_list to state [66]
 
 -------------------
-lalr_state [61]: {
+lalr_state [66]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr INSTRUMENT const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [62]: {
+lalr_state [67]: {
   [const_string ::= (*) STRING_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1435,18 +1629,18 @@ lalr_state [62]: {
   [const_expr ::= (*) const_string , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr INSTRUMENT const_expr OCTAVE (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
-transition on const_string to state [31]
-transition on const_var to state [48]
+transition on const_string to state [30]
+transition on const_var to state [42]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [63]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [68]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [63]: {
+lalr_state [68]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1455,24 +1649,24 @@ lalr_state [63]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on measure_list to state [64]
+transition on measure_list to state [69]
 
 -------------------
-lalr_state [64]: {
+lalr_state [69]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [65]: {
+lalr_state [70]: {
   [measure_list ::= measure_list measure (*) , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 
 -------------------
-lalr_state [66]: {
+lalr_state [71]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1481,43 +1675,43 @@ lalr_state [66]: {
   [phrase_expr ::= VOLUME const_expr OCTAVE const_expr (*) measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on INSTRUMENT to state [68]
+transition on INSTRUMENT to state [73]
 transition on measure to state [14]
-transition on measure_list to state [67]
+transition on measure_list to state [72]
 
 -------------------
-lalr_state [67]: {
+lalr_state [72]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr OCTAVE const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [68]: {
+lalr_state [73]: {
   [const_string ::= (*) STRING_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= VOLUME const_expr OCTAVE const_expr INSTRUMENT (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_var , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= VOLUME const_expr OCTAVE const_expr INSTRUMENT (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) PLUS INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_var ::= (*) ID , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_int , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) MINUS INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_string , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [69]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [74]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [69]: {
+lalr_state [74]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr (*) measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1526,19 +1720,19 @@ lalr_state [69]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on measure_list to state [70]
+transition on measure_list to state [75]
 
 -------------------
-lalr_state [70]: {
+lalr_state [75]: {
   [phrase_expr ::= VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [71]: {
+lalr_state [76]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr (*) VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
@@ -1551,44 +1745,44 @@ lalr_state [71]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on VOLUME to state [74]
-transition on OCTAVE to state [73]
-transition on measure_list to state [72]
+transition on VOLUME to state [79]
+transition on OCTAVE to state [78]
+transition on measure_list to state [77]
 
 -------------------
-lalr_state [72]: {
+lalr_state [77]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [73]: {
+lalr_state [78]: {
   [const_string ::= (*) STRING_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= INSTRUMENT const_expr OCTAVE (*) const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) PLUS INT_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= INSTRUMENT const_expr OCTAVE (*) const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_var ::= (*) ID , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_int , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) MINUS INT_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= INSTRUMENT const_expr OCTAVE (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_string , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= INSTRUMENT const_expr OCTAVE (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [80]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [85]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [74]: {
+lalr_state [79]: {
   [const_string ::= (*) STRING_CONST , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr VOLUME (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1596,22 +1790,22 @@ lalr_state [74]: {
   [const_int ::= (*) PLUS INT_CONST , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_var ::= (*) ID , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_int , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
-  [phrase_expr ::= INSTRUMENT const_expr VOLUME (*) const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) MINUS INT_CONST , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= INSTRUMENT const_expr VOLUME (*) const_expr OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_expr ::= (*) const_string , {OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [75]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [80]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [75]: {
+lalr_state [80]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr VOLUME const_expr (*) OCTAVE const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1621,20 +1815,20 @@ lalr_state [75]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on OCTAVE to state [77]
-transition on measure_list to state [76]
+transition on OCTAVE to state [82]
+transition on measure_list to state [81]
 
 -------------------
-lalr_state [76]: {
+lalr_state [81]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr VOLUME const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [77]: {
+lalr_state [82]: {
   [const_string ::= (*) STRING_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1645,18 +1839,18 @@ lalr_state [77]: {
   [const_int ::= (*) MINUS INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_string , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [78]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [83]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [78]: {
+lalr_state [83]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1665,19 +1859,19 @@ lalr_state [78]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on measure_list to state [79]
+transition on measure_list to state [84]
 
 -------------------
-lalr_state [79]: {
+lalr_state [84]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [80]: {
+lalr_state [85]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr OCTAVE const_expr (*) measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1687,20 +1881,20 @@ lalr_state [80]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on VOLUME to state [82]
-transition on measure_list to state [81]
+transition on VOLUME to state [87]
+transition on measure_list to state [86]
 
 -------------------
-lalr_state [81]: {
+lalr_state [86]: {
   [phrase_expr ::= INSTRUMENT const_expr OCTAVE const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [82]: {
+lalr_state [87]: {
   [const_string ::= (*) STRING_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1711,18 +1905,18 @@ lalr_state [82]: {
   [const_int ::= (*) MINUS INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_string , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [83]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [88]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [83]: {
+lalr_state [88]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1731,70 +1925,70 @@ lalr_state [83]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on measure_list to state [84]
+transition on measure_list to state [89]
 
 -------------------
-lalr_state [84]: {
+lalr_state [89]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [85]: {
+lalr_state [90]: {
   [loop_stmt ::= LOOP expr (*) LBRACE stmt_list RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
-transition on LBRACE to state [86]
+transition on LBRACE to state [91]
 
 -------------------
-lalr_state [86]: {
-  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
+lalr_state [91]: {
+  [const_var ::= (*) ID , {SEMI }]
   [measure_list ::= (*) measure_list measure , {LBREAK SEMI }]
   [loop_stmt ::= LOOP expr LBRACE (*) stmt_list RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_string , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [expr ::= (*) phrase_expr , {SEMI }]
   [stmt ::= (*) phrase_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_string ::= (*) STRING_CONST , {SEMI }]
+  [const_int ::= (*) INT_CONST , {SEMI }]
   [measure_list ::= (*) , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) measure_list , {SEMI }]
   [block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_var ::= (*) ID , {SEMI }]
+  [const_expr ::= (*) const_int , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [expr ::= (*) const_expr , {SEMI }]
   [stmt ::= (*) call_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {SEMI }]
   [stmt_list ::= (*) stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_int ::= (*) INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_var , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr measure_list , {SEMI }]
   [stmt ::= (*) block_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_int , {SEMI }]
+  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [stmt_list ::= (*) stmt_list stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_string , {SEMI }]
   [measure_list ::= (*) measure , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [call_stmt ::= (*) expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_var , {SEMI }]
+  [const_string ::= (*) STRING_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [stmt_list ::= (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [stmt ::= (*) loop_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 transition on phrase_expr to state [32]
-transition on stmt to state [88]
-transition on const_string to state [31]
+transition on stmt to state [93]
+transition on const_string to state [30]
 transition on const_expr to state [29]
 transition on call_stmt to state [28]
 transition on const_int to state [27]
@@ -1802,11 +1996,11 @@ transition on LBREAK to state [26]
 transition on phrase_stmt to state [25]
 transition on block_stmt to state [24]
 transition on MINUS to state [23]
-transition on const_var to state [48]
+transition on const_var to state [42]
 transition on LSQBRACE to state [21]
 transition on loop_stmt to state [20]
 transition on INT_CONST to state [19]
-transition on stmt_list to state [87]
+transition on stmt_list to state [92]
 transition on ID to state [18]
 transition on VOLUME to state [17]
 transition on INSTRUMENT to state [16]
@@ -1815,54 +2009,54 @@ transition on measure to state [14]
 transition on OCTAVE to state [13]
 transition on PLUS to state [12]
 transition on expr to state [11]
-transition on STRING_CONST to state [8]
-transition on measure_list to state [6]
+transition on measure_list to state [7]
+transition on STRING_CONST to state [6]
 
 -------------------
-lalr_state [87]: {
-  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
+lalr_state [92]: {
+  [const_var ::= (*) ID , {SEMI }]
   [loop_stmt ::= LOOP expr LBRACE stmt_list (*) RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [measure_list ::= (*) measure_list measure , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [loop_stmt ::= (*) LOOP expr LBRACE stmt_list RBRACE , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_string , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {SEMI }]
   [expr ::= (*) phrase_expr , {SEMI }]
   [stmt ::= (*) phrase_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_string ::= (*) STRING_CONST , {SEMI }]
+  [const_int ::= (*) INT_CONST , {SEMI }]
   [measure_list ::= (*) , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) measure_list , {SEMI }]
   [block_stmt ::= (*) LSQBRACE expr_list RSQBRACE SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_var ::= (*) ID , {SEMI }]
+  [const_expr ::= (*) const_int , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr VOLUME const_expr OCTAVE const_expr measure_list , {SEMI }]
   [expr ::= (*) const_expr , {SEMI }]
   [stmt ::= (*) call_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
+  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr measure_list , {SEMI }]
-  [const_int ::= (*) INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_var , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr measure_list , {SEMI }]
   [stmt ::= (*) block_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_int , {SEMI }]
+  [const_int ::= (*) PLUS INT_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr measure_list , {SEMI }]
   [stmt_list ::= stmt_list (*) stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr measure_list , {SEMI }]
-  [const_int ::= (*) MINUS INT_CONST , {SEMI }]
+  [const_expr ::= (*) const_string , {SEMI }]
   [measure_list ::= (*) measure , {LBREAK SEMI }]
   [phrase_expr ::= (*) OCTAVE const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [call_stmt ::= (*) expr SEMI , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
-  [const_expr ::= (*) const_var , {SEMI }]
+  [const_string ::= (*) STRING_CONST , {SEMI }]
   [phrase_expr ::= (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {SEMI }]
   [phrase_expr ::= (*) INSTRUMENT const_expr OCTAVE const_expr VOLUME const_expr measure_list , {SEMI }]
   [stmt ::= (*) loop_stmt , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 transition on phrase_expr to state [32]
-transition on const_string to state [31]
-transition on stmt to state [90]
+transition on stmt to state [95]
+transition on const_string to state [30]
 transition on const_expr to state [29]
 transition on call_stmt to state [28]
 transition on const_int to state [27]
@@ -1870,7 +2064,7 @@ transition on LBREAK to state [26]
 transition on phrase_stmt to state [25]
 transition on block_stmt to state [24]
 transition on MINUS to state [23]
-transition on const_var to state [48]
+transition on const_var to state [42]
 transition on LSQBRACE to state [21]
 transition on loop_stmt to state [20]
 transition on INT_CONST to state [19]
@@ -1880,29 +2074,29 @@ transition on INSTRUMENT to state [16]
 transition on LOOP to state [15]
 transition on measure to state [14]
 transition on OCTAVE to state [13]
-transition on RBRACE to state [89]
+transition on RBRACE to state [94]
 transition on PLUS to state [12]
 transition on expr to state [11]
-transition on STRING_CONST to state [8]
-transition on measure_list to state [6]
+transition on measure_list to state [7]
+transition on STRING_CONST to state [6]
 
 -------------------
-lalr_state [88]: {
+lalr_state [93]: {
   [stmt_list ::= stmt (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 
 -------------------
-lalr_state [89]: {
+lalr_state [94]: {
   [loop_stmt ::= LOOP expr LBRACE stmt_list RBRACE (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 
 -------------------
-lalr_state [90]: {
+lalr_state [95]: {
   [stmt_list ::= stmt_list stmt (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 
 -------------------
-lalr_state [91]: {
+lalr_state [96]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr (*) VOLUME const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1914,22 +2108,22 @@ lalr_state [91]: {
   [phrase_expr ::= OCTAVE const_expr (*) INSTRUMENT const_expr VOLUME const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on INSTRUMENT to state [94]
-transition on VOLUME to state [93]
+transition on INSTRUMENT to state [99]
+transition on VOLUME to state [98]
 transition on measure to state [14]
-transition on measure_list to state [92]
+transition on measure_list to state [97]
 
 -------------------
-lalr_state [92]: {
+lalr_state [97]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [93]: {
+lalr_state [98]: {
   [phrase_expr ::= OCTAVE const_expr VOLUME (*) const_expr INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_string ::= (*) STRING_CONST , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1941,20 +2135,20 @@ lalr_state [93]: {
   [const_int ::= (*) MINUS INT_CONST , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_string , {INSTRUMENT LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [100]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [105]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [94]: {
-  [phrase_expr ::= OCTAVE const_expr INSTRUMENT (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
+lalr_state [99]: {
   [const_string ::= (*) STRING_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
+  [phrase_expr ::= OCTAVE const_expr INSTRUMENT (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) PLUS INT_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -1964,18 +2158,18 @@ lalr_state [94]: {
   [const_int ::= (*) MINUS INT_CONST , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_string , {VOLUME LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [95]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [100]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [95]: {
+lalr_state [100]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr INSTRUMENT const_expr (*) measure_list , {LBRACE RSQBRACE SEMI COMMA }]
@@ -1985,20 +2179,20 @@ lalr_state [95]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on VOLUME to state [97]
-transition on measure_list to state [96]
+transition on VOLUME to state [102]
+transition on measure_list to state [101]
 
 -------------------
-lalr_state [96]: {
+lalr_state [101]: {
   [phrase_expr ::= OCTAVE const_expr INSTRUMENT const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [97]: {
+lalr_state [102]: {
   [const_string ::= (*) STRING_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -2009,18 +2203,18 @@ lalr_state [97]: {
   [const_int ::= (*) MINUS INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_string , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
-transition on const_var to state [48]
-transition on const_string to state [31]
+transition on const_var to state [42]
+transition on const_string to state [30]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [98]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [103]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [98]: {
+lalr_state [103]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [measure_list ::= (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -2029,19 +2223,19 @@ lalr_state [98]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on measure_list to state [99]
+transition on measure_list to state [104]
 
 -------------------
-lalr_state [99]: {
+lalr_state [104]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr INSTRUMENT const_expr VOLUME const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [100]: {
+lalr_state [105]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr VOLUME const_expr (*) INSTRUMENT const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -2050,21 +2244,21 @@ lalr_state [100]: {
   [measure_list ::= (*) , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on INSTRUMENT to state [102]
+transition on INSTRUMENT to state [107]
 transition on measure to state [14]
-transition on measure_list to state [101]
+transition on measure_list to state [106]
 
 -------------------
-lalr_state [101]: {
+lalr_state [106]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr VOLUME const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [102]: {
+lalr_state [107]: {
   [const_string ::= (*) STRING_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_int ::= (*) INT_CONST , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [const_expr ::= (*) const_var , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -2075,18 +2269,18 @@ lalr_state [102]: {
   [const_expr ::= (*) const_string , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr VOLUME const_expr INSTRUMENT (*) const_expr measure_list , {LBRACE RSQBRACE SEMI COMMA }]
 }
-transition on const_string to state [31]
-transition on const_var to state [48]
+transition on const_string to state [30]
+transition on const_var to state [42]
 transition on ID to state [18]
 transition on PLUS to state [12]
 transition on const_int to state [27]
-transition on const_expr to state [103]
-transition on STRING_CONST to state [8]
+transition on const_expr to state [108]
+transition on STRING_CONST to state [6]
 transition on INT_CONST to state [19]
 transition on MINUS to state [23]
 
 -------------------
-lalr_state [103]: {
+lalr_state [108]: {
   [measure_list ::= (*) measure_list measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr (*) measure_list , {LBRACE RSQBRACE SEMI COMMA }]
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
@@ -2095,39 +2289,39 @@ lalr_state [103]: {
 }
 transition on LBREAK to state [26]
 transition on measure to state [14]
-transition on measure_list to state [104]
+transition on measure_list to state [109]
 
 -------------------
-lalr_state [104]: {
+lalr_state [109]: {
   [measure ::= (*) LBREAK sound_list RBREAK , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
   [phrase_expr ::= OCTAVE const_expr VOLUME const_expr INSTRUMENT const_expr measure_list (*) , {LBRACE RSQBRACE SEMI COMMA }]
   [measure_list ::= measure_list (*) measure , {LBRACE RSQBRACE LBREAK SEMI COMMA }]
 }
 transition on LBREAK to state [26]
-transition on measure to state [65]
+transition on measure to state [70]
 
 -------------------
-lalr_state [105]: {
-  [const_int ::= PLUS INT_CONST (*) , {INSTRUMENT VOLUME OCTAVE LBRACE RSQBRACE LBREAK SEMI COMMA }]
+lalr_state [110]: {
+  [const_int ::= PLUS INT_CONST (*) , {INSTRUMENT VOLUME OCTAVE LPAREN RPAREN LBRACE RSQBRACE LBREAK RBREAK SEMI COMMA NOTE }]
 }
 
 -------------------
-lalr_state [106]: {
+lalr_state [111]: {
   [call_stmt ::= expr SEMI (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 
 -------------------
-lalr_state [107]: {
+lalr_state [112]: {
   [member_list ::= member_list member (*) , {LOOP INSTRUMENT VOLUME OCTAVE PLUS MINUS RBRACE LSQBRACE LBREAK SEMI ID INT_CONST STRING_CONST }]
 }
 
 -------------------
-lalr_state [108]: {
+lalr_state [113]: {
   [score ::= SCORE STRING_CONST LBRACE member_list RBRACE (*) , {EOF }]
 }
 
 -------------------
-lalr_state [109]: {
+lalr_state [114]: {
   [$START ::= program EOF (*) , {EOF }]
 }
 
@@ -2136,7 +2330,7 @@ lalr_state [109]: {
 From state #0
  [term 3:SHIFT(to state 3)]
 From state #1
- [term 0:SHIFT(to state 109)]
+ [term 0:SHIFT(to state 114)]
 From state #2
  [term 0:REDUCE(with prod 0)]
 From state #3
@@ -2150,24 +2344,26 @@ From state #5
  [term 14:REDUCE(with prod 5)] [term 15:SHIFT(to state 21)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 5)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #6
+ [term 5:REDUCE(with prod 63)] [term 6:REDUCE(with prod 63)]
+ [term 7:REDUCE(with prod 63)] [term 11:REDUCE(with prod 63)]
+ [term 12:REDUCE(with prod 63)] [term 13:REDUCE(with prod 63)]
+ [term 16:REDUCE(with prod 63)] [term 17:REDUCE(with prod 63)]
+ [term 18:REDUCE(with prod 63)] [term 19:REDUCE(with prod 63)]
+ [term 20:REDUCE(with prod 63)] [term 24:REDUCE(with prod 63)]
+From state #7
  [term 13:REDUCE(with prod 24)] [term 16:REDUCE(with prod 24)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 24)]
  [term 20:REDUCE(with prod 24)]
-From state #7
+From state #8
  [term 4:SHIFT(to state 15)] [term 5:SHIFT(to state 16)]
  [term 6:SHIFT(to state 17)] [term 7:SHIFT(to state 13)]
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 14:SHIFT(to state 108)] [term 15:SHIFT(to state 21)]
+ [term 14:SHIFT(to state 113)] [term 15:SHIFT(to state 21)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #8
- [term 5:REDUCE(with prod 60)] [term 6:REDUCE(with prod 60)]
- [term 7:REDUCE(with prod 60)] [term 13:REDUCE(with prod 60)]
- [term 16:REDUCE(with prod 60)] [term 17:REDUCE(with prod 60)]
- [term 19:REDUCE(with prod 60)] [term 20:REDUCE(with prod 60)]
+ [term 23:SHIFT(to state 6)]
 From state #9
  [term 4:REDUCE(with prod 3)] [term 5:REDUCE(with prod 3)]
  [term 6:REDUCE(with prod 3)] [term 7:REDUCE(with prod 3)]
@@ -2185,13 +2381,13 @@ From state #10
  [term 21:REDUCE(with prod 6)] [term 22:REDUCE(with prod 6)]
  [term 23:REDUCE(with prod 6)]
 From state #11
- [term 19:SHIFT(to state 106)]
+ [term 19:SHIFT(to state 111)]
 From state #12
- [term 22:SHIFT(to state 105)]
+ [term 22:SHIFT(to state 110)]
 From state #13
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #14
  [term 13:REDUCE(with prod 40)] [term 16:REDUCE(with prod 40)]
  [term 17:REDUCE(with prod 40)] [term 19:REDUCE(with prod 40)]
@@ -2201,26 +2397,30 @@ From state #15
  [term 7:SHIFT(to state 13)] [term 8:SHIFT(to state 12)]
  [term 9:SHIFT(to state 23)] [term 13:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 21:SHIFT(to state 18)]
- [term 22:SHIFT(to state 19)] [term 23:SHIFT(to state 8)]
+ [term 22:SHIFT(to state 19)] [term 23:SHIFT(to state 6)]
 From state #16
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #17
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #18
- [term 5:REDUCE(with prod 56)] [term 6:REDUCE(with prod 56)]
- [term 7:REDUCE(with prod 56)] [term 10:REDUCE(with prod 56)]
- [term 13:REDUCE(with prod 56)] [term 16:REDUCE(with prod 56)]
- [term 17:REDUCE(with prod 56)] [term 19:REDUCE(with prod 56)]
- [term 20:REDUCE(with prod 56)]
+ [term 5:REDUCE(with prod 59)] [term 6:REDUCE(with prod 59)]
+ [term 7:REDUCE(with prod 59)] [term 10:REDUCE(with prod 59)]
+ [term 11:REDUCE(with prod 59)] [term 12:REDUCE(with prod 59)]
+ [term 13:REDUCE(with prod 59)] [term 16:REDUCE(with prod 59)]
+ [term 17:REDUCE(with prod 59)] [term 18:REDUCE(with prod 59)]
+ [term 19:REDUCE(with prod 59)] [term 20:REDUCE(with prod 59)]
+ [term 24:REDUCE(with prod 59)]
 From state #19
- [term 5:REDUCE(with prod 57)] [term 6:REDUCE(with prod 57)]
- [term 7:REDUCE(with prod 57)] [term 13:REDUCE(with prod 57)]
- [term 16:REDUCE(with prod 57)] [term 17:REDUCE(with prod 57)]
- [term 19:REDUCE(with prod 57)] [term 20:REDUCE(with prod 57)]
+ [term 5:REDUCE(with prod 60)] [term 6:REDUCE(with prod 60)]
+ [term 7:REDUCE(with prod 60)] [term 11:REDUCE(with prod 60)]
+ [term 12:REDUCE(with prod 60)] [term 13:REDUCE(with prod 60)]
+ [term 16:REDUCE(with prod 60)] [term 17:REDUCE(with prod 60)]
+ [term 18:REDUCE(with prod 60)] [term 19:REDUCE(with prod 60)]
+ [term 20:REDUCE(with prod 60)] [term 24:REDUCE(with prod 60)]
 From state #20
  [term 4:REDUCE(with prod 9)] [term 5:REDUCE(with prod 9)]
  [term 6:REDUCE(with prod 9)] [term 7:REDUCE(with prod 9)]
@@ -2235,11 +2435,11 @@ From state #21
  [term 9:SHIFT(to state 23)] [term 16:REDUCE(with prod 23)]
  [term 17:SHIFT(to state 26)] [term 20:REDUCE(with prod 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #22
- [term 10:SHIFT(to state 46)] [term 19:REDUCE(with prod 54)]
+ [term 10:SHIFT(to state 52)] [term 19:REDUCE(with prod 57)]
 From state #23
- [term 22:SHIFT(to state 45)]
+ [term 22:SHIFT(to state 51)]
 From state #24
  [term 4:REDUCE(with prod 12)] [term 5:REDUCE(with prod 12)]
  [term 6:REDUCE(with prod 12)] [term 7:REDUCE(with prod 12)]
@@ -2260,10 +2460,12 @@ From state #26
  [term 11:SHIFT(to state 35)] [term 18:REDUCE(with prod 46)]
  [term 24:SHIFT(to state 38)]
 From state #27
- [term 5:REDUCE(with prod 53)] [term 6:REDUCE(with prod 53)]
- [term 7:REDUCE(with prod 53)] [term 13:REDUCE(with prod 53)]
- [term 16:REDUCE(with prod 53)] [term 17:REDUCE(with prod 53)]
- [term 19:REDUCE(with prod 53)] [term 20:REDUCE(with prod 53)]
+ [term 5:REDUCE(with prod 56)] [term 6:REDUCE(with prod 56)]
+ [term 7:REDUCE(with prod 56)] [term 11:REDUCE(with prod 56)]
+ [term 12:REDUCE(with prod 56)] [term 13:REDUCE(with prod 56)]
+ [term 16:REDUCE(with prod 56)] [term 17:REDUCE(with prod 56)]
+ [term 18:REDUCE(with prod 56)] [term 19:REDUCE(with prod 56)]
+ [term 20:REDUCE(with prod 56)] [term 24:REDUCE(with prod 56)]
 From state #28
  [term 4:REDUCE(with prod 11)] [term 5:REDUCE(with prod 11)]
  [term 6:REDUCE(with prod 11)] [term 7:REDUCE(with prod 11)]
@@ -2276,6 +2478,13 @@ From state #29
  [term 13:REDUCE(with prod 20)] [term 16:REDUCE(with prod 20)]
  [term 19:REDUCE(with prod 20)] [term 20:REDUCE(with prod 20)]
 From state #30
+ [term 5:REDUCE(with prod 58)] [term 6:REDUCE(with prod 58)]
+ [term 7:REDUCE(with prod 58)] [term 11:REDUCE(with prod 58)]
+ [term 12:REDUCE(with prod 58)] [term 13:REDUCE(with prod 58)]
+ [term 16:REDUCE(with prod 58)] [term 17:REDUCE(with prod 58)]
+ [term 18:REDUCE(with prod 58)] [term 19:REDUCE(with prod 58)]
+ [term 20:REDUCE(with prod 58)] [term 24:REDUCE(with prod 58)]
+From state #31
  [term 4:REDUCE(with prod 7)] [term 5:REDUCE(with prod 7)]
  [term 6:REDUCE(with prod 7)] [term 7:REDUCE(with prod 7)]
  [term 8:REDUCE(with prod 7)] [term 9:REDUCE(with prod 7)]
@@ -2283,16 +2492,11 @@ From state #30
  [term 17:REDUCE(with prod 7)] [term 19:REDUCE(with prod 7)]
  [term 21:REDUCE(with prod 7)] [term 22:REDUCE(with prod 7)]
  [term 23:REDUCE(with prod 7)]
-From state #31
- [term 5:REDUCE(with prod 55)] [term 6:REDUCE(with prod 55)]
- [term 7:REDUCE(with prod 55)] [term 13:REDUCE(with prod 55)]
- [term 16:REDUCE(with prod 55)] [term 17:REDUCE(with prod 55)]
- [term 19:REDUCE(with prod 55)] [term 20:REDUCE(with prod 55)]
 From state #32
  [term 13:REDUCE(with prod 19)] [term 16:REDUCE(with prod 19)]
  [term 19:REDUCE(with prod 19)] [term 20:REDUCE(with prod 19)]
 From state #33
- [term 11:SHIFT(to state 35)] [term 18:SHIFT(to state 44)]
+ [term 11:SHIFT(to state 35)] [term 18:SHIFT(to state 50)]
  [term 24:SHIFT(to state 38)]
 From state #34
  [term 11:REDUCE(with prod 48)] [term 12:REDUCE(with prod 48)]
@@ -2307,47 +2511,74 @@ From state #37
  [term 11:REDUCE(with prod 47)] [term 12:REDUCE(with prod 47)]
  [term 18:REDUCE(with prod 47)] [term 24:REDUCE(with prod 47)]
 From state #38
- [term 8:SHIFT(to state 39)] [term 9:SHIFT(to state 40)]
+ [term 8:SHIFT(to state 41)] [term 9:SHIFT(to state 39)]
+ [term 11:REDUCE(with prod 53)] [term 12:REDUCE(with prod 53)]
+ [term 18:REDUCE(with prod 53)] [term 21:SHIFT(to state 18)]
+ [term 22:SHIFT(to state 19)] [term 23:SHIFT(to state 6)]
+ [term 24:REDUCE(with prod 53)]
+From state #39
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 11:REDUCE(with prod 55)] [term 12:REDUCE(with prod 55)]
+ [term 18:REDUCE(with prod 55)] [term 21:SHIFT(to state 18)]
+ [term 22:SHIFT(to state 45)] [term 23:SHIFT(to state 6)]
+ [term 24:REDUCE(with prod 55)]
+From state #40
  [term 11:REDUCE(with prod 50)] [term 12:REDUCE(with prod 50)]
  [term 18:REDUCE(with prod 50)] [term 24:REDUCE(with prod 50)]
-From state #39
+From state #41
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 11:REDUCE(with prod 54)] [term 12:REDUCE(with prod 54)]
+ [term 18:REDUCE(with prod 54)] [term 21:SHIFT(to state 18)]
+ [term 22:SHIFT(to state 43)] [term 23:SHIFT(to state 6)]
+ [term 24:REDUCE(with prod 54)]
+From state #42
+ [term 5:REDUCE(with prod 57)] [term 6:REDUCE(with prod 57)]
+ [term 7:REDUCE(with prod 57)] [term 11:REDUCE(with prod 57)]
+ [term 12:REDUCE(with prod 57)] [term 13:REDUCE(with prod 57)]
+ [term 16:REDUCE(with prod 57)] [term 17:REDUCE(with prod 57)]
+ [term 18:REDUCE(with prod 57)] [term 19:REDUCE(with prod 57)]
+ [term 20:REDUCE(with prod 57)] [term 24:REDUCE(with prod 57)]
+From state #43
+ [term 11:REDUCE(with prod 60)] [term 12:REDUCE(with prod 60)]
+ [term 18:REDUCE(with prod 60)] [term 24:REDUCE(with prod 60)]
+From state #44
  [term 11:REDUCE(with prod 51)] [term 12:REDUCE(with prod 51)]
  [term 18:REDUCE(with prod 51)] [term 24:REDUCE(with prod 51)]
-From state #40
+From state #45
+ [term 11:REDUCE(with prod 60)] [term 12:REDUCE(with prod 60)]
+ [term 18:REDUCE(with prod 60)] [term 24:REDUCE(with prod 60)]
+From state #46
  [term 11:REDUCE(with prod 52)] [term 12:REDUCE(with prod 52)]
  [term 18:REDUCE(with prod 52)] [term 24:REDUCE(with prod 52)]
-From state #41
- [term 11:SHIFT(to state 35)] [term 12:SHIFT(to state 42)]
+From state #47
+ [term 11:SHIFT(to state 35)] [term 12:SHIFT(to state 48)]
  [term 24:SHIFT(to state 38)]
-From state #42
+From state #48
  [term 11:REDUCE(with prod 49)] [term 12:REDUCE(with prod 49)]
  [term 18:REDUCE(with prod 49)] [term 24:REDUCE(with prod 49)]
-From state #43
+From state #49
  [term 11:REDUCE(with prod 45)] [term 12:REDUCE(with prod 45)]
  [term 18:REDUCE(with prod 45)] [term 24:REDUCE(with prod 45)]
-From state #44
+From state #50
  [term 13:REDUCE(with prod 43)] [term 16:REDUCE(with prod 43)]
  [term 17:REDUCE(with prod 43)] [term 19:REDUCE(with prod 43)]
  [term 20:REDUCE(with prod 43)]
-From state #45
- [term 5:REDUCE(with prod 58)] [term 6:REDUCE(with prod 58)]
- [term 7:REDUCE(with prod 58)] [term 13:REDUCE(with prod 58)]
- [term 16:REDUCE(with prod 58)] [term 17:REDUCE(with prod 58)]
- [term 19:REDUCE(with prod 58)] [term 20:REDUCE(with prod 58)]
-From state #46
+From state #51
+ [term 5:REDUCE(with prod 61)] [term 6:REDUCE(with prod 61)]
+ [term 7:REDUCE(with prod 61)] [term 11:REDUCE(with prod 61)]
+ [term 12:REDUCE(with prod 61)] [term 13:REDUCE(with prod 61)]
+ [term 16:REDUCE(with prod 61)] [term 17:REDUCE(with prod 61)]
+ [term 18:REDUCE(with prod 61)] [term 19:REDUCE(with prod 61)]
+ [term 20:REDUCE(with prod 61)] [term 24:REDUCE(with prod 61)]
+From state #52
  [term 5:SHIFT(to state 16)] [term 6:SHIFT(to state 17)]
  [term 7:SHIFT(to state 13)] [term 8:SHIFT(to state 12)]
  [term 9:SHIFT(to state 23)] [term 17:SHIFT(to state 26)]
  [term 19:REDUCE(with prod 42)] [term 21:SHIFT(to state 18)]
- [term 22:SHIFT(to state 19)] [term 23:SHIFT(to state 8)]
-From state #47
- [term 19:SHIFT(to state 49)]
-From state #48
- [term 5:REDUCE(with prod 54)] [term 6:REDUCE(with prod 54)]
- [term 7:REDUCE(with prod 54)] [term 13:REDUCE(with prod 54)]
- [term 16:REDUCE(with prod 54)] [term 17:REDUCE(with prod 54)]
- [term 19:REDUCE(with prod 54)] [term 20:REDUCE(with prod 54)]
-From state #49
+ [term 22:SHIFT(to state 19)] [term 23:SHIFT(to state 6)]
+From state #53
+ [term 19:SHIFT(to state 54)]
+From state #54
  [term 4:REDUCE(with prod 8)] [term 5:REDUCE(with prod 8)]
  [term 6:REDUCE(with prod 8)] [term 7:REDUCE(with prod 8)]
  [term 8:REDUCE(with prod 8)] [term 9:REDUCE(with prod 8)]
@@ -2355,20 +2586,20 @@ From state #49
  [term 17:REDUCE(with prod 8)] [term 19:REDUCE(with prod 8)]
  [term 21:REDUCE(with prod 8)] [term 22:REDUCE(with prod 8)]
  [term 23:REDUCE(with prod 8)]
-From state #50
+From state #55
  [term 16:REDUCE(with prod 21)] [term 20:REDUCE(with prod 21)]
-From state #51
- [term 16:SHIFT(to state 53)] [term 20:SHIFT(to state 52)]
-From state #52
+From state #56
+ [term 16:SHIFT(to state 58)] [term 20:SHIFT(to state 57)]
+From state #57
  [term 5:SHIFT(to state 16)] [term 6:SHIFT(to state 17)]
  [term 7:SHIFT(to state 13)] [term 8:SHIFT(to state 12)]
  [term 9:SHIFT(to state 23)] [term 16:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 20:REDUCE(with prod 42)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #53
- [term 19:SHIFT(to state 54)]
-From state #54
+ [term 23:SHIFT(to state 6)]
+From state #58
+ [term 19:SHIFT(to state 59)]
+From state #59
  [term 4:REDUCE(with prod 15)] [term 5:REDUCE(with prod 15)]
  [term 6:REDUCE(with prod 15)] [term 7:REDUCE(with prod 15)]
  [term 8:REDUCE(with prod 15)] [term 9:REDUCE(with prod 15)]
@@ -2376,145 +2607,145 @@ From state #54
  [term 17:REDUCE(with prod 15)] [term 19:REDUCE(with prod 15)]
  [term 21:REDUCE(with prod 15)] [term 22:REDUCE(with prod 15)]
  [term 23:REDUCE(with prod 15)]
-From state #55
+From state #60
  [term 16:REDUCE(with prod 22)] [term 20:REDUCE(with prod 22)]
-From state #56
- [term 5:SHIFT(to state 59)] [term 7:SHIFT(to state 58)]
+From state #61
+ [term 5:SHIFT(to state 64)] [term 7:SHIFT(to state 63)]
  [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 20:REDUCE(with prod 42)]
-From state #57
+From state #62
  [term 13:REDUCE(with prod 35)] [term 16:REDUCE(with prod 35)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 35)]
  [term 20:REDUCE(with prod 35)]
-From state #58
+From state #63
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #59
+ [term 23:SHIFT(to state 6)]
+From state #64
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #60
- [term 7:SHIFT(to state 62)] [term 13:REDUCE(with prod 42)]
+ [term 23:SHIFT(to state 6)]
+From state #65
+ [term 7:SHIFT(to state 67)] [term 13:REDUCE(with prod 42)]
  [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
  [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
-From state #61
+From state #66
  [term 13:REDUCE(with prod 36)] [term 16:REDUCE(with prod 36)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 36)]
  [term 20:REDUCE(with prod 36)]
-From state #62
+From state #67
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #63
+ [term 23:SHIFT(to state 6)]
+From state #68
  [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 20:REDUCE(with prod 42)]
-From state #64
+From state #69
  [term 13:REDUCE(with prod 37)] [term 16:REDUCE(with prod 37)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 37)]
  [term 20:REDUCE(with prod 37)]
-From state #65
+From state #70
  [term 13:REDUCE(with prod 41)] [term 16:REDUCE(with prod 41)]
  [term 17:REDUCE(with prod 41)] [term 19:REDUCE(with prod 41)]
  [term 20:REDUCE(with prod 41)]
-From state #66
- [term 5:SHIFT(to state 68)] [term 13:REDUCE(with prod 42)]
+From state #71
+ [term 5:SHIFT(to state 73)] [term 13:REDUCE(with prod 42)]
  [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
  [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
-From state #67
+From state #72
  [term 13:REDUCE(with prod 38)] [term 16:REDUCE(with prod 38)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 38)]
  [term 20:REDUCE(with prod 38)]
-From state #68
- [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #69
- [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
- [term 20:REDUCE(with prod 42)]
-From state #70
- [term 13:REDUCE(with prod 39)] [term 16:REDUCE(with prod 39)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 39)]
- [term 20:REDUCE(with prod 39)]
-From state #71
- [term 6:SHIFT(to state 74)] [term 7:SHIFT(to state 73)]
- [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
- [term 20:REDUCE(with prod 42)]
-From state #72
- [term 13:REDUCE(with prod 25)] [term 16:REDUCE(with prod 25)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 25)]
- [term 20:REDUCE(with prod 25)]
 From state #73
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #74
- [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #75
- [term 7:SHIFT(to state 77)] [term 13:REDUCE(with prod 42)]
- [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
- [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
-From state #76
- [term 13:REDUCE(with prod 28)] [term 16:REDUCE(with prod 28)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 28)]
- [term 20:REDUCE(with prod 28)]
-From state #77
- [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #78
  [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 20:REDUCE(with prod 42)]
+From state #75
+ [term 13:REDUCE(with prod 39)] [term 16:REDUCE(with prod 39)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 39)]
+ [term 20:REDUCE(with prod 39)]
+From state #76
+ [term 6:SHIFT(to state 79)] [term 7:SHIFT(to state 78)]
+ [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
+ [term 20:REDUCE(with prod 42)]
+From state #77
+ [term 13:REDUCE(with prod 25)] [term 16:REDUCE(with prod 25)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 25)]
+ [term 20:REDUCE(with prod 25)]
+From state #78
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
+ [term 23:SHIFT(to state 6)]
 From state #79
- [term 13:REDUCE(with prod 29)] [term 16:REDUCE(with prod 29)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 29)]
- [term 20:REDUCE(with prod 29)]
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
+ [term 23:SHIFT(to state 6)]
 From state #80
- [term 6:SHIFT(to state 82)] [term 13:REDUCE(with prod 42)]
+ [term 7:SHIFT(to state 82)] [term 13:REDUCE(with prod 42)]
  [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
  [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
 From state #81
- [term 13:REDUCE(with prod 26)] [term 16:REDUCE(with prod 26)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 26)]
- [term 20:REDUCE(with prod 26)]
+ [term 13:REDUCE(with prod 28)] [term 16:REDUCE(with prod 28)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 28)]
+ [term 20:REDUCE(with prod 28)]
 From state #82
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #83
  [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 20:REDUCE(with prod 42)]
 From state #84
+ [term 13:REDUCE(with prod 29)] [term 16:REDUCE(with prod 29)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 29)]
+ [term 20:REDUCE(with prod 29)]
+From state #85
+ [term 6:SHIFT(to state 87)] [term 13:REDUCE(with prod 42)]
+ [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
+ [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
+From state #86
+ [term 13:REDUCE(with prod 26)] [term 16:REDUCE(with prod 26)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 26)]
+ [term 20:REDUCE(with prod 26)]
+From state #87
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
+ [term 23:SHIFT(to state 6)]
+From state #88
+ [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
+ [term 20:REDUCE(with prod 42)]
+From state #89
  [term 13:REDUCE(with prod 27)] [term 16:REDUCE(with prod 27)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 27)]
  [term 20:REDUCE(with prod 27)]
-From state #85
- [term 13:SHIFT(to state 86)]
-From state #86
+From state #90
+ [term 13:SHIFT(to state 91)]
+From state #91
  [term 4:SHIFT(to state 15)] [term 5:SHIFT(to state 16)]
  [term 6:SHIFT(to state 17)] [term 7:SHIFT(to state 13)]
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 14:REDUCE(with prod 18)] [term 15:SHIFT(to state 21)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 18)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #87
+ [term 23:SHIFT(to state 6)]
+From state #92
  [term 4:SHIFT(to state 15)] [term 5:SHIFT(to state 16)]
  [term 6:SHIFT(to state 17)] [term 7:SHIFT(to state 13)]
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 14:SHIFT(to state 89)] [term 15:SHIFT(to state 21)]
+ [term 14:SHIFT(to state 94)] [term 15:SHIFT(to state 21)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #88
+ [term 23:SHIFT(to state 6)]
+From state #93
  [term 4:REDUCE(with prod 16)] [term 5:REDUCE(with prod 16)]
  [term 6:REDUCE(with prod 16)] [term 7:REDUCE(with prod 16)]
  [term 8:REDUCE(with prod 16)] [term 9:REDUCE(with prod 16)]
@@ -2522,7 +2753,7 @@ From state #88
  [term 17:REDUCE(with prod 16)] [term 19:REDUCE(with prod 16)]
  [term 21:REDUCE(with prod 16)] [term 22:REDUCE(with prod 16)]
  [term 23:REDUCE(with prod 16)]
-From state #89
+From state #94
  [term 4:REDUCE(with prod 14)] [term 5:REDUCE(with prod 14)]
  [term 6:REDUCE(with prod 14)] [term 7:REDUCE(with prod 14)]
  [term 8:REDUCE(with prod 14)] [term 9:REDUCE(with prod 14)]
@@ -2530,7 +2761,7 @@ From state #89
  [term 17:REDUCE(with prod 14)] [term 19:REDUCE(with prod 14)]
  [term 21:REDUCE(with prod 14)] [term 22:REDUCE(with prod 14)]
  [term 23:REDUCE(with prod 14)]
-From state #90
+From state #95
  [term 4:REDUCE(with prod 17)] [term 5:REDUCE(with prod 17)]
  [term 6:REDUCE(with prod 17)] [term 7:REDUCE(with prod 17)]
  [term 8:REDUCE(with prod 17)] [term 9:REDUCE(with prod 17)]
@@ -2538,69 +2769,71 @@ From state #90
  [term 17:REDUCE(with prod 17)] [term 19:REDUCE(with prod 17)]
  [term 21:REDUCE(with prod 17)] [term 22:REDUCE(with prod 17)]
  [term 23:REDUCE(with prod 17)]
-From state #91
- [term 5:SHIFT(to state 94)] [term 6:SHIFT(to state 93)]
+From state #96
+ [term 5:SHIFT(to state 99)] [term 6:SHIFT(to state 98)]
  [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 20:REDUCE(with prod 42)]
-From state #92
+From state #97
  [term 13:REDUCE(with prod 30)] [term 16:REDUCE(with prod 30)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 30)]
  [term 20:REDUCE(with prod 30)]
-From state #93
- [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #94
- [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
-From state #95
- [term 6:SHIFT(to state 97)] [term 13:REDUCE(with prod 42)]
- [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
- [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
-From state #96
- [term 13:REDUCE(with prod 31)] [term 16:REDUCE(with prod 31)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 31)]
- [term 20:REDUCE(with prod 31)]
-From state #97
- [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
- [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
 From state #98
- [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
- [term 20:REDUCE(with prod 42)]
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
+ [term 23:SHIFT(to state 6)]
 From state #99
- [term 13:REDUCE(with prod 32)] [term 16:REDUCE(with prod 32)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 32)]
- [term 20:REDUCE(with prod 32)]
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
+ [term 23:SHIFT(to state 6)]
 From state #100
- [term 5:SHIFT(to state 102)] [term 13:REDUCE(with prod 42)]
+ [term 6:SHIFT(to state 102)] [term 13:REDUCE(with prod 42)]
  [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
  [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
 From state #101
- [term 13:REDUCE(with prod 33)] [term 16:REDUCE(with prod 33)]
- [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 33)]
- [term 20:REDUCE(with prod 33)]
+ [term 13:REDUCE(with prod 31)] [term 16:REDUCE(with prod 31)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 31)]
+ [term 20:REDUCE(with prod 31)]
 From state #102
  [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
  [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
- [term 23:SHIFT(to state 8)]
+ [term 23:SHIFT(to state 6)]
 From state #103
  [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
  [term 20:REDUCE(with prod 42)]
 From state #104
+ [term 13:REDUCE(with prod 32)] [term 16:REDUCE(with prod 32)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 32)]
+ [term 20:REDUCE(with prod 32)]
+From state #105
+ [term 5:SHIFT(to state 107)] [term 13:REDUCE(with prod 42)]
+ [term 16:REDUCE(with prod 42)] [term 17:SHIFT(to state 26)]
+ [term 19:REDUCE(with prod 42)] [term 20:REDUCE(with prod 42)]
+From state #106
+ [term 13:REDUCE(with prod 33)] [term 16:REDUCE(with prod 33)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 33)]
+ [term 20:REDUCE(with prod 33)]
+From state #107
+ [term 8:SHIFT(to state 12)] [term 9:SHIFT(to state 23)]
+ [term 21:SHIFT(to state 18)] [term 22:SHIFT(to state 19)]
+ [term 23:SHIFT(to state 6)]
+From state #108
+ [term 13:REDUCE(with prod 42)] [term 16:REDUCE(with prod 42)]
+ [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 42)]
+ [term 20:REDUCE(with prod 42)]
+From state #109
  [term 13:REDUCE(with prod 34)] [term 16:REDUCE(with prod 34)]
  [term 17:SHIFT(to state 26)] [term 19:REDUCE(with prod 34)]
  [term 20:REDUCE(with prod 34)]
-From state #105
- [term 5:REDUCE(with prod 59)] [term 6:REDUCE(with prod 59)]
- [term 7:REDUCE(with prod 59)] [term 13:REDUCE(with prod 59)]
- [term 16:REDUCE(with prod 59)] [term 17:REDUCE(with prod 59)]
- [term 19:REDUCE(with prod 59)] [term 20:REDUCE(with prod 59)]
-From state #106
+From state #110
+ [term 5:REDUCE(with prod 62)] [term 6:REDUCE(with prod 62)]
+ [term 7:REDUCE(with prod 62)] [term 11:REDUCE(with prod 62)]
+ [term 12:REDUCE(with prod 62)] [term 13:REDUCE(with prod 62)]
+ [term 16:REDUCE(with prod 62)] [term 17:REDUCE(with prod 62)]
+ [term 18:REDUCE(with prod 62)] [term 19:REDUCE(with prod 62)]
+ [term 20:REDUCE(with prod 62)] [term 24:REDUCE(with prod 62)]
+From state #111
  [term 4:REDUCE(with prod 13)] [term 5:REDUCE(with prod 13)]
  [term 6:REDUCE(with prod 13)] [term 7:REDUCE(with prod 13)]
  [term 8:REDUCE(with prod 13)] [term 9:REDUCE(with prod 13)]
@@ -2608,7 +2841,7 @@ From state #106
  [term 17:REDUCE(with prod 13)] [term 19:REDUCE(with prod 13)]
  [term 21:REDUCE(with prod 13)] [term 22:REDUCE(with prod 13)]
  [term 23:REDUCE(with prod 13)]
-From state #107
+From state #112
  [term 4:REDUCE(with prod 4)] [term 5:REDUCE(with prod 4)]
  [term 6:REDUCE(with prod 4)] [term 7:REDUCE(with prod 4)]
  [term 8:REDUCE(with prod 4)] [term 9:REDUCE(with prod 4)]
@@ -2616,9 +2849,9 @@ From state #107
  [term 17:REDUCE(with prod 4)] [term 19:REDUCE(with prod 4)]
  [term 21:REDUCE(with prod 4)] [term 22:REDUCE(with prod 4)]
  [term 23:REDUCE(with prod 4)]
-From state #108
+From state #113
  [term 0:REDUCE(with prod 2)]
-From state #109
+From state #114
  [term 0:REDUCE(with prod 1)]
 ------------------------------
 -------- REDUCE_TABLE --------
@@ -2629,53 +2862,53 @@ From state #2
 From state #3
 From state #4
 From state #5
- [non term 3->state 7] [non term 4->state 9] [non term 5->state 10]
- [non term 7->state 30] [non term 8->state 20] [non term 9->state 25]
- [non term 10->state 28] [non term 11->state 24] [non term 12->state 6]
- [non term 13->state 14] [non term 21->state 11] [non term 22->state 29]
- [non term 23->state 32] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 22]
+ [non term 3->state 8] [non term 4->state 9] [non term 5->state 10]
+ [non term 7->state 31] [non term 8->state 20] [non term 9->state 25]
+ [non term 10->state 28] [non term 11->state 24] [non term 12->state 7]
+ [non term 13->state 14] [non term 19->state 11] [non term 20->state 29]
+ [non term 21->state 32] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 22]
 From state #6
- [non term 13->state 65]
 From state #7
- [non term 4->state 107] [non term 5->state 10] [non term 7->state 30]
- [non term 8->state 20] [non term 9->state 25] [non term 10->state 28]
- [non term 11->state 24] [non term 12->state 6] [non term 13->state 14]
- [non term 21->state 11] [non term 22->state 29] [non term 23->state 32]
- [non term 24->state 27] [non term 25->state 31] [non term 26->state 22]
+ [non term 13->state 70]
 From state #8
+ [non term 4->state 112] [non term 5->state 10] [non term 7->state 31]
+ [non term 8->state 20] [non term 9->state 25] [non term 10->state 28]
+ [non term 11->state 24] [non term 12->state 7] [non term 13->state 14]
+ [non term 19->state 11] [non term 20->state 29] [non term 21->state 32]
+ [non term 22->state 27] [non term 23->state 30] [non term 24->state 22]
 From state #9
 From state #10
 From state #11
 From state #12
 From state #13
- [non term 22->state 91] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 20->state 96] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #14
 From state #15
- [non term 12->state 6] [non term 13->state 14] [non term 21->state 85]
- [non term 22->state 29] [non term 23->state 32] [non term 24->state 27]
- [non term 25->state 31] [non term 26->state 48]
+ [non term 12->state 7] [non term 13->state 14] [non term 19->state 90]
+ [non term 20->state 29] [non term 21->state 32] [non term 22->state 27]
+ [non term 23->state 30] [non term 24->state 42]
 From state #16
- [non term 22->state 71] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 20->state 76] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #17
- [non term 22->state 56] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 20->state 61] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #18
 From state #19
 From state #20
 From state #21
- [non term 12->state 6] [non term 13->state 14] [non term 20->state 51]
- [non term 21->state 50] [non term 22->state 29] [non term 23->state 32]
- [non term 24->state 27] [non term 25->state 31] [non term 26->state 48]
+ [non term 12->state 7] [non term 13->state 14] [non term 18->state 56]
+ [non term 19->state 55] [non term 20->state 29] [non term 21->state 32]
+ [non term 22->state 27] [non term 23->state 30] [non term 24->state 42]
 From state #22
 From state #23
 From state #24
 From state #25
 From state #26
- [non term 14->state 33] [non term 15->state 36] [non term 17->state 37]
- [non term 18->state 34]
+ [non term 14->state 33] [non term 15->state 36] [non term 16->state 37]
+ [non term 17->state 34]
 From state #27
 From state #28
 From state #29
@@ -2683,165 +2916,176 @@ From state #30
 From state #31
 From state #32
 From state #33
- [non term 15->state 43] [non term 17->state 37] [non term 18->state 34]
+ [non term 15->state 49] [non term 16->state 37] [non term 17->state 34]
 From state #34
 From state #35
- [non term 14->state 41] [non term 15->state 36] [non term 17->state 37]
- [non term 18->state 34]
+ [non term 14->state 47] [non term 15->state 36] [non term 16->state 37]
+ [non term 17->state 34]
 From state #36
 From state #37
 From state #38
+ [non term 20->state 40] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #39
+ [non term 20->state 46] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #40
 From state #41
- [non term 15->state 43] [non term 17->state 37] [non term 18->state 34]
+ [non term 20->state 44] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #42
 From state #43
 From state #44
 From state #45
 From state #46
- [non term 12->state 6] [non term 13->state 14] [non term 21->state 47]
- [non term 22->state 29] [non term 23->state 32] [non term 24->state 27]
- [non term 25->state 31] [non term 26->state 48]
 From state #47
+ [non term 15->state 49] [non term 16->state 37] [non term 17->state 34]
 From state #48
 From state #49
 From state #50
 From state #51
 From state #52
- [non term 12->state 6] [non term 13->state 14] [non term 21->state 55]
- [non term 22->state 29] [non term 23->state 32] [non term 24->state 27]
- [non term 25->state 31] [non term 26->state 48]
+ [non term 12->state 7] [non term 13->state 14] [non term 19->state 53]
+ [non term 20->state 29] [non term 21->state 32] [non term 22->state 27]
+ [non term 23->state 30] [non term 24->state 42]
 From state #53
 From state #54
 From state #55
 From state #56
- [non term 12->state 57] [non term 13->state 14]
 From state #57
- [non term 13->state 65]
+ [non term 12->state 7] [non term 13->state 14] [non term 19->state 60]
+ [non term 20->state 29] [non term 21->state 32] [non term 22->state 27]
+ [non term 23->state 30] [non term 24->state 42]
 From state #58
- [non term 22->state 66] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
 From state #59
- [non term 22->state 60] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
 From state #60
- [non term 12->state 61] [non term 13->state 14]
 From state #61
- [non term 13->state 65]
+ [non term 12->state 62] [non term 13->state 14]
 From state #62
- [non term 22->state 63] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 13->state 70]
 From state #63
- [non term 12->state 64] [non term 13->state 14]
+ [non term 20->state 71] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #64
- [non term 13->state 65]
+ [non term 20->state 65] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #65
+ [non term 12->state 66] [non term 13->state 14]
 From state #66
- [non term 12->state 67] [non term 13->state 14]
+ [non term 13->state 70]
 From state #67
- [non term 13->state 65]
+ [non term 20->state 68] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #68
- [non term 22->state 69] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 12->state 69] [non term 13->state 14]
 From state #69
- [non term 12->state 70] [non term 13->state 14]
+ [non term 13->state 70]
 From state #70
- [non term 13->state 65]
 From state #71
  [non term 12->state 72] [non term 13->state 14]
 From state #72
- [non term 13->state 65]
+ [non term 13->state 70]
 From state #73
- [non term 22->state 80] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 20->state 74] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #74
- [non term 22->state 75] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 12->state 75] [non term 13->state 14]
 From state #75
- [non term 12->state 76] [non term 13->state 14]
+ [non term 13->state 70]
 From state #76
- [non term 13->state 65]
+ [non term 12->state 77] [non term 13->state 14]
 From state #77
- [non term 22->state 78] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 13->state 70]
 From state #78
- [non term 12->state 79] [non term 13->state 14]
+ [non term 20->state 85] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #79
- [non term 13->state 65]
+ [non term 20->state 80] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #80
  [non term 12->state 81] [non term 13->state 14]
 From state #81
- [non term 13->state 65]
+ [non term 13->state 70]
 From state #82
- [non term 22->state 83] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 20->state 83] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #83
  [non term 12->state 84] [non term 13->state 14]
 From state #84
- [non term 13->state 65]
+ [non term 13->state 70]
 From state #85
+ [non term 12->state 86] [non term 13->state 14]
 From state #86
- [non term 6->state 87] [non term 7->state 88] [non term 8->state 20]
- [non term 9->state 25] [non term 10->state 28] [non term 11->state 24]
- [non term 12->state 6] [non term 13->state 14] [non term 21->state 11]
- [non term 22->state 29] [non term 23->state 32] [non term 24->state 27]
- [non term 25->state 31] [non term 26->state 48]
+ [non term 13->state 70]
 From state #87
- [non term 7->state 90] [non term 8->state 20] [non term 9->state 25]
- [non term 10->state 28] [non term 11->state 24] [non term 12->state 6]
- [non term 13->state 14] [non term 21->state 11] [non term 22->state 29]
- [non term 23->state 32] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 20->state 88] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #88
+ [non term 12->state 89] [non term 13->state 14]
 From state #89
+ [non term 13->state 70]
 From state #90
 From state #91
- [non term 12->state 92] [non term 13->state 14]
+ [non term 6->state 92] [non term 7->state 93] [non term 8->state 20]
+ [non term 9->state 25] [non term 10->state 28] [non term 11->state 24]
+ [non term 12->state 7] [non term 13->state 14] [non term 19->state 11]
+ [non term 20->state 29] [non term 21->state 32] [non term 22->state 27]
+ [non term 23->state 30] [non term 24->state 42]
 From state #92
- [non term 13->state 65]
+ [non term 7->state 95] [non term 8->state 20] [non term 9->state 25]
+ [non term 10->state 28] [non term 11->state 24] [non term 12->state 7]
+ [non term 13->state 14] [non term 19->state 11] [non term 20->state 29]
+ [non term 21->state 32] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #93
- [non term 22->state 100] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
 From state #94
- [non term 22->state 95] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
 From state #95
- [non term 12->state 96] [non term 13->state 14]
 From state #96
- [non term 13->state 65]
+ [non term 12->state 97] [non term 13->state 14]
 From state #97
- [non term 22->state 98] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 13->state 70]
 From state #98
- [non term 12->state 99] [non term 13->state 14]
+ [non term 20->state 105] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #99
- [non term 13->state 65]
+ [non term 20->state 100] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #100
  [non term 12->state 101] [non term 13->state 14]
 From state #101
- [non term 13->state 65]
+ [non term 13->state 70]
 From state #102
- [non term 22->state 103] [non term 24->state 27] [non term 25->state 31]
- [non term 26->state 48]
+ [non term 20->state 103] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #103
  [non term 12->state 104] [non term 13->state 14]
 From state #104
- [non term 13->state 65]
+ [non term 13->state 70]
 From state #105
+ [non term 12->state 106] [non term 13->state 14]
 From state #106
+ [non term 13->state 70]
 From state #107
+ [non term 20->state 108] [non term 22->state 27] [non term 23->state 30]
+ [non term 24->state 42]
 From state #108
+ [non term 12->state 109] [non term 13->state 14]
 From state #109
+ [non term 13->state 70]
+From state #110
+From state #111
+From state #112
+From state #113
+From state #114
 -----------------------------
 Closing files...
 ------- CUP v0.10k Parser Generation Summary -------
-  0 errors and 76 warnings
-  25 terminals, 27 non-terminals, and 61 productions declared, 
-  producing 110 unique parse states.
-  3 terminals declared but not used.
-  0 non-terminals declared but not used.
+  0 errors and 92 warnings
+  25 terminals, 25 non-terminals, and 64 productions declared, 
+  producing 115 unique parse states.
+  1 terminal declared but not used.
+  0 non-terminal declared but not used.
   0 productions never reduced.
-  73 conflicts detected (100 expected).
+  91 conflicts detected (100 expected).
   Code written to "Parser.java", and "TokenIds.java".
 ---------------------------------------------------- (v0.10k)

@@ -410,8 +410,8 @@ public class Lexer implements java_cup.runtime.Scanner {
 	};
 	private int yy_cmap[] = unpackFromString(1,130,
 "2:8,6:2,5,2,6,4,2:18,6,2,36,38,33,2:2,38,22,23,3,29,21,30,38,1,31:10,32,20," +
-"18,24,19,38:2,34:7,35:19,25,37,26,38,32,38,34:2,8,34,11,34:2,35,15,35:2,12," +
-"35,16,9,13,35,10,7,14,35,17,35:4,27,38,28,38,2,0:2")[0];
+"18,24,19,38:2,34:7,35:19,25,37,26,38,2,38,34:2,8,34,11,34:2,35,15,35:2,12,3" +
+"5,16,9,13,35,10,7,14,35,17,35:4,27,38,28,38,2,0:2")[0];
 
 	private int yy_rmap[] = unpackFromString(1,56,
 "0,1,2,1,3,4,1:14,5,6,7,8,9,1:8,10,11,1,12,13,14,15,16,17,18,19,20,21,22,23," +
@@ -602,7 +602,7 @@ public class Lexer implements java_cup.runtime.Scanner {
 					case 21:
 						{
     int initialChar = yytext().charAt(0);
-    if(Character.isDigit(initialChar) || yytext().equals("$counter")) {
+    if(Character.isDigit(initialChar)) {
         return new Symbol(TokenIds.LEX_ERROR, new Token("ILLEGAL_ID", yytext(), yyline));
     }
     return new Symbol(TokenIds.ID,
@@ -696,7 +696,7 @@ public class Lexer implements java_cup.runtime.Scanner {
 					case 36:
 						{
     int initialChar = yytext().charAt(0);
-    if(Character.isDigit(initialChar) || yytext().equals("$counter")) {
+    if(Character.isDigit(initialChar)) {
         return new Symbol(TokenIds.LEX_ERROR, new Token("ILLEGAL_ID", yytext(), yyline));
     }
     return new Symbol(TokenIds.ID,

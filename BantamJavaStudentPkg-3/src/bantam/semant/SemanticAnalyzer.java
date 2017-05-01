@@ -79,9 +79,14 @@ public class SemanticAnalyzer {
       *
       * */
     public Program analyze() {
-	    // 1 - check for score
+	    // 1 - check the score
+        checkScore(); // in preparation for future expansions
+
+        // 2 - check types and populate ast node fields
 
 
+        // 3 - check variables for declarations
+        checkVariables();
 
         // comment out
         //throw new RuntimeException("Semantic analyzer unimplemented");
@@ -95,6 +100,20 @@ public class SemanticAnalyzer {
      * @return the ErrorHandler for this Parser
      */
     public ErrorHandler getErrorHandler() { return errorHandler; }
+
+
+    private void checkScore() {
+        ScoreVisitor scoreVisitor = new ScoreVisitor(program, errorHandler);
+        scoreVisitor.checkScore();
+    }
+
+    /**
+     * Make sure variables are used correctly
+     */
+    private void checkVariables() {
+        VarVisitor varVisitor = new VarVisitor(program, errorHandler);
+        varVisitor.checkVariables();
+    }
 
 //    /** Add built in classes to the class tree
 //      * */

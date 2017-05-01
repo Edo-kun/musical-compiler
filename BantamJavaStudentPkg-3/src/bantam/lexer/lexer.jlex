@@ -286,12 +286,12 @@ import java_cup.runtime.Symbol;
 	                    new Token("INT_CONST", yytext(), yyline));
 }
 
-<YYINITIAL>[A-Ga-g_:]   { return new Symbol(TokenIds.NOTE,
+<YYINITIAL>[A-Ga-g:]   { return new Symbol(TokenIds.NOTE,
                             new Token("NOTE", yytext(), yyline));}
 
 <YYINITIAL>[0-9$][A-Za-z0-9]*   {
     int initialChar = yytext().charAt(0);
-    if(Character.isDigit(initialChar) || yytext().equals("$counter")) {
+    if(Character.isDigit(initialChar)) {
         return new Symbol(TokenIds.LEX_ERROR, new Token("ILLEGAL_ID", yytext(), yyline));
     }
     return new Symbol(TokenIds.ID,

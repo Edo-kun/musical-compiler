@@ -40,6 +40,8 @@ public class Note extends Sound {
     /** Note attributes */
     protected String name;
     protected String modifier;
+    protected ConstExpr octaveExpr;
+    protected int octave;
 
     /**
      * Note constructor
@@ -54,11 +56,26 @@ public class Note extends Sound {
         this.modifier = modifier;
     }
 
+    public Note(int lineNum, String name, String modifier, ConstExpr expr) {
+        super(lineNum, new SoundList(lineNum));
+        this.name = name;
+        this.modifier = modifier;
+        this.octaveExpr = expr;
+    }
+
     /**
-     * get name
+     * get name A-G
      */
     public String getName() {
         return name;
+    }
+
+    public void setOctave(int octave) {
+        this.octave = octave;
+    }
+
+    public Expr getOctaveExpr(){
+        return this.octaveExpr;
     }
 
     /** get modifier */

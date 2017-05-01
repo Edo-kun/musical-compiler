@@ -252,6 +252,9 @@ public abstract class MusicVisitor {
      * @return
      */
     public Object visit(Note node) {
+        if (node.getOctaveExpr() != null) {
+            node.getOctaveExpr().accept(this);
+        }
         return null;
     }
 

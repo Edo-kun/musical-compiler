@@ -177,10 +177,8 @@ nonterminal MeasureList measure_list;
 nonterminal Measure measure;
 nonterminal SoundList sound_list;
 nonterminal Sound sound;
-nonterminal ChordList chord_list;
 nonterminal Chord chord;
 nonterminal Note note;
-nonterminal NoteList note_list;
 nonterminal ExprList expr_list;
 nonterminal Expr expr, const_expr, phrase_expr;
 nonterminal ConstExpr const_int, const_string, const_var;
@@ -431,6 +429,15 @@ chord
 
 note
     ::=
+        NOTE:n const_expr:e
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null, (ConstExpr)e); :}
+        |
+        NOTE:n PLUS const_expr:e
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "+", (ConstExpr)e); :}
+        |
+        NOTE:n MINUS const_expr:e
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "-", (ConstExpr)e); :}
+        |
         NOTE:n
         {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null); :}
         |

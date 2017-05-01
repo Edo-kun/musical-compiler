@@ -103,7 +103,6 @@ public class LexerTest
         checkToken(" abc ", "NOTE");
         checkToken(" bc ", "NOTE");
         checkToken(" c ", "NOTE");
-        checkToken(" _", "NOTE");
         checkToken(" h", "ILLEGAL_NOTE");
     }
 

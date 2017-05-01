@@ -90,7 +90,6 @@ public class ParserTest
     public void CallTest() throws Exception {
         legalCodetest("$x;");
         illegalCodetest("$x");
-        illegalCodetest("$counter"); // builtin counter
     }
 
     /**
@@ -114,7 +113,7 @@ public class ParserTest
         legalCodetest("instr \"Piano\" oct -1 vol 11 <abcd>;");
         legalCodetest("oct -1 vol 11 <abcd>;");
         legalCodetest("vol 11 oct +1 <abcd>;");
-        legalCodetest("vol 11 instr \"Harpsichord\" <____><abcd>;");
+        legalCodetest("vol 11 instr \"Harpsichord\" <a+-3><abcd>;");
         illegalCodetest("instr oct -1 vol 11 <abcd<;");
     }
 
@@ -125,8 +124,8 @@ public class ParserTest
     @Test
     public void ChordTest() throws Exception {
         legalCodetest("<(abcd)bcd>;");
-        legalCodetest("<(abcd)(a+b+c+d+)(____)d>;");
-        illegalCodetest("<(abcd(a+b+c+d+)(____)d>;");
+        legalCodetest("<(abcd)(a+b+c+d+)(a)d>;");
+        illegalCodetest("<(abcd(a+b+c+d+)(a)d>;");
 
     }
 

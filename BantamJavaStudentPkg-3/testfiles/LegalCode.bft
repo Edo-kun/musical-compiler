@@ -1,6 +1,6 @@
 // Testing code
 score "The C scale" {
-    $x = oct 0 <cdef><g(abc(abc)d)__>;
+    $x = oct 0 <cdef><g(abc(abc)d)::>;
     $y = oct 1 <abc:>;
     $x;
     $y;

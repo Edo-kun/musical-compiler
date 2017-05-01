@@ -30,7 +30,7 @@ import bantam.visitor.MusicVisitor;
 
 /**
  * The <tt>Measure</tt> class represents a phrase statement, which
- * contains a list of measures.  It contains instrument/octave/volume
+ * contains a list of measures.  It contains instrument/octaveExpr/volume
  * info
  * (<tt>MeasureList</tt>).
  *

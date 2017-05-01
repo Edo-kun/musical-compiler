@@ -7,19 +7,18 @@
  * @author Alex Rinker
  * @author Vivek Sah
  * Class: CS461
- * Project: 3
- * Date: March 9 2017
+ * Project: 6
+ * Date: April 30 2017
  */
 
 package bantam.util;
 
-/**
- * Created by Alex on 3/6/17.
- */
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -28,44 +27,33 @@ import java.util.Scanner;
  * common tasks throughout our visitors
  */
 public class SemanticTools {
-    private enum reservedWords { NULL, VOID, SUPER, THIS, BOOLEAN, INT };
-
-    private enum primitives {INT, BOOLEAN};
-
-    public static String[] builtins = {"TextIO", "Sys", "Object", "String"};
-
-    /**
-     * Returns true if the input string is a keyword, else returns false
-     * @param word the word in question
-     * @return boolean corresponding to whether or not the word is a keyword
-     */
-    public static boolean isReservedWord(String word) {
-        for ( reservedWords r : reservedWords.values()) {
-            if (r.name().equalsIgnoreCase(word)) { return true; }
-        }
-        return false;
-    }
+    public static List<String> instruments = Stream.of(
+            "piano", "chromatic_percussion", "organ", "guitar", "bass", "strings", "ensemble", "brass",
+            "reed", "pipe", "synth_lead", "synth_pad", "synth_effects", "ethnic", "percussion", "sound_effects"
+            ).collect(Collectors.toList());
+    public static String VAR = "field_variable";
+    public static String STRING = "string";
+    public static String INT = "int";
+    public static String PHRASE = "phrase";
+    public static int MAX_OCT = 4;
+    public static int MIN_OCT = -4;
 
     /**
-     * Returns true if the input string is a defined primitive else returns false
+     * Returns true if the input string is a valid instrument
      * @param word the input in question
      * @return boolean
      */
-    public static boolean isPrimitive(String word) {
-        for ( primitives p : primitives.values()) {
-            if (p.name().equalsIgnoreCase(word)) { return true; }
-        }
-        return false;
-    }
-
-    /**
-     * Returns true if the input string is a builtin class
-     * @param word the input in question
-     * @return boolean
-     */
-    public static boolean isBuiltin(String word) {
-        for ( String p : builtins) {
-            if (p.equals(word)) { return true; }
+    public static boolean isValidInstrument(String word) {
+        for ( String p : instruments) {
+            for (int i = 0; i < 8; i++) {
+                if (i == 0 && p.equalsIgnoreCase(word)) {
+                    return true;
+                } else {
+                    if ((p + i).equalsIgnoreCase(word)) {
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
