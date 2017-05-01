@@ -43,8 +43,6 @@ import bantam.mast.*;
 import bantam.util.*;
 import bantam.visitor.*;
 
-import java.util.*;
-
 /** The <tt>SemanticAnalyzer</tt> class performs semantic analysis.
   * In particular this class is able to perform (via the <tt>analyze()</tt>
   * method) the following tests and analyses: (1)
@@ -83,7 +81,7 @@ public class SemanticAnalyzer {
         checkScore(); // in preparation for future expansions
 
         // 2 - check types and populate ast node fields
-
+        checkTypes();
 
         // 3 - check variables for declarations
         checkVariables();
@@ -113,6 +111,11 @@ public class SemanticAnalyzer {
     private void checkVariables() {
         VarVisitor varVisitor = new VarVisitor(program, errorHandler);
         varVisitor.checkVariables();
+    }
+
+    private void checkTypes() {
+        TypeVisitor typeVisitor = new TypeVisitor(program, errorHandler);
+        typeVisitor.checkTypes();
     }
 
 //    /** Add built in classes to the class tree

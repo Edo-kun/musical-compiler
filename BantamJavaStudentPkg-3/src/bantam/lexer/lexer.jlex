@@ -242,6 +242,9 @@ import java_cup.runtime.Symbol;
 <YYINITIAL>;            { return new Symbol(TokenIds.SEMI,
 						    new Token("SEMI", yyline)); }
 
+<YYINITIAL>\|            { return new Symbol(TokenIds.BREAK,
+						    new Token("BREAK", yyline)); }
+
 <YYINITIAL>,            { return new Symbol(TokenIds.COMMA,
 						    new Token("COMMA", yyline)); }
 
@@ -275,7 +278,7 @@ import java_cup.runtime.Symbol;
 <YYINITIAL>[0-9]+        {
     try {
         int x = Integer.parseInt(yytext());
-        if (x > 11) { return new Symbol(TokenIds.LEX_ERROR,
+        if (x > 127) { return new Symbol(TokenIds.LEX_ERROR,
                                                   new Token("LARGE_INT", yytext(), yyline)); }
     }
     catch (Exception e) {
@@ -289,7 +292,7 @@ import java_cup.runtime.Symbol;
 <YYINITIAL>[A-Ga-g:]   { return new Symbol(TokenIds.NOTE,
                             new Token("NOTE", yytext(), yyline));}
 
-<YYINITIAL>[0-9$][A-Za-z0-9]*   {
+<YYINITIAL>\$[A-Za-z0-9]*   {
     int initialChar = yytext().charAt(0);
     if(Character.isDigit(initialChar)) {
         return new Symbol(TokenIds.LEX_ERROR, new Token("ILLEGAL_ID", yytext(), yyline));

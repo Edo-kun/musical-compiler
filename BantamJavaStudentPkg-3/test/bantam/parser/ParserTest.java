@@ -113,7 +113,7 @@ public class ParserTest
         legalCodetest("instr \"Piano\" oct -1 vol 11 <abcd>;");
         legalCodetest("oct -1 vol 11 <abcd>;");
         legalCodetest("vol 11 oct +1 <abcd>;");
-        legalCodetest("vol 11 instr \"Harpsichord\" <a+-3><abcd>;");
+        legalCodetest("vol 11 instr \"Harpsichord\" <a+|-3><abcd>;");
         illegalCodetest("instr oct -1 vol 11 <abcd<;");
     }
 

@@ -162,7 +162,7 @@ terminal Token SCORE, LOOP, INSTRUMENT, VOLUME, OCTAVE;
 terminal Token PLUS, MINUS;
 terminal Token ASSIGN;
 terminal Token LPAREN, RPAREN, LBRACE, RBRACE, LSQBRACE, RSQBRACE, LBREAK, RBREAK;
-terminal Token SEMI, COMMA;
+terminal Token SEMI, COMMA, BREAK;
 terminal Token ID, INT_CONST, STRING_CONST, NOTE;
 
 /* list of non-terminals used in context-free grammar */
@@ -172,7 +172,7 @@ nonterminal MemberList member_list;
 nonterminal Member member;
 nonterminal Field field;
 nonterminal StmtList stmt_list;
-nonterminal Stmt stmt, loop_stmt, phrase_stmt, call_stmt, block_stmt;
+nonterminal Stmt stmt, loop_stmt, call_stmt, block_stmt;
 nonterminal MeasureList measure_list;
 nonterminal Measure measure;
 nonterminal SoundList sound_list;
@@ -240,9 +240,6 @@ stmt
     loop_stmt:s
     {: RESULT = s; :}
     |
-    phrase_stmt:s
-        {: RESULT = s; :}
-        |
     call_stmt:s
         {: RESULT = s; :}
         |
@@ -429,14 +426,14 @@ chord
 
 note
     ::=
-        NOTE:n const_expr:e
-        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null, (ConstExpr)e); :}
+        NOTE:n BREAK const_expr:e
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null, e); :}
         |
-        NOTE:n PLUS const_expr:e
-        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "+", (ConstExpr)e); :}
+        NOTE:n PLUS BREAK const_expr:e
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "+", e); :}
         |
-        NOTE:n MINUS const_expr:e
-        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "-", (ConstExpr)e); :}
+        NOTE:n MINUS BREAK const_expr:e
+        {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "-", e); :}
         |
         NOTE:n
         {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null); :}

@@ -1,0 +1,22 @@
+// This file should report a lot of semantic errors :)
+score "errors" {
+    $z;                                 // undeclared field
+    $a = 3;                             // mistyped assignment
+    [$x,$w];                            //undeclared fields
+    $a = <abcd>;
+
+    loop instr "piano" <ab> {}          // illegal expr
+    loop -1 {}                          // negative loop
+
+    instr "notarealinstrument" <abcd>;  // illegal instrument
+    instr 3 <abcd>;                     // illegal instrument expression
+    oct -5 <abcd>;                      // illegal octave
+    oct "notarealoctave" <abcd>;        // illegal octave expression
+    vol "notarealvolume" <abcd>;        // illegal volume expression
+
+    3;                                  // illegal expression in call stmt
+    [3,3,3,3];                          // illegal expressions in block stmt
+
+    <a|-5bcd>;                          // octave modifier out of range
+    <a|"badoctave"bcd>;                  // illegal octave modifier expression
+}

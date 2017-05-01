@@ -37,28 +37,42 @@ public class TypeVisitor extends MusicVisitor {
 
     @Override
     public Object visit(Field node) {
-        return super.visit(node);
-    }
-
-    @Override
-    public Object visit(StmtList node) {
-        return super.visit(node);
-    }
-
-    @Override
-    public Object visit(Stmt node) {
-        return super.visit(node);
+        super.visit(node);
+        if (node.getInit().getExprType() != SemanticTools.PHRASE) {
+            errorHandler.register(
+                    errorHandler.SEMANT_ERROR,
+                    root.getScore().getFilename(),
+                    node.getLineNum(),
+                    "Field must be assigned valid phrases"
+            );
+        }
+        return null;
     }
 
     @Override
     public Object visit(LoopStmt node) {
-        return super.visit(node);
+        super.visit(node);
+        if (node.getExpr().getExprType() != SemanticTools.INT) {
+            errorHandler.register(
+                    errorHandler.SEMANT_ERROR,
+                    root.getScore().getFilename(),
+                    node.getLineNum(),
+                    "int required for loop"
+            );
+        } else {
+            if (((ConstIntExpr)node.getExpr()).getIntConstant() < 0) {
+                errorHandler.register(
+                        errorHandler.SEMANT_ERROR,
+                        root.getScore().getFilename(),
+                        node.getLineNum(),
+                        "positive int required for loop"
+                );
+            }
+        }
+
+        return null;
     }
 
-    @Override
-    public Object visit(PhraseStmt node) {
-        return super.visit(node);
-    }
 
     /** Make sure:
      * instruments are valid strings
@@ -137,7 +151,17 @@ public class TypeVisitor extends MusicVisitor {
 
     @Override
     public Object visit(CallStmt node) {
-        return super.visit(node);
+        super.visit(node);
+        if (!(node.getExpr()).getExprType().equals(SemanticTools.PHRASE) &&
+                !(node.getExpr()).getExprType().equals(SemanticTools.VAR)) {
+            errorHandler.register(
+                    errorHandler.SEMANT_ERROR,
+                    root.getScore().getFilename(),
+                    node.getLineNum(),
+                    "Expressions in call statements must be a phrase or a field variable"
+            );
+        }
+        return null;
     }
 
     @Override

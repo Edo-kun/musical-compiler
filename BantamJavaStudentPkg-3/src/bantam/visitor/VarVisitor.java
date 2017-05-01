@@ -74,6 +74,11 @@ public class VarVisitor extends MusicVisitor{
         return null;
     }
 
+    @Override
+    public Object visit(PhraseExpr node) { return null; }
+
+    @Override
+    public Object visit(MeasureList node) { return null; }
 
     @Override
     public Object visit(Measure node) {

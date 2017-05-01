@@ -384,20 +384,20 @@ public class Lexer implements java_cup.runtime.Scanner {
 		/* 30 */ YY_NO_ANCHOR,
 		/* 31 */ YY_NO_ANCHOR,
 		/* 32 */ YY_NO_ANCHOR,
-		/* 33 */ YY_NOT_ACCEPT,
-		/* 34 */ YY_NO_ANCHOR,
+		/* 33 */ YY_NO_ANCHOR,
+		/* 34 */ YY_NOT_ACCEPT,
 		/* 35 */ YY_NO_ANCHOR,
 		/* 36 */ YY_NO_ANCHOR,
 		/* 37 */ YY_NO_ANCHOR,
 		/* 38 */ YY_NO_ANCHOR,
-		/* 39 */ YY_NOT_ACCEPT,
-		/* 40 */ YY_NO_ANCHOR,
+		/* 39 */ YY_NO_ANCHOR,
+		/* 40 */ YY_NOT_ACCEPT,
 		/* 41 */ YY_NO_ANCHOR,
-		/* 42 */ YY_NOT_ACCEPT,
-		/* 43 */ YY_NO_ANCHOR,
-		/* 44 */ YY_NOT_ACCEPT,
-		/* 45 */ YY_NO_ANCHOR,
-		/* 46 */ YY_NOT_ACCEPT,
+		/* 42 */ YY_NO_ANCHOR,
+		/* 43 */ YY_NOT_ACCEPT,
+		/* 44 */ YY_NO_ANCHOR,
+		/* 45 */ YY_NOT_ACCEPT,
+		/* 46 */ YY_NO_ANCHOR,
 		/* 47 */ YY_NOT_ACCEPT,
 		/* 48 */ YY_NOT_ACCEPT,
 		/* 49 */ YY_NOT_ACCEPT,
@@ -405,27 +405,29 @@ public class Lexer implements java_cup.runtime.Scanner {
 		/* 51 */ YY_NOT_ACCEPT,
 		/* 52 */ YY_NOT_ACCEPT,
 		/* 53 */ YY_NOT_ACCEPT,
-		/* 54 */ YY_NO_ANCHOR,
-		/* 55 */ YY_NOT_ACCEPT
+		/* 54 */ YY_NOT_ACCEPT,
+		/* 55 */ YY_NO_ANCHOR,
+		/* 56 */ YY_NOT_ACCEPT
 	};
 	private int yy_cmap[] = unpackFromString(1,130,
-"2:8,6:2,5,2,6,4,2:18,6,2,36,38,33,2:2,38,22,23,3,29,21,30,38,1,31:10,32,20," +
-"18,24,19,38:2,34:7,35:19,25,37,26,38,2,38,34:2,8,34,11,34:2,35,15,35:2,12,3" +
-"5,16,9,13,35,10,7,14,35,17,35:4,27,38,28,38,2,0:2")[0];
+"2:8,6:2,5,2,6,4,2:18,6,2,37,39,34,2:2,39,23,24,3,30,22,31,39,1,32:10,33,20," +
+"18,25,19,39:2,35:7,36:19,26,38,27,39,2,39,35:2,8,35,11,35:2,36,15,36:2,12,3" +
+"6,16,9,13,36,10,7,14,36,17,36:4,28,21,29,39,2,0:2")[0];
 
-	private int yy_rmap[] = unpackFromString(1,56,
-"0,1,2,1,3,4,1:14,5,6,7,8,9,1:8,10,11,1,12,13,14,15,16,17,18,19,20,21,22,23," +
-"24,25,26,27,14,28,29,30")[0];
+	private int yy_rmap[] = unpackFromString(1,57,
+"0,1,2,1,3,4,1:4,5,1:10,6,7,8,9,10,1:8,11,5,1,12,13,14,15,16,17,18,19,20,21," +
+"22,23,24,25,26,27,14,28,29,30")[0];
 
-	private int yy_nxt[][] = unpackFromString(31,39,
-"1,2,3:2,4:3,5,6,54,35,6,40,35:2,43,35,45,7,8,9,10,11,12,13,14,15,16,17,18,1" +
-"9,20,6,21,6,35,22,34:2,-1:40,23,-1,24,-1:29,34,-1:3,34:2,-1:4,4:3,-1:40,33," +
-"-1:37,36:11,-1:13,20,-1:2,36:2,-1:4,34,-1:5,36:11,-1:13,36,-1,34,36:2,-1,34" +
-":2,-1,22:4,37,22:30,25,41,22,-1,23:3,-1:2,23:33,-1,24:2,46,24:35,-1:9,47,-1" +
-":30,34,-1:31,34,-1:3,34:2,-1:7,36:11,-1:13,36,-1:2,36:2,-1:4,37:35,28,37:2," +
-"-1,52:4,-1,52:30,25,53,52,-1:14,26,-1:33,55,-1:30,22:3,37:2,22:30,38,22:2,-" +
-"1:7,49,-1:47,42,-1:34,27,-1:35,44,-1:30,29,24,46,24:35,-1:10,50,-1:41,30,-1" +
-":39,51,-1:35,31,-1:37,32,-1:29,52:3,-1:2,52:33,-1:8,39,-1:39,48,-1:29");
+	private int yy_nxt[][] = unpackFromString(31,40,
+"1,2,3:2,4:3,5,6,55,36,6,41,36:2,44,36,46,7,8,9,10,11,12,13,14,15,16,17,18,1" +
+"9,20,21,6,22,6,36,23,35:2,-1:41,24,-1,25,-1:17,35,-1:12,35,-1:3,35:2,-1:4,4" +
+":3,-1:41,34,-1:32,35,-1:19,35,-1:12,35,-1:3,35:2,-1:32,21,-1:8,35,-1:5,37:1" +
+"1,-1:3,35,-1:10,37,-1,35,37:2,-1,35:2,-1,23:4,38,23:31,26,42,23,-1,24:3,-1:" +
+"2,24:34,-1,25:2,47,25:36,-1:9,48,-1:37,37:11,-1:14,37,-1:2,37:2,-1:4,38:36," +
+"29,38:2,-1,53:4,-1,53:31,26,54,53,-1:14,27,-1:34,56,-1:31,23:3,38:2,23:31,3" +
+"9,23:2,-1:7,50,-1:48,43,-1:35,28,-1:36,45,-1:31,30,25,47,25:36,-1:10,51,-1:" +
+"42,31,-1:40,52,-1:36,32,-1:38,33,-1:30,53:3,-1:2,53:34,-1:8,40,-1:40,49,-1:" +
+"30");
 
 	public java_cup.runtime.Symbol next_token ()
 		throws java.io.IOException {
@@ -534,60 +536,65 @@ public class Lexer implements java_cup.runtime.Scanner {
 					case -10:
 						break;
 					case 10:
-						{ return new Symbol(TokenIds.COMMA,
-						    new Token("COMMA", yyline)); }
+						{ return new Symbol(TokenIds.BREAK,
+						    new Token("BREAK", yyline)); }
 					case -11:
 						break;
 					case 11:
-						{ return new Symbol(TokenIds.LPAREN,
-						    new Token("LPAREN", yyline)); }
+						{ return new Symbol(TokenIds.COMMA,
+						    new Token("COMMA", yyline)); }
 					case -12:
 						break;
 					case 12:
-						{ return new Symbol(TokenIds.RPAREN,
-						    new Token("RPAREN", yyline)); }
+						{ return new Symbol(TokenIds.LPAREN,
+						    new Token("LPAREN", yyline)); }
 					case -13:
 						break;
 					case 13:
-						{ return new Symbol(TokenIds.ASSIGN,
-				 		    new Token("ASSIGN", yyline)); }
+						{ return new Symbol(TokenIds.RPAREN,
+						    new Token("RPAREN", yyline)); }
 					case -14:
 						break;
 					case 14:
-						{ return new Symbol(TokenIds.LSQBRACE,
-						    new Token("LSQBRACE", yyline)); }
+						{ return new Symbol(TokenIds.ASSIGN,
+				 		    new Token("ASSIGN", yyline)); }
 					case -15:
 						break;
 					case 15:
-						{ return new Symbol(TokenIds.RSQBRACE,
-					 	    new Token("RSQBRACE", yyline)); }
+						{ return new Symbol(TokenIds.LSQBRACE,
+						    new Token("LSQBRACE", yyline)); }
 					case -16:
 						break;
 					case 16:
-						{ return new Symbol(TokenIds.LBRACE,
-						    new Token("LBRACE", yyline)); }
+						{ return new Symbol(TokenIds.RSQBRACE,
+					 	    new Token("RSQBRACE", yyline)); }
 					case -17:
 						break;
 					case 17:
-						{ return new Symbol(TokenIds.RBRACE,
-						    new Token("RBRACE", yyline)); }
+						{ return new Symbol(TokenIds.LBRACE,
+						    new Token("LBRACE", yyline)); }
 					case -18:
 						break;
 					case 18:
-						{ return new Symbol(TokenIds.PLUS,
-						    new Token("PLUS", yyline)); }
+						{ return new Symbol(TokenIds.RBRACE,
+						    new Token("RBRACE", yyline)); }
 					case -19:
 						break;
 					case 19:
-						{ return new Symbol(TokenIds.MINUS,
-                            new Token("MINUS", yyline)); }
+						{ return new Symbol(TokenIds.PLUS,
+						    new Token("PLUS", yyline)); }
 					case -20:
 						break;
 					case 20:
+						{ return new Symbol(TokenIds.MINUS,
+                            new Token("MINUS", yyline)); }
+					case -21:
+						break;
+					case 21:
 						{
     try {
         int x = Integer.parseInt(yytext());
-        if (x > 11) { return new Symbol(TokenIds.LEX_ERROR,
+        if (x > 127) { return new Symbol(TokenIds.LEX_ERROR,
                                                   new Token("LARGE_INT", yytext(), yyline)); }
     }
     catch (Exception e) {
@@ -597,9 +604,9 @@ public class Lexer implements java_cup.runtime.Scanner {
     return new Symbol(TokenIds.INT_CONST,
 	                    new Token("INT_CONST", yytext(), yyline));
 }
-					case -21:
+					case -22:
 						break;
-					case 21:
+					case 22:
 						{
     int initialChar = yytext().charAt(0);
     if(Character.isDigit(initialChar)) {
@@ -608,23 +615,23 @@ public class Lexer implements java_cup.runtime.Scanner {
     return new Symbol(TokenIds.ID,
     new Token("ID", yytext(), yyline));
 }
-					case -22:
-						break;
-					case 22:
-						{ return new Symbol(TokenIds.LEX_ERROR,
-                                  new Token("UNTERMINATED_STRING", yytext(), yyline)); }
 					case -23:
 						break;
 					case 23:
-						{  }
+						{ return new Symbol(TokenIds.LEX_ERROR,
+                                  new Token("UNTERMINATED_STRING", yytext(), yyline)); }
 					case -24:
 						break;
 					case 24:
-						{ return new Symbol(TokenIds.LEX_ERROR,
-						                                    new Token("UNTERMINATED_COMMENT", yyline)); }
+						{  }
 					case -25:
 						break;
 					case 25:
+						{ return new Symbol(TokenIds.LEX_ERROR,
+						                                    new Token("UNTERMINATED_COMMENT", yyline)); }
+					case -26:
+						break;
+					case 26:
 						{
     if(yytext().length() > 5000) {
         return new Symbol(
@@ -647,53 +654,53 @@ public class Lexer implements java_cup.runtime.Scanner {
     return new Symbol(TokenIds.STRING_CONST,
 	                    new Token("STRING_CONST", yytext(), yyline));
 }
-					case -26:
-						break;
-					case 26:
-						{ return new Symbol(TokenIds.OCTAVE,
-						    new Token("OCTAVE", yyline)); }
 					case -27:
 						break;
 					case 27:
-						{ return new Symbol(TokenIds.VOLUME,
-						    new Token("VOLUME", yyline)); }
+						{ return new Symbol(TokenIds.OCTAVE,
+						    new Token("OCTAVE", yyline)); }
 					case -28:
 						break;
 					case 28:
-						{ return new Symbol(TokenIds.LEX_ERROR,
-                                  new Token("MULTILINE_STRING", yyline)); }
+						{ return new Symbol(TokenIds.VOLUME,
+						    new Token("VOLUME", yyline)); }
 					case -29:
 						break;
 					case 29:
-						{  }
+						{ return new Symbol(TokenIds.LEX_ERROR,
+                                  new Token("MULTILINE_STRING", yyline)); }
 					case -30:
 						break;
 					case 30:
-						{ return new Symbol(TokenIds.LOOP,
-						    new Token("LOOP", yyline)); }
+						{  }
 					case -31:
 						break;
 					case 31:
-						{ return new Symbol(TokenIds.SCORE,
-						    new Token("SCORE", yyline)); }
+						{ return new Symbol(TokenIds.LOOP,
+						    new Token("LOOP", yyline)); }
 					case -32:
 						break;
 					case 32:
-						{ return new Symbol(TokenIds.INSTRUMENT,
-						    new Token("INSTRUMENT", yyline)); }
+						{ return new Symbol(TokenIds.SCORE,
+						    new Token("SCORE", yyline)); }
 					case -33:
 						break;
-					case 34:
-						{ return new Symbol(TokenIds.LEX_ERROR,
-                                  new Token("ILLEGAL_CHAR", yytext(), yyline)); }
+					case 33:
+						{ return new Symbol(TokenIds.INSTRUMENT,
+						    new Token("INSTRUMENT", yyline)); }
 					case -34:
 						break;
 					case 35:
 						{ return new Symbol(TokenIds.LEX_ERROR,
-                                new Token("ILLEGAL_NOTE", yyline));}
+                                  new Token("ILLEGAL_CHAR", yytext(), yyline)); }
 					case -35:
 						break;
 					case 36:
+						{ return new Symbol(TokenIds.LEX_ERROR,
+                                new Token("ILLEGAL_NOTE", yyline));}
+					case -36:
+						break;
+					case 37:
 						{
     int initialChar = yytext().charAt(0);
     if(Character.isDigit(initialChar)) {
@@ -702,42 +709,42 @@ public class Lexer implements java_cup.runtime.Scanner {
     return new Symbol(TokenIds.ID,
     new Token("ID", yytext(), yyline));
 }
-					case -36:
-						break;
-					case 37:
-						{ return new Symbol(TokenIds.LEX_ERROR,
-                                  new Token("UNTERMINATED_STRING", yytext(), yyline)); }
 					case -37:
 						break;
 					case 38:
 						{ return new Symbol(TokenIds.LEX_ERROR,
-                                  new Token("MULTILINE_STRING", yyline)); }
+                                  new Token("UNTERMINATED_STRING", yytext(), yyline)); }
 					case -38:
 						break;
-					case 40:
+					case 39:
 						{ return new Symbol(TokenIds.LEX_ERROR,
-                                new Token("ILLEGAL_NOTE", yyline));}
+                                  new Token("MULTILINE_STRING", yyline)); }
 					case -39:
 						break;
 					case 41:
 						{ return new Symbol(TokenIds.LEX_ERROR,
-                                  new Token("UNTERMINATED_STRING", yytext(), yyline)); }
+                                new Token("ILLEGAL_NOTE", yyline));}
 					case -40:
 						break;
-					case 43:
+					case 42:
 						{ return new Symbol(TokenIds.LEX_ERROR,
-                                new Token("ILLEGAL_NOTE", yyline));}
+                                  new Token("UNTERMINATED_STRING", yytext(), yyline)); }
 					case -41:
 						break;
-					case 45:
+					case 44:
 						{ return new Symbol(TokenIds.LEX_ERROR,
                                 new Token("ILLEGAL_NOTE", yyline));}
 					case -42:
 						break;
-					case 54:
+					case 46:
 						{ return new Symbol(TokenIds.LEX_ERROR,
                                 new Token("ILLEGAL_NOTE", yyline));}
 					case -43:
+						break;
+					case 55:
+						{ return new Symbol(TokenIds.LEX_ERROR,
+                                new Token("ILLEGAL_NOTE", yyline));}
+					case -44:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);

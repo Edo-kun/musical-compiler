@@ -98,8 +98,7 @@ public class LexerTest
     @Test
     public void idToken() throws Exception {
         checkToken(" $abc ", "ID");
-        checkToken(" 9abc ", "ILLEGAL_ID");
-        checkToken(" :abc ", "NOTE"); // _ is the note rest
+        checkToken(" :abc ", "NOTE"); // : is the note rest
         checkToken(" abc ", "NOTE");
         checkToken(" bc ", "NOTE");
         checkToken(" c ", "NOTE");

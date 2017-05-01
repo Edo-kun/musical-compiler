@@ -41,7 +41,7 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(ASTNode node) {
-        throw new RuntimeException("This bantam.visitor method should not be called (node is abstract)");
+        throw new RuntimeException("This astNode method should not be called (node is abstract)");
     }
 
     /**
@@ -51,7 +51,7 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(ListNode node) {
-        throw new RuntimeException("This bantam.visitor method should not be called (node is abstract)");
+        throw new RuntimeException("This listNode method should not be called (node is abstract)");
     }
 
     /**
@@ -95,7 +95,7 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(Member node) {
-        throw new RuntimeException("This bantam.visitor method should not be called (node is abstract)");
+        throw new RuntimeException("This member method should not be called (node is abstract)");
     }
 
     /**
@@ -130,7 +130,7 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(Stmt node) {
-        throw new RuntimeException("This bantam.visitor method should not be called (node is abstract)");
+        throw new RuntimeException("This stmt method should not be called (node is abstract)");
     }
 
     /**
@@ -142,17 +142,6 @@ public abstract class MusicVisitor {
     public Object visit(LoopStmt node) {
         node.getExpr().accept(this);
         node.getStmtList().accept(this);
-        return null;
-    }
-
-    /**
-     * Visit a phrase statement node
-     *
-     * @param node the phrase statement node
-     * @return result of the visit
-     */
-    public Object visit(PhraseStmt node) {
-        node.getPhraseExpr().accept(this);
         return null;
     }
 
@@ -233,7 +222,7 @@ public abstract class MusicVisitor {
     }
 
     public Object visit(Sound node) {
-        throw new RuntimeException("This bantam.visitor method should not be called (node is abstract)");
+        throw new RuntimeException("This sound method should not be called (node is abstract)");
     }
 
     /**
@@ -265,7 +254,7 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(ConstExpr node) {
-        throw new RuntimeException("This bantam.visitor method should not be called (node is abstract)");
+        throw new RuntimeException("This constExpr method should not be called (node is abstract)");
     }
 
 
