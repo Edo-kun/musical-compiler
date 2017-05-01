@@ -30,7 +30,7 @@ import bantam.visitor.MusicVisitor;
 
 
 /**
- * The <tt>ConstExprList</tt> class represents a list of ConstExprs.
+ * The <tt>ExprList</tt> class represents a list of Exprs.
  *
  * @see ListNode
  * @see ConstExpr

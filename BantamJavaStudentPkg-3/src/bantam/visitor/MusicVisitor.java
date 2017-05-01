@@ -200,6 +200,18 @@ public abstract class MusicVisitor {
     }
 
     /**
+     * Visit a list node of expressions
+     *
+     * @param node the expression list node
+     * @return result of the visit
+     */
+    public Object visit(ExprList node) {
+        for (Iterator it = node.iterator(); it.hasNext(); )
+            ((Expr) it.next()).accept(this);
+        return null;
+    }
+
+    /**
      * Visit a list node of sound
      *
      * @param node the sound list node
