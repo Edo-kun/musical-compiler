@@ -47,6 +47,9 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     /** flag to play phrases in sequence */
     private boolean blockGenerating;
+    /** keeps track of notes when block generating */
+    private int currNoteIndex;
+
 
 
     /**
@@ -150,6 +153,18 @@ public class CodeGeneratorVisitor extends MusicVisitor{
             }
         }
 
+        // loop through every list of measures
+
+        for (List<Measure> measureList : measures ){
+            for (Measure measure : measureList) {
+                sleepTimes.add(SemanticTools.getMeasureNoteLength(measure.getSoundList().getSize()));
+                measure.accept(this);
+                System.out.println(sleepTimes);
+            }
+
+
+        }
+
 
         this.blockGenerating = false;
         return null;
@@ -191,23 +206,27 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(Measure node) {
-        mipsSupport.genLoadImm(
-                mipsSupport.getArg1Reg(),
-                SemanticTools.getMeasureNoteLength(node.getSoundList().getSize())
-        );
+        if (blockGenerating) {
+            
+        } else { // regular generation
+            mipsSupport.genLoadImm(
+                    mipsSupport.getArg1Reg(),
+                    SemanticTools.getMeasureNoteLength(node.getSoundList().getSize())
+            );
 
-        node.getSoundList().iterator().forEachRemaining(s -> {
-            s.accept(this);
-            if (s instanceof Note) {
-                mipsSupport.genSyscall(31);
-            }
-            mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
-            mipsSupport.genLoadImm(mipsSupport.getArg0Reg(), SemanticTools.BPM/node.getSoundList().getSize() -100);
+            node.getSoundList().iterator().forEachRemaining(s -> {
+                s.accept(this);
+                if (s instanceof Note) {
+                    mipsSupport.genSyscall(31);
+                }
+                mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
+                mipsSupport.genLoadImm(mipsSupport.getArg0Reg(), SemanticTools.BPM / node.getSoundList().getSize() - 100);
 
-            mipsSupport.genSyscall(32);
-            mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
-        });
-        return null;
+                mipsSupport.genSyscall(32);
+                mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
+            });
+            return null;
+        }
     }
 
     @Override
