@@ -24,7 +24,7 @@ import java.lang.*;
  * Visitor for creating the .text code of mips
  */
 public class CodeGeneratorVisitor extends MusicVisitor{
-    /** support class for generating code in mips */
+    /** support class for callGenerating code in mips */
     private MipsSupport mipsSupport;
 
     /** Print stream for printing to a file */
@@ -43,9 +43,11 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     private int currOffset;
 
     /** flag to generate code in an expression */
-    private boolean generating;
+    private boolean callGenerating;
 
-    private String parent;
+    /** flag to play phrases in sequence */
+    private boolean blockGenerating;
+
 
     /**
      * constructor method
@@ -102,24 +104,60 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(CallStmt node) {
-        this.generating = true;
+        this.callGenerating = true;
         if (node.getExpr().getExprType().equals(SemanticTools.PHRASE)) {
             node.getExpr().accept(this);
         } else {
             this.variables.get(((ConstVarExpr)node.getExpr()).getName()).accept(this);
         }
+        callGenerating = false;
         return null;
     }
 
 
     @Override
     public Object visit(BlockStmt node) {
-        throw new RuntimeException("Currently unimplemented");
+        this.blockGenerating = true;
+        List<PhraseExpr> phrases = new ArrayList<>();
+        List<Integer> sleepTimes = new ArrayList<>();
+        int maxMeasures = 0;
+
+        // collect the phrases
+        for (Iterator it = node.getExprList().iterator(); it.hasNext(); ) {
+            Expr temp = (Expr) it.next();
+            if (temp.getExprType().equals(SemanticTools.VAR)) {
+                PhraseExpr e = variables.get(((ConstVarExpr) temp).getName());
+                phrases.add(e);
+                maxMeasures = Math.max(maxMeasures, e.getMeasureList().getSize());
+            } else {
+                phrases.add((PhraseExpr) temp);
+                maxMeasures = Math.max(maxMeasures, ((PhraseExpr)temp).getMeasureList().getSize());
+            }
+        }
+
+        // initialize measure list
+        List<List<Measure>> measures = new ArrayList<>();
+        for (int i = 0; i < maxMeasures; i++) {
+            measures.add(new ArrayList<>());
+        }
+
+        // group overlayed measures with each other
+        for (PhraseExpr phrase : phrases) {
+            int index = 0;
+            for (Iterator it = phrase.getMeasureList().iterator(); it.hasNext(); ) {
+                measures.get(index).add(((Measure) it.next()));
+                index++;
+            }
+        }
+
+
+        this.blockGenerating = false;
+        return null;
     }
 
     @Override
     public Object visit(PhraseExpr node) {
-        if (generating) { // if in call stmt
+        if (callGenerating) { // if in call stmt
 
             // prep instrument parse
             String instr = ((ConstStringExpr)node.getInstrument())
@@ -155,7 +193,7 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     public Object visit(Measure node) {
         mipsSupport.genLoadImm(
                 mipsSupport.getArg1Reg(),
-                SemanticTools.BPM/node.getSoundList().getSize()
+                SemanticTools.getMeasureNoteLength(node.getSoundList().getSize())
         );
 
         node.getSoundList().iterator().forEachRemaining(s -> {

@@ -38,7 +38,7 @@ public class TypeVisitor extends MusicVisitor {
     @Override
     public Object visit(Field node) {
         super.visit(node);
-        if (node.getInit().getExprType() != SemanticTools.PHRASE) {
+        if (!node.getInit().getExprType().equals(SemanticTools.PHRASE)) {
             errorHandler.register(
                     errorHandler.SEMANT_ERROR,
                     root.getScore().getFilename(),
@@ -228,6 +228,12 @@ public class TypeVisitor extends MusicVisitor {
             } else {
                 node.setOctave(0);
             }
+        }
+
+        // set instrument and volume attributes when no errors have occured
+        if (errorHandler.getErrorList().size() == 0) {
+            node.setInstrument(((ConstStringExpr) currentPhraseExpr.getInstrument()).getConstant());
+            node.setVolume(((ConstIntExpr) currentPhraseExpr.getVolume()).getIntConstant());
         }
         return null;
     }

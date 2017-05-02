@@ -41,7 +41,12 @@ public class Note extends Sound {
     protected String name;
     protected String modifier;
     protected Expr octaveExpr;
+
+    /** specific play attributes */
     protected int octave;
+    /** for block playing */
+    protected String instrument;
+    protected int volume;
 
     /**
      * Note constructor
@@ -75,6 +80,22 @@ public class Note extends Sound {
     }
 
     public int getOctave() { return this.octave; }
+
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
+    }
+
+    public String getInstrument() {
+        return instrument;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
 
     public Expr getOctaveExpr(){
         return this.octaveExpr;

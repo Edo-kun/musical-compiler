@@ -96,6 +96,11 @@ public class SemanticTools {
         return false;
     }
 
+    public static int getMeasureNoteLength(int size) {
+        return SemanticTools.BPM / size;
+    }
+
+
     /**
      * Generates a string from the input file
      * @param filename the file to be read
