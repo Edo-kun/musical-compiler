@@ -179,7 +179,7 @@ public abstract class MusicVisitor {
     /**
      * Visit a block statement node
      *
-     * @param node the blcok statement node
+     * @param node the block statement node
      * @return result of the visit
      */
     public Object visit(BlockStmt node) {

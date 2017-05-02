@@ -102,7 +102,7 @@ public class TypeVisitor extends MusicVisitor {
                     );
                 }
             }
-        }
+        } else {node.setInstrument(new ConstStringExpr(node.getLineNum(), "piano"));}
         if (node.getOctaveModifier() != null) {
             node.getOctaveModifier().accept(this);
             if (!node.getOctaveModifier().getExprType().equals(SemanticTools.INT)) {
@@ -123,7 +123,7 @@ public class TypeVisitor extends MusicVisitor {
                     );
                 }
             }
-        }
+        } else {node.setOctaveModifier(new ConstIntExpr(node.getLineNum(), "0"));}
         if (node.getVolume() != null) {
             node.getVolume().accept(this);
             if (!node.getVolume().getExprType().equals(SemanticTools.INT)) {
@@ -144,7 +144,7 @@ public class TypeVisitor extends MusicVisitor {
                     );
                 }
             }
-        }
+        } else {node.setVolume(new ConstIntExpr(node.getLineNum(), "127"));}
         node.getMeasureList().accept(this);
         return super.visit(node);
     }
@@ -178,6 +178,22 @@ public class TypeVisitor extends MusicVisitor {
                 );
             }
         }
+        return null;
+    }
+
+    @Override
+    public Object visit(Chord node) {
+        super.visit(node);
+        node.getSoundList().forEach(s -> {
+            if (s instanceof Chord) {
+                errorHandler.register(
+                        errorHandler.SEMANT_ERROR,
+                        root.getScore().getFilename(),
+                        node.getLineNum(),
+                        "Chords can only hold notes"
+                );
+            }
+        });
         return null;
     }
 

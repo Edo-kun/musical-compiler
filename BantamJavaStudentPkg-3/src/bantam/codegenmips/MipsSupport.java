@@ -64,6 +64,14 @@ public class MipsSupport {
      */
     public final int SYSCALL_SBRK = 6;
 
+
+    /** midi syscalls */
+    public final int SYSCALL_MIDI = 31;
+
+    public final int SYSCALL_SLEEP = 32;
+
+    public final int SYSCALL_MIDIS = 33;
+
     /**
      * MIPS register set
      */
@@ -997,6 +1005,15 @@ public class MipsSupport {
         }
         else if (syscallId == SYSCALL_SBRK) {
             out.println("\tli $v0 9");
+        }
+        else if (syscallId == SYSCALL_MIDI) {
+            out.println("\tli $v0 31");
+        }
+        else if (syscallId == SYSCALL_SLEEP) {
+            out.println("\tli $v0 32");
+        }
+        else if (syscallId == SYSCALL_MIDIS) {
+            out.println("\tli $v0 33");
         }
         else {
             throw new RuntimeException("bad syscall identifier");

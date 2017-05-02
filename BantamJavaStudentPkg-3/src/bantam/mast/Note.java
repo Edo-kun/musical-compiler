@@ -74,6 +74,8 @@ public class Note extends Sound {
         this.octave = octave;
     }
 
+    public int getOctave() { return this.octave; }
+
     public Expr getOctaveExpr(){
         return this.octaveExpr;
     }

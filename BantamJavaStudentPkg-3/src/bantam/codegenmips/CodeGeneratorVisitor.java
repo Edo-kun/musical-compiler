@@ -45,6 +45,8 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     /** flag to generate code in an expression */
     private boolean generating;
 
+    private String parent;
+
     /**
      * constructor method
      * @param root the root node of the program
@@ -117,10 +119,12 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(PhraseExpr node) {
-        if (generating) {
+        if (generating) { // if in call stmt
 
             // prep instrument parse
-            String instr = ((ConstStringExpr)node.getInstrument()).getConstant();
+            String instr = ((ConstStringExpr)node.getInstrument())
+                    .getConstant().toLowerCase();
+            instr = instr.substring(1, instr.length()-1);
             String baseInstr;
             int instrMod;
             if (Character.isDigit(instr.charAt(instr.length()-1))) {
@@ -149,17 +153,44 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(Measure node) {
-        return super.visit(node);
+        mipsSupport.genLoadImm(
+                mipsSupport.getArg1Reg(),
+                SemanticTools.BPM/node.getSoundList().getSize()
+        );
+        List<Sound> list = new ArrayList<>();
+        node.getSoundList().iterator().forEachRemaining(s -> {
+            s.accept(this);
+            if (s instanceof Note) {
+                mipsSupport.genSyscall(33);
+            }
+        });
+        return null;
     }
-
 
     @Override
     public Object visit(Chord node) {
-        return super.visit(node);
+        node.getSoundList().iterator().forEachRemaining(s -> {
+            s.accept(this);
+            mipsSupport.genSyscall(31);
+        });
+        return null;
+    }
+
+    @Override
+    public Object visit(SoundList node) {
+        Sound sound;
+        for (Iterator it = node.iterator(); it.hasNext(); ) {
+            sound = ((Sound) it.next());
+            sound.accept(this);
+        }
+        return null;
     }
 
     @Override
     public Object visit(Note node) {
-        return super.visit(node);
+        mipsSupport.genLoadImm(
+                mipsSupport.getArg0Reg(),
+                SemanticTools.NOTES.get(node.getName().toLowerCase()) + node.getOctave()*12);
+        return null;
     }
 }

@@ -1,8 +1,10 @@
 // Testing code
 score "The C scale" {
-    $x = oct 0 <cdef><g a|1 b|1 c|1>;
+    $x = instr "piano5" oct 0 <cdefg a|1 b|1 c|1>;
+    $y = oct 1 <defg a|2 b|2 c|2>;
 
     loop 3 {
         $x;
+        $y;
     }
 }

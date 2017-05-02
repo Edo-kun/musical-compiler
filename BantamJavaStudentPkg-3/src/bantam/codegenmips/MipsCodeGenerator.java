@@ -121,15 +121,18 @@ public class MipsCodeGenerator {
         generateHeader();
 
         //1 - Start the data section
-        assemblySupport.genDataStart();
+        out.println("\t.data");
+        assemblySupport.genGlobal("gc_flag");
 
         //2 - Generate data for the garbage collector
         generateGCData();
 
-        //7 - Start the Text section
+        //3 - Start the Text section
         out.println();
-        assemblySupport.genTextStart();
+        out.println("\t.text");
 
+        //4 - generate music
+        generateMusic();
     }
 
     //Below are the Helper Functions for the generate() method

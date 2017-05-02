@@ -15,8 +15,7 @@ package bantam.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,23 +26,62 @@ import java.util.stream.Stream;
  * common tasks throughout our visitors
  */
 public class SemanticTools {
-    public static List<String> instruments = Stream.of(
+    public static final List<String> instruments = Stream.of(
             "piano", "chromatic_percussion", "organ", "guitar", "bass", "strings", "ensemble", "brass",
             "reed", "pipe", "synth_lead", "synth_pad", "synth_effects", "ethnic", "percussion", "sound_effects"
             ).collect(Collectors.toList());
-    public static String VAR = "field_variable";
-    public static String STRING = "string";
-    public static String INT = "int";
-    public static String PHRASE = "phrase";
-    public static int MAX_OCT = 4;
-    public static int MIN_OCT = -4;
+    public static final String VAR = "field_variable";
+    public static final String STRING = "string";
+    public static final String INT = "int";
+    public static final String PHRASE = "phrase";
+    public static final int MAX_OCT = 4;
+    public static final int MIN_OCT = -4;
+    public static final int BPM = 3700;
+    public static final Map<String, Integer> NOTES;
+    static {
+        Map<String, Integer> map = new HashMap<>();
+        int midi = 55;
+        for (char letter : "ab".toCharArray()) {
+            map.put(String.valueOf(letter) + "-", midi);
+            midi++;
+            map.put(String.valueOf(letter), midi);
+            midi++;
+            map.put(String.valueOf(letter) + "+", midi);
+        }
+        midi--;
+        map.put("c-", midi);
+        midi++;
+        map.put("c", midi);
+        midi++;
+        map.put("c+", midi);
+        for (char letter : "de".toCharArray()) {
+            map.put(String.valueOf(letter) + "-", midi);
+            midi++;
+            map.put(String.valueOf(letter), midi);
+            midi++;
+            map.put(String.valueOf(letter) + "+", midi);
+        }
+        midi--;
+        map.put("f-", midi);
+        midi++;
+        map.put("f", midi);
+        midi++;
+        map.put("f+", midi);
+        map.put("g-", midi);
+        midi++;
+        map.put("g", midi);
+        midi++;
+        map.put("g+", midi);
+        NOTES = Collections.unmodifiableMap(map);
+    }
 
     /**
      * Returns true if the input string is a valid instrument
-     * @param word the input in question
+     * @param w the input in question
      * @return boolean
      */
-    public static boolean isValidInstrument(String word) {
+    public static boolean isValidInstrument(String w) {
+        String word = w.substring(1, w.length()-1);
         for ( String p : instruments) {
             for (int i = 0; i < 8; i++) {
                 if (i == 0 && p.equalsIgnoreCase(word)) {
