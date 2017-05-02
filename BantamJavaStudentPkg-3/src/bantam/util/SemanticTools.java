@@ -36,7 +36,7 @@ public class SemanticTools {
     public static final String PHRASE = "phrase";
     public static final int MAX_OCT = 4;
     public static final int MIN_OCT = -4;
-    public static final int BPM = 3700;
+    public static final int BPM = 4000;
     public static final Map<String, Integer> NOTES;
     static {
         Map<String, Integer> map = new HashMap<>();

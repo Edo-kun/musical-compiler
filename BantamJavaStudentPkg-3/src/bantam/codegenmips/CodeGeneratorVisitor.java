@@ -157,12 +157,17 @@ public class CodeGeneratorVisitor extends MusicVisitor{
                 mipsSupport.getArg1Reg(),
                 SemanticTools.BPM/node.getSoundList().getSize()
         );
-        List<Sound> list = new ArrayList<>();
+
         node.getSoundList().iterator().forEachRemaining(s -> {
             s.accept(this);
             if (s instanceof Note) {
-                mipsSupport.genSyscall(33);
+                mipsSupport.genSyscall(31);
             }
+            mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
+            mipsSupport.genLoadImm(mipsSupport.getArg0Reg(), SemanticTools.BPM/node.getSoundList().getSize() -100);
+
+            mipsSupport.genSyscall(32);
+            mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
         });
         return null;
     }
