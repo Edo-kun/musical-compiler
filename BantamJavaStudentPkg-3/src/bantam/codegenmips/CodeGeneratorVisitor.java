@@ -10,13 +10,15 @@
 
 package bantam.codegenmips;
 
-import bantam.ast.*;
-import bantam.util.SymbolTable;
+import bantam.mast.*;
+import bantam.util.SemanticTools;
 import bantam.visitor.MusicVisitor;
 
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
+import java.lang.*;
 
 /**
  * Visitor for creating the .text code of mips
@@ -32,57 +34,132 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     private Program root;
 
     /** the current class being traversed */
-    private Class_ currClass;
+    private PhraseExpr currPhraseExpr;
 
-    /** Map containing the labels associated with each class */
-    private Map<String, String> classNames;
+    /** Variable to Phrase expr matching */
+    private Map<String, PhraseExpr> variables;
 
-    /** Map which connects String constants to their label */
-    private Map<String, String> stringLabels;
-
-    /** the current offset being used for the fields */
+    /** Manage looping expressions */
     private int currOffset;
 
-    /** a flag representing whether or not we are generating inits this runthrough */
-    private boolean generatingInits;
-
-    /** a map associating each class to a Symbol Table */
-    private Map<String, SymbolTable> classSymbolTables;
-
-    /** a String representing the exit label for the current loop being traversed */
-    private String loopExit;
-
-    /** a counter representing the number of parameters currently denoted */
-    private int numParams;
-
-    /** builtin classes */
-    private String[] builtins = {"Object", "String", "TextIO", "Sys"};
-
-    /** current method end label */
-    private String currentMethodEnd;
-
-    private final String NULL = "null";
+    /** flag to generate code in an expression */
+    private boolean generating;
 
     /**
      * constructor method
      * @param root the root node of the program
      * @param mipsSupport the mipsSupport helper class
-     * @param classNames a map of classnames and labels
-     * @param stringLabels
      */
     public CodeGeneratorVisitor(
             Program root,
             MipsSupport mipsSupport,
-            PrintStream out,
-            Map<String, String> classNames,
-            Map<String, String> stringLabels) {
+            PrintStream out) {
         this.mipsSupport = mipsSupport;
         this.out = out;
         this.root = root;
-        this.classNames = classNames;
-        this.stringLabels = stringLabels;
-        this.currOffset = -12;
-        this.classSymbolTables = new HashMap<>();
+        this.variables = new HashMap<>();
+        this.currOffset = 0;
     }
 
+    public void generate() {
+        this.root.accept(this);
+    }
+
+    @Override
+    public Object visit(Field node) {
+        this.variables.put(node.getName(), (PhraseExpr) node.getInit());
+        return null;
+    }
+
+    @Override
+    public Object visit(LoopStmt node) {
+        String loopLabel = mipsSupport.getLabel();
+        String endLabel = mipsSupport.getLabel();
+
+        mipsSupport.genLoadImm(mipsSupport.getS0Reg(), ((ConstIntExpr)node.getExpr()).getIntConstant());
+        this.currOffset -= 4;
+        mipsSupport.genLabel(loopLabel);
+
+        // manage s0
+        mipsSupport.genCondBeq(mipsSupport.getS0Reg(), mipsSupport.getZeroReg(), endLabel);
+        mipsSupport.genSub(mipsSupport.getS0Reg(), mipsSupport.getS0Reg(), 1);
+
+        // store s0 in case loop in a loop
+        mipsSupport.genStoreWord(mipsSupport.getS0Reg(), currOffset, mipsSupport.getSPReg());
+
+        super.visit(node);
+
+        // load s0 from stack
+        mipsSupport.genLoadWord(mipsSupport.getS0Reg(), currOffset, mipsSupport.getSPReg());
+
+        mipsSupport.genUncondBr(loopLabel);
+        mipsSupport.genLabel(endLabel);
+        this.currOffset += 4;
+        return null;
+    }
+
+    @Override
+    public Object visit(CallStmt node) {
+        this.generating = true;
+        if (node.getExpr().getExprType().equals(SemanticTools.PHRASE)) {
+            node.getExpr().accept(this);
+        } else {
+            this.variables.get(((ConstVarExpr)node.getExpr()).getName()).accept(this);
+        }
+        return null;
+    }
+
+
+    @Override
+    public Object visit(BlockStmt node) {
+        throw new RuntimeException("Currently unimplemented");
+    }
+
+    @Override
+    public Object visit(PhraseExpr node) {
+        if (generating) {
+
+            // prep instrument parse
+            String instr = ((ConstStringExpr)node.getInstrument()).getConstant();
+            String baseInstr;
+            int instrMod;
+            if (Character.isDigit(instr.charAt(instr.length()-1))) {
+                baseInstr = instr.substring(0, instr.length()-1);
+                instrMod = instr.charAt(instr.length()-1);
+            } else {
+                baseInstr = instr;
+                instrMod = 0;
+            }
+
+            mipsSupport.genLoadImm(
+                    mipsSupport.getArg2Reg(),
+                    (SemanticTools.instruments.indexOf(baseInstr) * 8) + instrMod
+            );
+
+            // prep volume
+            mipsSupport.genLoadImm(
+                    "$a3",
+                    ((ConstIntExpr)node.getVolume()).getIntConstant()
+            );
+
+            super.visit(node);
+        }
+        return null;
+    }
+
+    @Override
+    public Object visit(Measure node) {
+        return super.visit(node);
+    }
+
+
+    @Override
+    public Object visit(Chord node) {
+        return super.visit(node);
+    }
+
+    @Override
+    public Object visit(Note node) {
+        return super.visit(node);
+    }
 }

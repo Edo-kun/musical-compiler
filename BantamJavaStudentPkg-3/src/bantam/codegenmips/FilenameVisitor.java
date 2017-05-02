@@ -34,7 +34,7 @@ public class FilenameVisitor extends bantam.visitor.MusicVisitor{
      * @return
      */
     public String getMainFilename(Program root) {
-        this.filename = "";
+        this.filename = root.getScore().getFilename();
 
         return this.filename;
     }

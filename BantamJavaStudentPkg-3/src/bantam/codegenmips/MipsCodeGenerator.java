@@ -36,7 +36,6 @@
 
 package bantam.codegenmips;
 
-import bantam.mast.MeasureList;
 import bantam.mast.PhraseExpr;
 import bantam.mast.Program;
 
@@ -49,10 +48,8 @@ import java.io.IOException;
 
 /**
  * The <tt>MipsCodeGenerator</tt> class generates mips assembly code
- * targeted for the SPIM emulator.  Note: this code will only run
- * under SPIM.
+ * targeted for the MARS simulator
  * <p/>
- * This class is incomplete and will need to be implemented by the student.
  */
 public class MipsCodeGenerator {
     private Program root;
@@ -112,13 +109,8 @@ public class MipsCodeGenerator {
      * In particular, will need to do the following:
      * 1 - start the data section
      * 2 - generate data for the garbage collector
-     * 3 - generate string constants
-     * 4 - generate class name table
-     * 5 - generate object templates
-     * 6 - generate dispatch tables
-     * 7 - start the text section
-     * 8 - generate initialization subroutines
-     * 9 - generate user-defined methods
+     * 3 - start the text section
+     * 4 - generate user-defined phrases
      * See the lab manual for the details of each of these steps.
      */
     public void generate() {
@@ -172,6 +164,12 @@ public class MipsCodeGenerator {
         assemblySupport.genLabel("gc_flag");
         assemblySupport.genWord("0");
     }
+
+    private void generateMusic() {
+        CodeGeneratorVisitor codeGeneratorVisitor = new CodeGeneratorVisitor(root, assemblySupport, out);
+        codeGeneratorVisitor.generate();
+    }
+
 
 
 
