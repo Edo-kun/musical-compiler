@@ -65,6 +65,8 @@ public class CodeGeneratorVisitor extends MusicVisitor{
         this.out = out;
         this.root = root;
         this.variables = new HashMap<>();
+        this.blockGenerating = false;
+        this.callGenerating = false;
         this.currOffset = 0;
     }
 
@@ -159,36 +161,45 @@ public class CodeGeneratorVisitor extends MusicVisitor{
         List<Integer> indices = new ArrayList<>();
         // loop through every list of measures
 
-        int maxIterations = 0;
+        int numNotes = 0;
         for (List<Measure> measureList : measures ){
             sleepTimes.clear();
             indices.clear();
+            this.currNoteIndex = 0;
             // initialize first notes and sleepTimes
             for (Measure measure : measureList) {
-                sleepTimes.add(SemanticTools.getMeasureNoteLength(measure.getSoundList().getSize()));
-                maxIterations += Math.max(measure.getSoundList().getSize(), 0);  //7
+                // initialize sleep times to 0 or -1 if measure list is empty
+                sleepTimes.add(Math.min(SemanticTools.getMeasureNoteLength(measure.getSoundList().getSize()), 0));
+                numNotes += measure.getSoundList().getSize();  //7
                 indices.add(0);
-                this.currNoteIndex = 0;
-                System.out.println(sleepTimes);
             }
 
-            // pause
-            mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
-            mipsSupport.genLoadImm(
-                    mipsSupport.getArg0Reg(),
-                    Collections.min(sleepTimes) + SemanticTools.SLEEP_MOD
-            );
-
-            mipsSupport.genSyscall(32);
-            mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
-
-
             // Iterate through rest of the notes
-            for (int i = 1; i < maxIterations; i++) {
+            for (int i = 0; i < numNotes; i++) {
+                int keyIndex = sleepTimes.indexOf(0);
+                // visit the note
+                this.currNoteIndex = indices.get(keyIndex);
+                measureList.get(keyIndex).accept(this);
+                indices.set(keyIndex, indices.get(keyIndex)+1);
 
-                for (Measure measure : measureList) {
+                sleepTimes.set(keyIndex, SemanticTools.getMeasureNoteLength(measureList.get(keyIndex).getSoundList().getSize()));
+                int occurrences = Collections.frequency(sleepTimes, 0);
+                if (occurrences == 0) {
+                    int sleepDuration = getMinPositiveNum(sleepTimes);
+                    // pause
+                    mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
+                    // should only need this since overriding a0 anyways
+                    mipsSupport.genLoadImm(
+                            mipsSupport.getArg0Reg(),
+                            sleepDuration + SemanticTools.SLEEP_MOD
+                    );
 
+                    mipsSupport.genSyscall(32);
+                    mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
 
+                    for (int j = 0; j < measureList.size(); j++) {
+                        sleepTimes.set(j, sleepTimes.get(j)-sleepDuration);
+                    }
                 }
             }
 
@@ -197,6 +208,21 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
         this.blockGenerating = false;
         return null;
+    }
+
+    /**
+     * special case minimum to get only min positive of a list
+     * @param list the list in question
+     * @return
+     */
+    private int getMinPositiveNum(List<Integer> list) {
+        int min = Integer.MAX_VALUE;
+        for (Integer i: list) {
+            if (i.intValue() >= 0) {
+                min = Math.min(i, min);
+            }
+        }
+        return min;
     }
 
     @Override
@@ -225,6 +251,10 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(Measure node) {
+        mipsSupport.genLoadImm(
+                mipsSupport.getArg1Reg(),
+                SemanticTools.getMeasureNoteLength(node.getSoundList().getSize())
+        );
         if (blockGenerating) {
             int i = 0;
             for (ASTNode astNode : node.getSoundList()) {
@@ -237,11 +267,6 @@ public class CodeGeneratorVisitor extends MusicVisitor{
                 i++;
             }
         } else { // regular generation
-            mipsSupport.genLoadImm(
-                    mipsSupport.getArg1Reg(),
-                    SemanticTools.getMeasureNoteLength(node.getSoundList().getSize())
-            );
-
             node.getSoundList().iterator().forEachRemaining(s -> {
                 s.accept(this);
                 if (s instanceof Note && SemanticTools.NOTES.get(((Note)s).getName().toLowerCase()) != -1) {
@@ -285,7 +310,7 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     @Override
     public Object visit(Note node) {
         // skip if rest note
-        if (SemanticTools.NOTES.get(node.getName().toLowerCase()) == -1) {
+        if (!(SemanticTools.NOTES.get(node.getName().toLowerCase()) == -1)) {
             mipsSupport.genLoadImm(
                     mipsSupport.getArg0Reg(),
                     SemanticTools.NOTES.get(node.getName().toLowerCase()) + node.getOctave()*12);

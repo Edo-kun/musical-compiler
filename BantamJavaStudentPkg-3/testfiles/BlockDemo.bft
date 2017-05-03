@@ -1,0 +1,10 @@
+//
+score "Layered C scale" {
+    $x = instr "piano5" oct 0 <cdefg a|1 b|1 c|1><d|1 e|1 f|1 g|1 a|2 b|2 c|2 :>;
+    $y = instr "piano5" oct -1 <ccdefg a|0 b|0 c|0><d|0 e|0 f|0 g|0 a|1 b|1 c|1 :>;
+    $z = <c>;
+
+
+    [$x,$y];
+
+}

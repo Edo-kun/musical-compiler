@@ -120,6 +120,7 @@ public class SemanticTools {
             baseInstr = instr;
             instrMod = 0;
         }
+
         return (SemanticTools.instruments.indexOf(baseInstr) * 8) + instrMod;
     }
 
