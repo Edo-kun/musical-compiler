@@ -245,6 +245,7 @@ public class TypeVisitor extends MusicVisitor {
             node.setInstrument(((ConstStringExpr) currentPhraseExpr.getInstrument()).getConstant());
             node.setVolume(((ConstIntExpr) currentPhraseExpr.getVolume()).getIntConstant());
         }
+
         return null;
     }
 

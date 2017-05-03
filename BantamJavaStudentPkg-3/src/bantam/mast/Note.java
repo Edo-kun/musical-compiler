@@ -58,14 +58,24 @@ public class Note extends Sound {
     public Note(int lineNum, String name, String modifier) {
         super(lineNum, new SoundList(lineNum));
         this.name = name;
-        this.modifier = modifier;
+
+        if (modifier != null) {
+            this.modifier = modifier;
+        } else {
+            this.modifier = "";
+        }
     }
 
     public Note(int lineNum, String name, String modifier, Expr expr) {
         super(lineNum, new SoundList(lineNum));
         this.name = name;
-        this.modifier = modifier;
         this.octaveExpr = expr;
+
+        if (modifier != null) {
+            this.modifier = modifier;
+        } else {
+            this.modifier = "";
+        }
     }
 
     /**
@@ -73,6 +83,10 @@ public class Note extends Sound {
      */
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setOctave(int octave) {

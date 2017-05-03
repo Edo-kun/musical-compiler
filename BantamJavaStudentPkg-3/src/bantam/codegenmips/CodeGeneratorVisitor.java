@@ -4,8 +4,8 @@
  * @author Alex Rinker
  * @author Vivek Sah
  * Class: CS461
- * Project: 4B
- * Date: April 5 2017
+ * Project: 6
+ * Date: April 30 2017
  */
 
 package bantam.codegenmips;
@@ -33,24 +33,23 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     /** root of the class tree */
     private Program root;
 
-    /** the current class being traversed */
-    private PhraseExpr currPhraseExpr;
+    /** Variable to Phrase expr matching - block stmts */
+    private Map<String, PhraseExpr> variablesToPhrase;
 
-    /** Variable to Phrase expr matching */
-    private Map<String, PhraseExpr> variables;
+    /** Variable to label matching - calls stmts */
+    private Map<String, String> variablesToLabel;
 
     /** Manage looping expressions */
     private int currOffset;
 
-    /** flag to generate code in an expression */
+    /** flag to generate code in a field */
     private boolean callGenerating;
 
     /** flag to play phrases in sequence */
     private boolean blockGenerating;
+
     /** keeps track of notes when block generating */
     private int currNoteIndex;
-
-
 
     /**
      * constructor method
@@ -64,19 +63,39 @@ public class CodeGeneratorVisitor extends MusicVisitor{
         this.mipsSupport = mipsSupport;
         this.out = out;
         this.root = root;
-        this.variables = new HashMap<>();
+        this.variablesToPhrase = new HashMap<>();
+        this.variablesToLabel = new HashMap<>();
         this.blockGenerating = false;
         this.callGenerating = false;
         this.currOffset = 0;
     }
 
     public void generate() {
+        // wait half a second...
+        mipsSupport.genLoadImm(
+                mipsSupport.getArg0Reg(),
+                500
+        );
+
+        mipsSupport.genSyscall(32);
+
+        // play
         this.root.accept(this);
     }
 
     @Override
     public Object visit(Field node) {
-        this.variables.put(node.getName(), (PhraseExpr) node.getInit());
+        this.variablesToPhrase.put(node.getName(), (PhraseExpr) node.getInit());
+        String fieldLabel = mipsSupport.getLabel();
+        this.variablesToLabel.put(node.getName(), fieldLabel);
+        String after = mipsSupport.getLabel();
+        mipsSupport.genUncondBr(after);
+        mipsSupport.genLabel(fieldLabel);
+
+        node.getInit().accept(this);
+
+        mipsSupport.genRetn();
+        mipsSupport.genLabel(after);
         return null;
     }
 
@@ -109,13 +128,11 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(CallStmt node) {
-        this.callGenerating = true;
         if (node.getExpr().getExprType().equals(SemanticTools.PHRASE)) {
             node.getExpr().accept(this);
         } else {
-            this.variables.get(((ConstVarExpr)node.getExpr()).getName()).accept(this);
+            mipsSupport.genDirCall(variablesToLabel.get(((ConstVarExpr)node.getExpr()).getName()));
         }
-        callGenerating = false;
         return null;
     }
 
@@ -131,7 +148,7 @@ public class CodeGeneratorVisitor extends MusicVisitor{
         for (Iterator it = node.getExprList().iterator(); it.hasNext(); ) {
             Expr temp = (Expr) it.next();
             if (temp.getExprType().equals(SemanticTools.VAR)) {
-                PhraseExpr e = variables.get(((ConstVarExpr) temp).getName());
+                PhraseExpr e = variablesToPhrase.get(((ConstVarExpr) temp).getName());
                 phrases.add(e);
                 maxMeasures = Math.max(maxMeasures, e.getMeasureList().getSize());
             } else {
@@ -187,7 +204,7 @@ public class CodeGeneratorVisitor extends MusicVisitor{
                 if (occurrences == 0) {
                     int sleepDuration = getMinPositiveNum(sleepTimes);
                     // pause
-                    mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
+                    //mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
                     // should only need this since overriding a0 anyways
                     mipsSupport.genLoadImm(
                             mipsSupport.getArg0Reg(),
@@ -195,8 +212,7 @@ public class CodeGeneratorVisitor extends MusicVisitor{
                     );
 
                     mipsSupport.genSyscall(32);
-                    mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
-
+                    //mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
                     for (int j = 0; j < measureList.size(); j++) {
                         sleepTimes.set(j, sleepTimes.get(j)-sleepDuration);
                     }
@@ -227,25 +243,23 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(PhraseExpr node) {
-        if (callGenerating) { // if in call stmt
+        // prep instrument parse
+        String instr = ((ConstStringExpr)node.getInstrument())
+                .getConstant().toLowerCase();
 
-            // prep instrument parse
-            String instr = ((ConstStringExpr)node.getInstrument())
-                    .getConstant().toLowerCase();
+        mipsSupport.genLoadImm(
+                mipsSupport.getArg2Reg(),
+                SemanticTools.getInstrumentVal(instr)
+        );
 
-            mipsSupport.genLoadImm(
-                    mipsSupport.getArg2Reg(),
-                    SemanticTools.getInstrumentVal(instr)
-            );
+        // prep volume
+        mipsSupport.genLoadImm(
+                "$a3",
+                ((ConstIntExpr)node.getVolume()).getIntConstant()
+        );
 
-            // prep volume
-            mipsSupport.genLoadImm(
-                    "$a3",
-                    ((ConstIntExpr)node.getVolume()).getIntConstant()
-            );
+        super.visit(node);
 
-            super.visit(node);
-        }
         return null;
     }
 
@@ -255,12 +269,12 @@ public class CodeGeneratorVisitor extends MusicVisitor{
                 mipsSupport.getArg1Reg(),
                 SemanticTools.getMeasureNoteLength(node.getSoundList().getSize())
         );
-        if (blockGenerating) {
+        if (blockGenerating) { // generating overlaying measures
             int i = 0;
             for (ASTNode astNode : node.getSoundList()) {
                 if (i == this.currNoteIndex) {
                     astNode.accept(this);
-                    if (astNode instanceof Note && SemanticTools.NOTES.get(((Note)astNode).getName().toLowerCase()) != -1) {
+                    if (astNode instanceof Note && SemanticTools.NOTES.get(((Note) astNode).getName().toLowerCase() + ((Note) astNode).getModifier()) != -1) {
                         mipsSupport.genSyscall(31);
                     }
                 }
@@ -269,11 +283,11 @@ public class CodeGeneratorVisitor extends MusicVisitor{
         } else { // regular generation
             node.getSoundList().iterator().forEachRemaining(s -> {
                 s.accept(this);
-                if (s instanceof Note && SemanticTools.NOTES.get(((Note)s).getName().toLowerCase()) != -1) {
+                if (s instanceof Note && SemanticTools.NOTES.get(((Note)s).getName().toLowerCase() + ((Note) s).getModifier()) != -1) {
                     mipsSupport.genSyscall(31);
                 }
                 // store a0 in s1 to hold for for sleep syscall
-                mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
+                //mipsSupport.genMove(mipsSupport.getS1Reg(), mipsSupport.getArg0Reg());
                 mipsSupport.genLoadImm(
                         mipsSupport.getArg0Reg(),
                         SemanticTools.getMeasureNoteLength(
@@ -281,7 +295,7 @@ public class CodeGeneratorVisitor extends MusicVisitor{
                 );
 
                 mipsSupport.genSyscall(32);
-                mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
+                //mipsSupport.genMove(mipsSupport.getArg0Reg(), mipsSupport.getS1Reg());
             });
 
         }
@@ -310,10 +324,11 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     @Override
     public Object visit(Note node) {
         // skip if rest note
-        if (!(SemanticTools.NOTES.get(node.getName().toLowerCase()) == -1)) {
+        if (!(SemanticTools.NOTES.get(node.getName().toLowerCase() + node.getModifier()) == -1)) {
+
             mipsSupport.genLoadImm(
                     mipsSupport.getArg0Reg(),
-                    SemanticTools.NOTES.get(node.getName().toLowerCase()) + node.getOctave()*12);
+                    SemanticTools.NOTES.get(node.getName().toLowerCase() + node.getModifier()) + node.getOctave()*12);
 
             // overlayed notes require their phrases attributes
             if (blockGenerating) {

@@ -1,0 +1,7 @@
+score "Sweet Child of Mine" {
+    $pia = instr "guitar4" oct 1 <c+ c+|2 g+ g- f+|2 g+ f|2 g+>;
+
+    loop 5 {
+        $pia;
+    }
+}

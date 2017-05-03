@@ -81,8 +81,7 @@ public class MipsSupport {
                     "$s0", "$s1", "$s2", "$s3", "$s4", "$s5", "$s6", "$s7",
                     "$k0", "$k1", "$gp", "$sp", "$fp", "$ra"};
 
-    /**
-     * The next label number - for use in generating unique labels
+    /**arg
      */
     private int labelNum = 0;
 
