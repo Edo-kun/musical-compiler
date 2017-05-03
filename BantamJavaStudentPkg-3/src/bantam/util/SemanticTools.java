@@ -34,6 +34,7 @@ public class SemanticTools {
     public static final String STRING = "string";
     public static final String INT = "int";
     public static final String PHRASE = "phrase";
+    public static final int SLEEP_MOD = -100;
     public static final int MAX_OCT = 4;
     public static final int MIN_OCT = -4;
     public static final int BPM = 4000;
@@ -72,6 +73,7 @@ public class SemanticTools {
         map.put("g", midi);
         midi++;
         map.put("g+", midi);
+        map.put(":", -1);
         NOTES = Collections.unmodifiableMap(map);
     }
 
@@ -96,7 +98,41 @@ public class SemanticTools {
         return false;
     }
 
+    /**
+     * Get instr int 0-127 based on string
+     * @param str the instrument
+     * @return
+     */
+    public static int getInstrumentVal(String str) {
+        // strip ""
+        String instr;
+        if (str.charAt(0) == '"') {
+            instr = str.substring(1, str.length() - 1);
+        } else {
+            instr = str;
+        }
+        String baseInstr;
+        int instrMod;
+        if (Character.isDigit(instr.charAt(instr.length()-1))) {
+            baseInstr = instr.substring(0, instr.length()-1);
+            instrMod = instr.charAt(instr.length()-1);
+        } else {
+            baseInstr = instr;
+            instrMod = 0;
+        }
+        return (SemanticTools.instruments.indexOf(baseInstr) * 8) + instrMod;
+    }
+
+    /**
+     * Get the sleep duration for each note
+     * return -1 if empty
+     * @param size length of the measure
+     * @return
+     */
     public static int getMeasureNoteLength(int size) {
+        if (size == 0) {
+            return  -1;
+        }
         return SemanticTools.BPM / size;
     }
 
