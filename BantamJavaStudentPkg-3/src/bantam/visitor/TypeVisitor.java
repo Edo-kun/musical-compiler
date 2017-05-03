@@ -192,7 +192,17 @@ public class TypeVisitor extends MusicVisitor {
                         node.getLineNum(),
                         "Chords can only hold notes"
                 );
+            } else {
+                if (((Note)s).getName().equals(":")) {
+                    errorHandler.register(
+                            errorHandler.SEMANT_ERROR,
+                            root.getScore().getFilename(),
+                            node.getLineNum(),
+                            "Rests cannot be in chords"
+                    );
+                }
             }
+
         });
         return null;
     }
