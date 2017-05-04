@@ -86,7 +86,7 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     @Override
     public Object visit(Score node) {
         if (node.getTicksPerMeasureExpr() != null) {
-            SemanticTools.BPM = ((ConstIntExpr) node.getTicksPerMeasureExpr()).getIntConstant();
+            SemanticTools.TPM = ((ConstIntExpr) node.getTicksPerMeasureExpr()).getIntConstant();
         }
         return super.visit(node);
     }

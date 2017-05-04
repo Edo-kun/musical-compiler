@@ -1,6 +1,6 @@
 /**
  * File: SemanticTools.java
- * This file was written in loving memory of our former
+ * This file was written in memory of our former
  * group member Victoria Chistolini who sadly did not
  * survive project 2.5. R.I.P.
  * @author Edward (osan) Zhou
@@ -22,22 +22,43 @@ import java.util.stream.Stream;
 
 /**
  * This class holds utility methods for use with the
- * semantic analyzer. These methods are meant to simplify
+ * semantic analyzer and Code generator
+ * . These methods are meant to simplify
  * common tasks throughout our visitors
  */
 public class SemanticTools {
+    /** list of midi instruments index*/
     public static final List<String> instruments = Stream.of(
-            "piano", "chromatic_percussion", "organ", "guitar", "bass", "strings", "ensemble", "brass",
-            "reed", "pipe", "synth_lead", "synth_pad", "synth_effects", "ethnic", "percussion", "sound_effects"
+            "piano", "chromatic_percussion", "organ", "guitar", "bass", "strings",
+            "ensemble", "brass", "reed", "pipe", "synth_lead", "synth_pad",
+            "synth_effects", "ethnic", "percussion", "sound_effects"
             ).collect(Collectors.toList());
+
+    /** the type for a field variable*/
     public static final String VAR = "field_variable";
+
+    /** the type for a string const expr */
     public static final String STRING = "string";
+
+    /** the type for an int const expr */
     public static final String INT = "int";
+
+    /** the type for a phrase expr */
     public static final String PHRASE = "phrase";
-    public static final int SLEEP_MOD = -100;
+
+    /** subtracts time to the wait duration to provide smoother note transition */
+    public static final int SLEEP_MOD = -50;
+
+    /** maximum octave modifier */
     public static final int MAX_OCT = 4;
+
+    /** minimum octave modifer */
     public static final int MIN_OCT = -4;
-    public static int BPM = 4000;
+
+    /** default ticks per measure */
+    public static int TPM = 4000;
+
+    /** map of a note string to its corresponding midi value */
     public static final Map<String, Integer> NOTES;
     static {
         Map<String, Integer> map = new HashMap<>();
@@ -134,7 +155,7 @@ public class SemanticTools {
         if (size == 0) {
             return  -1;
         }
-        return SemanticTools.BPM / size;
+        return SemanticTools.TPM / size;
     }
 
 

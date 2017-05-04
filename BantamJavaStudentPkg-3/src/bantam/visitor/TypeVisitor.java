@@ -1,3 +1,13 @@
+/**
+ * File: TypeVisitor.java
+ * @author Edward (the guy) Zhou
+ * @author Alex Rinker
+ * @author Vivek Sah
+ * Class: CS461
+ * Project: 6
+ * Date: April 30 2017
+ */
+
 package bantam.visitor;
 
 import bantam.mast.*;
@@ -12,12 +22,15 @@ import bantam.util.SemanticTools;
  * (3) loops are given a positive int to loop
  * (4) octaveExpr modifiers are within range
  * (5) instrument declarations are valid instruments
- * (6) volume is within 1-11
+ * (6) volume is within 1-127
  * (8) block stmts have valid expressions to match
  */
 public class TypeVisitor extends MusicVisitor {
+    /** the program root node */
     private Program root;
+    /** errorhandler to report semantic errors */
     private ErrorHandler errorHandler;
+    /** pointer to the current phrase which is being traversed */
     private PhraseExpr currentPhraseExpr;
 
     public TypeVisitor(Program program, ErrorHandler errorHandler) {
@@ -25,6 +38,7 @@ public class TypeVisitor extends MusicVisitor {
         this.errorHandler = errorHandler;
     }
 
+    /** check and annotate ast types */
     public void checkTypes() {
         this.root.accept(this);
     }
@@ -87,7 +101,7 @@ public class TypeVisitor extends MusicVisitor {
     /** Make sure:
      * instruments are valid strings
      * octave modifiers are legal
-     * volume is not turned up to 11 +1
+     * volume is not turned up to 11 :3
      * */
     @Override
     public Object visit(PhraseExpr node) {
@@ -103,7 +117,9 @@ public class TypeVisitor extends MusicVisitor {
                         "Instrument must be a String"
                         );
             } else {
-                if (!SemanticTools.isValidInstrument(((ConstStringExpr) node.getInstrument()).getConstant())) {
+                if (!SemanticTools.isValidInstrument(
+                        ((ConstStringExpr) node.getInstrument()).getConstant())
+                        ) {
                     errorHandler.register(
                             errorHandler.SEMANT_ERROR,
                             root.getScore().getFilename(),
@@ -112,7 +128,10 @@ public class TypeVisitor extends MusicVisitor {
                     );
                 }
             }
-        } else {node.setInstrument(new ConstStringExpr(node.getLineNum(), "piano"));}
+        } else {
+            // default value
+            node.setInstrument(new ConstStringExpr(node.getLineNum(), "piano"));
+        }
         if (node.getOctaveModifier() != null) {
             node.getOctaveModifier().accept(this);
             if (!node.getOctaveModifier().getExprType().equals(SemanticTools.INT)) {
@@ -123,17 +142,25 @@ public class TypeVisitor extends MusicVisitor {
                         "Octave modifiers must be of type " + SemanticTools.INT
                 );
             } else {
-                int octave = Integer.parseInt(((ConstIntExpr) node.getOctaveModifier()).getConstant());
+                int octave = Integer.parseInt(
+                        ((ConstIntExpr) node.getOctaveModifier()).getConstant()
+                );
+
                 if (octave > SemanticTools.MAX_OCT || octave < SemanticTools.MIN_OCT) {
                     errorHandler.register(
                             errorHandler.SEMANT_ERROR,
                             root.getScore().getFilename(),
                             node.getLineNum(),
-                            "Octave modifiers must be within the range " + SemanticTools.MIN_OCT + " to " + SemanticTools.MAX_OCT
+                            "Octave modifiers must be within the range "
+                                    + SemanticTools.MIN_OCT + " to "
+                                    + SemanticTools.MAX_OCT
                     );
                 }
             }
-        } else {node.setOctaveModifier(new ConstIntExpr(node.getLineNum(), "0"));}
+        } else {
+            // default value
+            node.setOctaveModifier(new ConstIntExpr(node.getLineNum(), "0"));
+        }
         if (node.getVolume() != null) {
             node.getVolume().accept(this);
             if (!node.getVolume().getExprType().equals(SemanticTools.INT)) {
@@ -144,7 +171,10 @@ public class TypeVisitor extends MusicVisitor {
                         "Volume must be of type " + SemanticTools.INT
                 );
             } else {
-                int vol = Integer.parseInt(((ConstIntExpr) node.getVolume()).getConstant());
+                int vol = Integer.parseInt(
+                        ((ConstIntExpr) node.getVolume()).getConstant()
+                );
+
                 if (vol > 127 || vol < 0) {
                     errorHandler.register(
                             errorHandler.SEMANT_ERROR,
@@ -154,7 +184,10 @@ public class TypeVisitor extends MusicVisitor {
                     );
                 }
             }
-        } else {node.setVolume(new ConstIntExpr(node.getLineNum(), "127"));}
+        } else {
+            //default value
+            node.setVolume(new ConstIntExpr(node.getLineNum(), "127"));
+        }
         node.getMeasureList().accept(this);
         return null;
     }
@@ -184,7 +217,8 @@ public class TypeVisitor extends MusicVisitor {
                         errorHandler.SEMANT_ERROR,
                         root.getScore().getFilename(),
                         node.getLineNum(),
-                        "Expressions in block statements must be a phrase or a field variable"
+                        "Expressions in block statements must " +
+                                "be a phrase or a field variable"
                 );
             }
         }
@@ -222,13 +256,18 @@ public class TypeVisitor extends MusicVisitor {
         super.visit(node);
         if (node.getOctaveExpr() != null) {
             if (node.getOctaveExpr().getExprType().equals(SemanticTools.INT)) {
-                int octave = Integer.parseInt(((ConstIntExpr) node.getOctaveExpr()).getConstant());
+                int octave = Integer.parseInt(
+                        ((ConstIntExpr) node.getOctaveExpr()).getConstant()
+                );
+
                 if (octave > SemanticTools.MAX_OCT || octave < SemanticTools.MIN_OCT) {
                     errorHandler.register(
                             errorHandler.SEMANT_ERROR,
                             root.getScore().getFilename(),
                             node.getLineNum(),
-                            "Octave modifiers must be within the range " + SemanticTools.MIN_OCT + " to " + SemanticTools.MAX_OCT
+                            "Octave modifiers must be within the range "
+                                    + SemanticTools.MIN_OCT + " to "
+                                    + SemanticTools.MAX_OCT
                     );
                 } else {
                     node.setOctave(octave);
@@ -243,17 +282,28 @@ public class TypeVisitor extends MusicVisitor {
             }
         } else {
             // set octave if valid program is valid so far...
-            if (this.currentPhraseExpr.getOctaveModifier() != null && errorHandler.getErrorList().size() < 1) {
-                node.setOctave(Integer.parseInt(((ConstIntExpr) currentPhraseExpr.getOctaveModifier()).getConstant()));
+            if (this.currentPhraseExpr.getOctaveModifier() != null
+                    && errorHandler.getErrorList().size() < 1) {
+                node.setOctave(
+                        Integer.parseInt(
+                                ((ConstIntExpr) currentPhraseExpr.getOctaveModifier())
+                                .getConstant()
+                        )
+                );
             } else {
                 node.setOctave(0);
             }
         }
 
-        // set instrument and volume attributes when no errors have occured
+        // set instrument and volume attributes when no errors have occurred
         if (errorHandler.getErrorList().size() == 0) {
-            node.setInstrument(((ConstStringExpr) currentPhraseExpr.getInstrument()).getConstant());
-            node.setVolume(((ConstIntExpr) currentPhraseExpr.getVolume()).getIntConstant());
+            node.setInstrument(
+                    ((ConstStringExpr) currentPhraseExpr.getInstrument()).getConstant()
+            );
+
+            node.setVolume(
+                    ((ConstIntExpr) currentPhraseExpr.getVolume()).getIntConstant()
+            );
         }
 
         return null;

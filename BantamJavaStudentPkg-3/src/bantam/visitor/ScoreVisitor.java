@@ -1,3 +1,16 @@
+/**
+ * File: ScoreVisitor.java
+ * This file was written in memory of our former
+ * group member Victoria Chistolini who sadly did not
+ * survive project 2.5. R.I.P.
+ * @author Edward (osan) Zhou
+ * @author Alex Rinker
+ * @author Vivek Sah
+ * Class: CS461
+ * Project: 6
+ * Date: April 30 2017
+ */
+
 package bantam.visitor;
 
 import bantam.mast.Program;
@@ -16,6 +29,7 @@ public class ScoreVisitor extends MusicVisitor {
         this.errorHandler = errorHandler;
     }
 
+    /** check the score for validity */
     public void checkScore() {
         this.root.accept(this);
     }

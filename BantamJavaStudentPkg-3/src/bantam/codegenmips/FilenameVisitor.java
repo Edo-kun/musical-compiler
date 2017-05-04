@@ -11,12 +11,6 @@
 package bantam.codegenmips;
 
 import bantam.mast.*;
-import bantam.util.ClassTreeNode;
-import bantam.util.ErrorHandler;
-import bantam.util.SemanticTools;
-
-import java.util.Hashtable;
-import java.util.Map;
 
 /**
  * This visitor determines the name of the file containing

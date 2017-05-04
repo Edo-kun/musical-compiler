@@ -33,8 +33,8 @@
  * @author Alex Rinker
  * @author Vivek Sah
  * Class: CS461
- * Project: 3
- * Date: March 9 2017
+ * Project: 6
+ * Date: May 1 2017
  */
 
 package bantam.semant;
@@ -117,34 +117,4 @@ public class SemanticAnalyzer {
         TypeVisitor typeVisitor = new TypeVisitor(program, errorHandler);
         typeVisitor.checkTypes();
     }
-
-//    /** Add built in classes to the class tree
-//      * */
-//    private void updateBuiltins() {
-//	// create AST node for object
-//	Class_ astNode =
-//	    new Class_(-1, "<built-in class>", "Object", null,
-//		       (MemberList)(new MemberList(-1))
-//		       .addElement(new Method(-1, "Object", "clone",
-//					      new FormalList(-1),
-//					      (StmtList)(new StmtList(-1))
-//					      .addElement(new ReturnStmt(-1, new VarExpr(-1, null, "null")))))
-//		       .addElement(new Method(-1, "boolean", "equals",
-//					      (FormalList)(new FormalList(-1))
-//					      .addElement(new Formal(-1, "Object", "o")),
-//					      (StmtList)(new StmtList(-1))
-//					      .addElement(new ReturnStmt(-1, new ConstBooleanExpr(-1, "false")))))
-//		       .addElement(new Method(-1, "String", "toString",
-//					      new FormalList(-1),
-//					      (StmtList)(new StmtList(-1))
-//					      .addElement(new ReturnStmt(-1, new VarExpr(-1, null, "null"))))));
-//	// create a class tree node for object, save in variable root
-//	root = new ClassTreeNode(astNode, /*built-in?*/true, /*extendable?*/true, classMap);
-//	// add object class tree node to the mapping
-//	classMap.put("Object", root);
-//
-//	// note: String, TextIO, and Sys all have fields that are not shown below.  Because
-//	// these classes cannot be extended and fields are protected, they cannot be accessed by
-//	// other classes, so they do not have to be included in the AST.
-//
 }

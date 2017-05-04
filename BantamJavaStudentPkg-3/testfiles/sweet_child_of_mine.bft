@@ -1,4 +1,4 @@
-score "Sweet Child of Mine" | 3000 {
+score "Sweet Child of Mine" | 2600 {
     $prog1 = instr "guitar2" oct 1 vol 100 <c+ c+|2 g+ g- f+|2 g+ f|2 g+>;
     $prog2 = instr "guitar2" oct 1 vol 100 <d+ c+|2 g+ g- f+|2 g+ f|2 g+>;
     $prog3 = instr "guitar2" oct 1 vol 100 <f+ c+|2 g+ g- f+|2 g+ f|2 g+>;
@@ -17,22 +17,34 @@ score "Sweet Child of Mine" | 3000 {
         $prog1;
     }
 
-    $a1 = instr "guitar2" oct -1 <c+ c+ c+ f f c+ f f+>;
-    $a2 = instr "guitar2" oct -1 <g+ g+ a+|0 g+ f+ f c+ c+>;
-    $b1 = instr "guitar2" oct -1 <bbb f+f+f+f+ b>;
-    $b2 = instr "guitar2" oct -1 <f d+ b f d+ b f d+>;
-    $c1 = instr "guitar2" oct -2 <f+f+f+f+f+f+f+ c+>;
-    $c2 = instr "guitar2" oct -1 <f+f+f+f+f+f+f+ c+>;
-    $d1 = instr "guitar2" oct -1 <f+ f c+ f+ f c+ f+ f>;
-    $d2 = instr "guitar2" oct -1 <(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)>;
+    [instr "guitar2" oct -1 <c+ c+ c+ f f c+ f f+>, $prog1];
+    [instr "guitar2" oct -1 <g+ g+ a+|0 g+ f+ f c+ c+>, $prog1];
+    [instr "guitar2" oct -1 <bbb f+f+f+f+ b>, $prog2];
+    [instr "guitar2" oct -1 <f d+ b f d+ b f d+>, $prog2];
+    [instr "guitar2" oct -2 <f+f+f+f+f+f+f+ c+>, $prog3];
+    [instr "guitar2" oct -1 <f+f+f+f+f+f+f+ c+>, $prog3];
+    [instr "guitar2" oct -1 <f+ f c+ f+ f c+ f+ f>, $prog1];
+    [instr "guitar2" oct -1 <(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)(c+c+|-2)>, $prog1];
 
-    [$a1, $prog1];
-    [$a2, $prog1];
-    [$b1, $prog2];
-    [$b2, $prog2];
-    [$c1, $prog3];
-    [$c2, $prog3];
-    [$d1, $prog1];
-    [$d2, $prog1];
+    // second progression with chords
+    $progc1 = instr "guitar2" oct 0 vol 127 <(c+c+|-2) (c+|1g+|-2) (g+c+|-1) (g-g+|-2) (f+|1c+|1f+|-1) (g+g+|-2) (f|1f|-1) (g+g+|-2)>;
+    $progc2 = instr "guitar2" oct 0 vol 127 <(d+b|-2) (c+|1f+|-2) (g+b|-1) (g-f+|-2) (f+|1c+|1d+|-1) (g+f+|-2) (f|1c+|1b|-1) (g+f+|-2)>;
+    $progc3 = instr "guitar2" oct 0 vol 127 <(f+f+|-2) (c+|1c+|-1) (g+f+|-1) (g-c+|-1) (f+|1c+|1b-) (g+c+|-1) (f|1c+|1f+|-1) (g+c+|-1)>;
 
+    loop 2 {
+        $progc1;
+    }
+    loop 2 {
+        $progc2;
+    }
+    loop 2 {
+        $progc3;
+    }
+    loop 2 {
+        $progc1;
+    }
+    $slowScaleup = instr "guitar2" oct -1 <c+|-2 a- c+ d+ f f+ g+ b-|0>;
+
+    [$slowScaleup, instr "guitar2" oct 1 <(c+d+a-)(c+a-)(d+a-)f>];
+    [$slowScaleup, instr "guitar2" oct 1 <(a-c+f+)(a-f)d+d->];
 }

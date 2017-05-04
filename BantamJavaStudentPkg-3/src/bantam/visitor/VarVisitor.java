@@ -14,6 +14,7 @@ import java.util.List;
 public class VarVisitor extends MusicVisitor{
     /** the root of the program */
     private Program root;
+
     /** error handler to register errors */
     private ErrorHandler errorHandler;
 
@@ -26,6 +27,7 @@ public class VarVisitor extends MusicVisitor{
         declaredVars = new ArrayList<>();
     }
 
+    /** check variable declarations */
     public void checkVariables() {
         this.root.accept(this);
     }

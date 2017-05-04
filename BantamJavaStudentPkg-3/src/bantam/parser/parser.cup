@@ -1,13 +1,12 @@
 /**
  * File: parser.cup
  * @author djskrien
- * @author Victoria Chistolini
  * @author Edward (osan) Zhou
  * @author Alex Rinker
  * @author Vivek Sah
  * Class: CS461
- * Project: 2
- * Date: Feb 21, 2017
+ * Project: 5
+ * Date: April 27, 2017
  */
 
 /* Bantam Java Compiler and Language Toolset.
