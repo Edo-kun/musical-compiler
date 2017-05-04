@@ -37,7 +37,7 @@ public class SemanticTools {
     public static final int SLEEP_MOD = -100;
     public static final int MAX_OCT = 4;
     public static final int MIN_OCT = -4;
-    public static final int BPM = 4000;
+    public static int BPM = 4000;
     public static final Map<String, Integer> NOTES;
     static {
         Map<String, Integer> map = new HashMap<>();
@@ -115,7 +115,7 @@ public class SemanticTools {
         int instrMod;
         if (Character.isDigit(instr.charAt(instr.length()-1))) {
             baseInstr = instr.substring(0, instr.length()-1);
-            instrMod = instr.charAt(instr.length()-1);
+            instrMod = Integer.parseInt(instr.substring(instr.length()-1));
         } else {
             baseInstr = instr;
             instrMod = 0;

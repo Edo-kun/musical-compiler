@@ -2,7 +2,7 @@
 score "errors" {
     $z;                                 // undeclared field
     $a = 3;                             // mistyped assignment
-    [$x,$w];                            //undeclared fields
+    [$x,$w];                            // undeclared fields
     $a = <abcd>;
 
     loop instr "piano" <ab> {}          // illegal expr
@@ -20,4 +20,5 @@ score "errors" {
     <a|-5bcd>;                          // octave modifier out of range
     <a|"badoctave"bcd>;                 // illegal octave modifier expression
     <(a(a))>;                           // chord inside a chord
+    <(:aA)>;                            // rests cannot be in chords
 }

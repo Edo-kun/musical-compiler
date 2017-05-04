@@ -84,6 +84,14 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     }
 
     @Override
+    public Object visit(Score node) {
+        if (node.getTicksPerMeasureExpr() != null) {
+            SemanticTools.BPM = ((ConstIntExpr) node.getTicksPerMeasureExpr()).getIntConstant();
+        }
+        return super.visit(node);
+    }
+
+    @Override
     public Object visit(Field node) {
         this.variablesToPhrase.put(node.getName(), (PhraseExpr) node.getInit());
         String fieldLabel = mipsSupport.getLabel();
@@ -304,10 +312,12 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     @Override
     public Object visit(Chord node) {
-        node.getSoundList().iterator().forEachRemaining(s -> {
-            s.accept(this);
-            mipsSupport.genSyscall(31);
-        });
+        if (!(node.getSoundList().getSize() == 0)) {
+            node.getSoundList().iterator().forEachRemaining(s -> {
+                s.accept(this);
+                mipsSupport.genSyscall(31);
+            });
+        }
         return null;
     }
 

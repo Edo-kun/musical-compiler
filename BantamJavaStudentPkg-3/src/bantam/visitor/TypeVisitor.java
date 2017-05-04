@@ -32,7 +32,17 @@ public class TypeVisitor extends MusicVisitor {
 
     @Override
     public Object visit(Score node) {
-        return super.visit(node);
+        super.visit(node);
+        if (node.getTicksPerMeasureExpr() != null &&
+                node.getTicksPerMeasureExpr().getExprType() != SemanticTools.INT) {
+            errorHandler.register(
+                    errorHandler.SEMANT_ERROR,
+                    root.getScore().getFilename(),
+                    node.getLineNum(),
+                    "Score TPM must be an int"
+            );
+        }
+        return null;
     }
 
     @Override
@@ -146,7 +156,7 @@ public class TypeVisitor extends MusicVisitor {
             }
         } else {node.setVolume(new ConstIntExpr(node.getLineNum(), "127"));}
         node.getMeasureList().accept(this);
-        return super.visit(node);
+        return null;
     }
 
     @Override

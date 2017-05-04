@@ -594,7 +594,7 @@ public class Lexer implements java_cup.runtime.Scanner {
 						{
     try {
         int x = Integer.parseInt(yytext());
-        if (x > 127) { return new Symbol(TokenIds.LEX_ERROR,
+        if (x > Integer.MAX_VALUE) { return new Symbol(TokenIds.LEX_ERROR,
                                                   new Token("LARGE_INT", yytext(), yyline)); }
     }
     catch (Exception e) {

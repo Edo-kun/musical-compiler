@@ -161,7 +161,7 @@ terminal Token LEX_ERROR;
 terminal Token SCORE, LOOP, INSTRUMENT, VOLUME, OCTAVE;
 terminal Token PLUS, MINUS;
 terminal Token ASSIGN;
-terminal Token LPAREN, RPAREN, LBRACE, RBRACE, LSQBRACE, RSQBRACE, LBREAK, RBREAK;
+terminal Token LPAREN, RPAREN, LBRACE, RBRACE, LSQBRACE, RSQBRACE, LBREAK, RBREAK, BREAK;
 terminal Token SEMI, COMMA;
 terminal Token ID, INT_CONST, STRING_CONST, NOTE;
 
@@ -196,13 +196,15 @@ program
 
 /* a single score */
 score
-        ::=
-        /* class with no specified parent - uses Object class */
+    ::=
+		SCORE:t STRING_CONST:name BREAK expr:c LBRACE member_list:ml RBRACE
+        {: RESULT = new Score(t.getLineNum(), getCurrFilename(),
+                   name.getAttribute(), ml, c); :}
+        |
         SCORE:t STRING_CONST:name LBRACE member_list:ml RBRACE
-	    {: RESULT = new Score(t.getLineNum(), getCurrFilename(),
-				   name.getAttribute(), ml); :}
-	;
-
+        {: RESULT = new Score(t.getLineNum(), getCurrFilename(),
+                   name.getAttribute(), ml, null); :}
+    ;
 /* member list */
 member_list
 	::=
@@ -429,13 +431,13 @@ chord
 
 note
     ::=
-        NOTE:n const_expr:e
+        NOTE:n BREAK const_expr:e
         {: RESULT = new Note(n.getLineNum(), n.getAttribute(), null, (ConstExpr)e); :}
         |
-        NOTE:n PLUS const_expr:e
+        NOTE:n PLUS BREAK const_expr:e
         {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "+", (ConstExpr)e); :}
         |
-        NOTE:n MINUS const_expr:e
+        NOTE:n MINUS BREAK const_expr:e
         {: RESULT = new Note(n.getLineNum(), n.getAttribute(), "-", (ConstExpr)e); :}
         |
         NOTE:n

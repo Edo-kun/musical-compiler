@@ -72,6 +72,9 @@ public abstract class MusicVisitor {
      * @return result of the visit
      */
     public Object visit(Score node) {
+        if (node.getTicksPerMeasureExpr() != null) {
+            node.getTicksPerMeasureExpr().accept(this);
+        }
         node.getMemberList().accept(this);
         return null;
     }

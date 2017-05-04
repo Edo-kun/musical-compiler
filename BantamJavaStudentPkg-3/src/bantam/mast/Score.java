@@ -52,6 +52,9 @@ public class Score extends ASTNode {
      */
     protected MemberList memberList;
 
+    /** The tpm expr */
+    protected Expr ticksPerMeasure;
+
     /**
      * Class_ constructor
      *
@@ -60,11 +63,12 @@ public class Score extends ASTNode {
      * @param name       the name of this class
      * @param memberList a list of the class members
      */
-    public Score(int lineNum, String filename, String name, MemberList memberList) {
+    public Score(int lineNum, String filename, String name, MemberList memberList, Expr timing) {
         super(lineNum);
         this.filename = filename;
         this.name = name;
         this.memberList = memberList;
+        this.ticksPerMeasure = timing;
     }
 
     /**
@@ -74,6 +78,11 @@ public class Score extends ASTNode {
      */
     public String getFilename() {
         return filename;
+    }
+
+    /** Get the ticksperMeasure*/
+    public Expr getTicksPerMeasureExpr() {
+        return ticksPerMeasure;
     }
 
     /**
