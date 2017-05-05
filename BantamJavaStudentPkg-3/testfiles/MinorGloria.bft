@@ -1,0 +1,17 @@
+//hehe
+score "Minor Glorya" | 2000 {
+
+    $repeat = oct 1 <a+ : a+ a- a+ : a+ c+><c+ : c+ b a+ : a- :>;
+    $lh1 = <d+ f+ : f+ d+ f+ : f+><c+ f g+ f c+ f f+ f>;
+    $lh2 = <b d+ f+ d+ b d+ f+ d+><c+ f g+ f c+ f g+ f>;
+
+    [$repeat, $lh1];
+    [$repeat, $lh2];
+    [$repeat, $lh1];
+    [$repeat, $lh2];
+
+    <d+d+f+f+a+|1a+|1f+f+><d+d+f+f+a+|1a+|1f+f+>;
+    <c+c+ f f  g+g+ff><c+c+ f f g+g+ f f>;
+    <bb d+d+ f+f+d+d+><bbd+d+f+f+d+d+>;
+    <c+c+ffg+g+ff><c+c+::::::>;
+}

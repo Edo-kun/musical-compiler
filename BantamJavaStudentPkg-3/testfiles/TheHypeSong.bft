@@ -1,0 +1,23 @@
+score "Hype" | 1500 {
+    $rep = instr "strings2" <: g : f : d f g>;
+
+    instr "strings2" <d d d|1 : a|1 : : g+>;
+    $rep;
+    instr "strings2" <c c d|1 : a|1 : : g+>;
+    $rep;
+    instr "strings2" <b b d|1 : a|1 : : g+>;
+    $rep;
+    instr "strings2" <a+ a+ d|1 : a|1 : : g+>;
+    $rep;
+
+    loop 3 {
+        [instr "strings2" <d d d|1 : a|1 : : g+>, instr "strings4" oct -1 <d : d : d d : d>];
+        [$rep, instr "strings4" oct -1 <: d : d d d d :>];
+        [instr "strings2" <c c d|1 : a|1 : : g+>, instr "strings4" oct -1 <c : c : c c : c>];
+        [$rep, instr "strings4" oct -1 <: c : c c c c :>];
+        [instr "strings2" <b b d|1 : a|1 : : g+>, instr "strings4" oct -1 <b : B : B B : B>];
+        [$rep, instr "strings4" oct -1 <: b : b b b b :>];
+        [instr "strings2" <a+ a+ d|1 : a|1 : : g+>, instr "strings4" oct -1 <a+ : a+ : a+ a+ : c>];
+        [$rep, instr "strings4" oct -1 <: c : c c c c :>];
+    }
+}

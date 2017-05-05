@@ -47,14 +47,26 @@ public class TypeVisitor extends MusicVisitor {
     @Override
     public Object visit(Score node) {
         super.visit(node);
-        if (node.getTicksPerMeasureExpr() != null &&
-                node.getTicksPerMeasureExpr().getExprType() != SemanticTools.INT) {
-            errorHandler.register(
-                    errorHandler.SEMANT_ERROR,
-                    root.getScore().getFilename(),
-                    node.getLineNum(),
-                    "Score TPM must be an int"
-            );
+        if (node.getTicksPerMeasureExpr() != null) {
+            if (node.getTicksPerMeasureExpr().getExprType() != SemanticTools.INT) {
+                errorHandler.register(
+                        errorHandler.SEMANT_ERROR,
+                        root.getScore().getFilename(),
+                        node.getLineNum(),
+                        "Score TPM must be an int"
+                );
+            } else {
+                if (((ConstIntExpr)node.getTicksPerMeasureExpr()).getIntConstant()
+                        + SemanticTools.SLEEP_MOD < 0) {
+                    errorHandler.register(
+                            errorHandler.SEMANT_ERROR,
+                            root.getScore().getFilename(),
+                            node.getLineNum(),
+                            "TPM too low"
+                    );
+
+                }
+            }
         }
         return null;
     }
