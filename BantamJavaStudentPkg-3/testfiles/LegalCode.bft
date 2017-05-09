@@ -6,5 +6,4 @@ score "The C scale" {
     $x;
     $y;
     <(ceg)(ceg)><(ceg)>;
-    oct 3 instr "percussion1" vol 50 <dede><abab><gdgd><cfcf>;
 }
