@@ -169,7 +169,7 @@ public class MipsCodeGenerator {
     }
 
     private void generateMusic() {
-        CodeGeneratorVisitor codeGeneratorVisitor = new CodeGeneratorVisitor(root, assemblySupport, out);
+        CodeGeneratorVisitor codeGeneratorVisitor = new CodeGeneratorVisitor(root, assemblySupport);
         codeGeneratorVisitor.generate();
     }
 

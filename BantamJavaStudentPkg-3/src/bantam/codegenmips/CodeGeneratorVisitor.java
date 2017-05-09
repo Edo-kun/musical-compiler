@@ -14,7 +14,6 @@ import bantam.mast.*;
 import bantam.util.SemanticTools;
 import bantam.visitor.MusicVisitor;
 
-import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.*;
@@ -27,9 +26,6 @@ public class CodeGeneratorVisitor extends MusicVisitor{
     /** support class for callGenerating code in mips */
     private MipsSupport mipsSupport;
 
-    /** Print stream for printing to a file */
-    private PrintStream out;
-
     /** root of the class tree */
     private Program root;
 
@@ -41,9 +37,6 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
     /** Manage looping expressions */
     private int currOffset;
-
-    /** flag to generate code in a field */
-    private boolean callGenerating;
 
     /** flag to play phrases in sequence */
     private boolean blockGenerating;
@@ -58,15 +51,12 @@ public class CodeGeneratorVisitor extends MusicVisitor{
      */
     public CodeGeneratorVisitor(
             Program root,
-            MipsSupport mipsSupport,
-            PrintStream out) {
+            MipsSupport mipsSupport) {
         this.mipsSupport = mipsSupport;
-        this.out = out;
         this.root = root;
         this.variablesToPhrase = new HashMap<>();
         this.variablesToLabel = new HashMap<>();
         this.blockGenerating = false;
-        this.callGenerating = false;
         this.currOffset = 0;
     }
 
@@ -242,9 +232,13 @@ public class CodeGeneratorVisitor extends MusicVisitor{
 
             // Iterate through the notes
             for (int i = 0; i < numNotes; i++) {
+                // index of the note that should be played
                 int keyIndex = sleepTimes.indexOf(0);
                 // visit the note
                 this.currNoteIndex = indices.get(keyIndex);
+
+                // set the volume and
+
                 measureList.get(keyIndex).accept(this);
                 indices.set(keyIndex, indices.get(keyIndex)+1);
 

@@ -22,7 +22,7 @@ import bantam.util.SemanticTools;
  * (3) loops are given a positive int to loop
  * (4) octaveExpr modifiers are within range
  * (5) instrument declarations are valid instruments
- * (6) volume is within 1-127
+ * (6) volume is within 0-127
  * (8) block stmts have valid expressions to match
  */
 public class TypeVisitor extends MusicVisitor {
