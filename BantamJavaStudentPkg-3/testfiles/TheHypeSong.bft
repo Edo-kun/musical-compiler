@@ -1,4 +1,4 @@
-score "Hype" | 1500 {
+score "Hype" | 1000 {
     $rep = instr "strings2" <: g : f : d f g>;
 
     instr "strings2" <d d d|1 : a|1 : : g+>;

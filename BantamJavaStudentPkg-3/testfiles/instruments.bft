@@ -1,0 +1,145 @@
+score "Instruments" | 2000 {
+    instr "piano" <f>;
+    instr "piano1" <f>;
+    instr "piano2" <f>;
+    instr "piano3" <f>;
+    instr "piano4" <f>;
+    instr "piano5" <f>; /////
+    instr "piano6" <f>;
+    instr "piano7" <f>;
+    
+    instr "chromatic_percussion" <f>;
+    instr "chromatic_percussion1" <f>; ////
+    instr "chromatic_percussion2" <f>;
+    instr "chromatic_percussion3" <f>; ///
+    instr "chromatic_percussion4" <f>;
+    instr "chromatic_percussion5" <f>;
+    instr "chromatic_percussion6" <f>;
+    instr "chromatic_percussion7" <f>; ///
+    
+    instr "organ" <f>;
+    instr "organ1" <f>;
+    instr "organ2" <f>;
+    instr "organ3" <f>;
+    instr "organ4" <f>;
+    instr "organ5" <f>;
+    instr "organ6" <f>;
+    instr "organ7" <f>;
+        
+    instr "guitar" <f>;
+    instr "guitar1" <f>;
+    instr "guitar2" <f>;
+    instr "guitar3" <f>;
+    instr "guitar4" <f>; ///
+    instr "guitar5" <f>;
+    instr "guitar6" <f>;
+    instr "guitar7" <f>;
+    
+    instr "bass" <f>;
+    instr "bass1" <f>;
+    instr "bass2" <f>;
+    instr "bass3" <f>;
+    instr "bass4" <f>;
+    instr "bass5" <f>;
+    instr "bass6" <f>;
+    instr "bass7" <f>;
+    
+    instr "strings" <f>;
+    instr "strings1" <f>;
+    instr "strings2" <f>;
+    instr "strings3" <f>;
+    instr "strings4" <f>;
+    instr "strings5" <f>;
+    instr "strings6" <f>; ///
+    instr "strings7" <f>;
+    
+    instr "ensemble" <f>;
+    instr "ensemble1" <f>;
+    instr "ensemble2" <f>;
+    instr "ensemble3" <f>;
+    instr "ensemble4" <f>;
+    instr "ensemble5" <f>; ///
+    instr "ensemble6" <f>;
+    instr "ensemble7" <f>;
+    
+    instr "brass" <f>;
+    instr "brass1" <f>;
+    instr "brass2" <f>;
+    instr "brass3" <f>;
+    instr "brass4" <f>;
+    instr "brass5" <f>;
+    instr "brass6" <f>;
+    instr "brass7" <f>;
+    
+    instr "reed" <f>;
+    instr "reed1" <f>;
+    instr "reed2" <f>;
+    instr "reed3" <f>;
+    instr "reed4" <f>;
+    instr "reed5" <f>;
+    instr "reed6" <f>;
+    instr "reed7" <f>;
+    
+    instr "pipe" <f>;
+    instr "pipe1" <f>;
+    instr "pipe2" <f>;
+    instr "pipe3" <f>;
+    instr "pipe4" <f>;
+    instr "pipe5" <f>;
+    instr "pipe6" <f>; ///
+    instr "pipe7" <f>;
+    
+    instr "synth_lead" <f>;
+    instr "synth_lead1" <f>;
+    instr "synth_lead2" <f>;
+    instr "synth_lead3" <f>;
+    instr "synth_lead4" <f>;
+    instr "synth_lead5" <f>;
+    instr "synth_lead6" <f>; //
+    instr "synth_lead7" <f>;
+    
+    instr "synth_pad" <f>;
+    instr "synth_pad1" <f>;
+    instr "synth_pad2" <f>;
+    instr "synth_pad3" <f>;
+    instr "synth_pad4" <f>; //
+    instr "synth_pad5" <f>;
+    instr "synth_pad6" <f>;
+    instr "synth_pad7" <f>;
+    
+    instr "synth_effects" <f>;
+    instr "synth_effects1" <f>; // rainworld
+    instr "synth_effects2" <f>;
+    instr "synth_effects3" <f>;
+    instr "synth_effects4" <f>;
+    instr "synth_effects5" <f>;
+    instr "synth_effects6" <f>;
+    instr "synth_effects7" <f>;
+    
+    instr "ethnic" <f>;
+    instr "ethnic1" <f>;
+    instr "ethnic2" <f>;
+    instr "ethnic3" <f>;
+    instr "ethnic4" <f>;
+    instr "ethnic5" <f>;
+    instr "ethnic6" <f>;
+    instr "ethnic7" <f>;
+    
+    instr "percussion" <f>;
+    instr "percussion1" <f>;
+    instr "percussion2" <f>; // under the sea
+    instr "percussion3" <f>;
+    instr "percussion4" <f>;
+    instr "percussion5" <f>;
+    instr "percussion6" <f>;
+    instr "percussion7" <f>;
+    
+    instr "sound_effects" <f>;
+    instr "sound_effects1" <f>;
+    instr "sound_effects2" <f>;
+    instr "sound_effects3" <f>;
+    instr "sound_effects4" <f>;
+    instr "sound_effects5" <f>;
+    instr "sound_effects6" <f>;
+    instr "sound_effects7" <f>;
+}

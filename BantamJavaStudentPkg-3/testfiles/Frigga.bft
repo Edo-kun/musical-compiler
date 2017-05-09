@@ -1,0 +1,18 @@
+// A Melodic layering of tones
+score "Frigga" | 2500 {
+    $base = oct -1 instr "chromatic_percussion3" vol 50 <d+><Ca-><d+><ca-><d+a+><ca-><d+a+><a->;
+    $base2 = instr "strings6" vol 50 <g><a+|1g+><g><gd+><gf><g:d+f><gf><d+>;
+
+    $base;
+    [$base,$base2,instr "strings6" oct 2 vol 20 <><:::::::: ::fg:fd+:><><:::::::: ::dd+:db-:>, instr "piano3" oct 2 vol 20 <><:::: d+:::><><:::: d+:::>];
+
+
+    loop 2 {
+        [instr "strings6" vol 50 <ga+|1><gg+>, oct -1 instr "chromatic_percussion3" vol 50 <d+a+><Ca->, instr "sound_effects3" vol 20 <a>,
+            instr "guitar4" vol 40 <:d+ :d><:d+ :d>, instr "guitar4" vol 40 <::::::b- ::::::d+><::::::b- ::::::d+>];
+        [instr "strings6" vol 50 <ga+|1><gg+>, oct -1 instr "chromatic_percussion3" vol 50 <d+a+><Ca->,instr "sound_effects3" vol 20 <a>,
+            instr "guitar4" vol 40 <:d+ :d><:d+ :g+>, instr "guitar4" vol 40 <::::::b- ::::::d+><::::::b- ::::::g>];
+
+    }
+    [instr "strings6" vol 50 <ga+|1><gg+>, oct -1 instr "chromatic_percussion3" vol 50 <d+a+><Ca->,instr "sound_effects3" vol 20 <a>];
+}
