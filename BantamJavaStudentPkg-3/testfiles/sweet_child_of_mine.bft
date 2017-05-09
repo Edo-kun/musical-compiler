@@ -1,4 +1,4 @@
-score "Sweet Child of Mine" | 2600 {
+score "Sweet Child of Mine" | 2000 {
     $prog1 = instr "guitar2" oct 1 vol 100 <c+ c+|2 g+ g- f+|2 g+ f|2 g+>;
     $prog2 = instr "guitar2" oct 1 vol 100 <d+ c+|2 g+ g- f+|2 g+ f|2 g+>;
     $prog3 = instr "guitar2" oct 1 vol 100 <f+ c+|2 g+ g- f+|2 g+ f|2 g+>;
