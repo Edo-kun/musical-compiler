@@ -47,7 +47,7 @@ public class SemanticTools {
     public static final String PHRASE = "phrase";
 
     /** subtracts time to the wait duration to provide smoother note transition */
-    public static final int SLEEP_MOD = -50;
+    public static final int SLEEP_MOD = 0;
 
     /** maximum octave modifier */
     public static final int MAX_OCT = 4;
@@ -62,7 +62,7 @@ public class SemanticTools {
     public static final Map<String, Integer> NOTES;
     static {
         Map<String, Integer> map = new HashMap<>();
-        int midi = 55;
+        int midi = 56;
         for (char letter : "ab".toCharArray()) {
             map.put(String.valueOf(letter) + "-", midi);
             midi++;
@@ -76,6 +76,7 @@ public class SemanticTools {
         map.put("c", midi);
         midi++;
         map.put("c+", midi);
+
         for (char letter : "de".toCharArray()) {
             map.put(String.valueOf(letter) + "-", midi);
             midi++;
